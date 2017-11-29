@@ -85,9 +85,28 @@ n3 = int( "%s%s%s" % (a,a,a) )
 print(n3) #print 555
 print(n1+n2+n3) #print 615
 
-#11. Write a Python program to print the documents (syntax, description etc.) of Python built-in function(s).
-print(abs.__doc__)
-print(print.__doc__)
-print(type.__doc__)
-print(dir(__builtins__)) #['ArithmeticError', 'AssertionError', ...,  'type', 'vars', 'zip']
+#11. Write a Python program to print the documents (syntax, description etc.) of Python built-in function(s).  RM:  comment out print statements for #11
+#print(abs.__doc__)
+#print(print.__doc__)
+#print(type.__doc__)
+#print(dir(__builtins__)) #['ArithmeticError', 'AssertionError', ...,  'type', 'vars', 'zip']
 #RM:  https://docs.python.org/3/library/functions.html website has all built-in functions
+
+#12. Write a Python program to print the calendar of a given month and year.  Note: Use 'calendar' module.
+import calendar
+c = calendar.TextCalendar(calendar.SUNDAY) #The example configures TextCalendar to start weeks on Sunday, following the American convention. The default is to use the European convention of starting a week on Monday.
+c.prmonth(2017, 11) #print the Nov 2017 calendar
+
+#13. Write a Python program to print the following here document. Go to the editor Sample string :
+"""
+a string that you "don't" have to escape
+This
+is a ....... multi-line
+heredoc string --------> example
+"""
+print("""
+a string that you "don't" have to escape
+This
+is a ....... multi-line
+heredoc string --------> example
+""")
