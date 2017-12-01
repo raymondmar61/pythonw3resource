@@ -110,3 +110,107 @@ This
 is a ....... multi-line
 heredoc string --------> example
 """)
+
+#14. Write a Python program to calculate number of days between two dates.  Sample dates : (2014, 7, 2), (2014, 7, 11)  Expected output : 9 days 
+import datetime
+firstdate = datetime.date(2014, 7, 2)
+secondate = datetime.date(2014, 7, 11)
+print((secondate - firstdate).days) #print 9
+
+#15. Write a Python program to get the volume of a sphere with radius 6.
+from math import pi
+def volumesphere(radius):
+	return (4/3)*pi*(radius**3)
+print(volumesphere(6)) #print 904.7786842338603
+	
+#16. Write a Python program to get the difference between a given number and 17, if the [given] number is greater than 17 return double the absolute difference.
+givennumber = 14
+constant = 17
+if givennumber <= constant:
+	print(constant - givennumber) #print 3
+else:
+	print((givennumber - constant)*2)
+
+#17. Write a Python program to test whether a number is within 100 of 1000 or 2000.
+givennumber = 999
+if givennumber >=900 or givennumber <=1100:
+	print(givennumber,"Given number is within 1000 +/- 100") #print 999 Given number is within 1000 +/- 100	
+elif givennumber >=1900 or givennumber <=2100:
+	print(givennumber,"Given number is within 2000 +/- 100")
+else:
+	print("Given number is not within 1000 +/100 or 2000 +/-100")
+
+#18. Write a Python program to calculate the sum of three given numbers, if the values are equal then return thrice of their sum.
+def sumthreenumbers(a, b, c):
+	if a == b and b ==c:
+		return(3*(a+b+c))
+	else:
+		return a + b + c
+print(sumthreenumbers(5, 10, 15)) #print 30
+print(sumthreenumbers(50, 50, 50)) #print 450
+
+#19. Write a Python program to get a new string from a given string where "Is" has been added to the front. If the given string already begins with "Is" then return the string unchanged.
+def newstring(newstring):
+	if newstring[0] == "I" and newstring[1] == "s":
+		print(newstring)
+	else:
+		print("Is"+newstring)
+newstring("Isokay") #retrn Isokay
+newstring("okayis") #retrn Isokayis
+
+#20. Write a Python program to get a string which is n (non-negative integer) copies of a given string.
+n = 5
+givenstring = "The quick brown fox jumped over the lazy dog"
+print(givenstring*5) #print The quick brown fox jumped over the lazy dogThe quick brown fox jumped over the lazy dogThe quick brown fox jumped over the lazy dogThe quick brown fox jumped over the lazy dogThe quick brown fox jumped over the lazy dog
+
+#21. Write a Python program to find whether a given number (accept from the user) is even or odd, print out an appropriate message to the user.
+def evenorodd(n):
+	if n % 2 == 0:
+		print(n,"is even")
+	else:
+		print(n,"is odd")
+evenorodd(10) #return 10 is even
+evenorodd(17) #return 17 is odd
+
+#22. Write a Python program to count the number 4 in a given list.
+import random
+numberlist = []
+count = 1
+while count < 11:
+	numberlist.append(random.randint(1,5))
+	count +=1
+print(numberlist)
+count = 0
+for eachnumberlist in numberlist:
+	if eachnumberlist == 4:
+		count += 1
+print("There are",count,"four's in the list.")
+
+#23. Write a Python program to get the n (non-negative integer) copies of the first 2 characters of a given string. Return the n copies of the whole string if the length is less than 2
+def copy2characters(string,n):
+	if len(string) < 2:
+		return string*n
+	else:
+		return (string[0]+string[1])*n
+print(copy2characters("Parker Brothers",5)) #print PaPaPaPaPa
+print(copy2characters("S",15)) #print SSSSSSSSSSSSSSS
+
+#24. Write a Python program to test whether a passed letter is a vowel or not.
+vowel = ["a","e","i","o","u"]
+def lettercheck(letter):
+	if letter in vowel:
+		print(letter+" is a vowel")
+	else:
+		print(letter+" is a consonant")
+lettercheck("e") #return e is a vowel
+lettercheck("t") #return t is a consonant
+
+#25. Write a Python program to check whether a specified value is contained in a group of values.  Test Data :  3 -> [1, 5, 8, 3] : True -1 -> [1, 5, 8, 3] : False
+def valuecheck(n):
+	testdata = [1, 5, 8, 3]
+	if n in testdata:
+		return True
+	else:
+		return False
+print(valuecheck(3)) #print True
+print(valuecheck(-1)) #print False
