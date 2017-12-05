@@ -214,3 +214,14 @@ def valuecheck(n):
 		return False
 print(valuecheck(3)) #print True
 print(valuecheck(-1)) #print False
+
+#26. Write a Python program to create a histogram from a given list of integers.
+import matplotlib.pyplot as plt
+xpopulationages = [22,55,62,45,21,22,34,42,42,4,99,102,110,120,121,122,130,111,115,112,80,75,65,54,44,43,42,48]
+ybins = [0,10,20,30,40,50,60,70,80,90,100,110,120,130]
+plt.hist(xpopulationages,ybins, label="labelhistogram", histtype="bar", rwidth=1.0)
+plt.xlabel("xlabel")
+plt.ylabel("ylabel")
+plt.title("Title")
+plt.legend()
+#plt.show() #comment out plt.show() to avoid displaying histogram
