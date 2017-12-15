@@ -225,3 +225,49 @@ plt.ylabel("ylabel")
 plt.title("Title")
 plt.legend()
 #plt.show() #comment out plt.show() to avoid displaying histogram
+
+#27. Write a Python program to concatenate all elements in a list into a string and return it.
+def liststring(liststring):
+	print(" ".join(liststring))
+	print(", ".join(liststring))
+wordlist = ["Let","It","Snow","Jingle","Bells","Silver","Spirit","Christmas"]
+liststring(wordlist) #print Let It Snow Jingle Bells Silver Spirit Christmas\n Let, It, Snow, Jingle, Bells, Silver, Spirit, Christmas
+
+#28. Write a Python program to print all even numbers from a given numbers list in the same order and stop the printing if any numbers that come after 237 in the sequence.
+def evennumber237(listnumber):
+	numbersfinal = []
+	for eachlistnumber in listnumber:		
+		if eachlistnumber == 237:
+			break
+		elif eachlistnumber % 2 == 0:
+			numbersfinal.append(eachlistnumber)
+	print(numbersfinal)		
+numbers = [386, 462, 47, 418, 907, 344, 236, 375, 823, 566, 597, 978, 328, 615, 953, 345, 399, 162, 758, 219, 918, 100000, 237, 412, 566, 826, 248, 866, 950, 626, 949, 687, 217, 815, 67, 104, 58, 512, 24, 892, 894, 767, 553, 81, 379, 843, 831, 445, 742, 717, 958, 743, 527]
+evennumber237(numbers) #return [386, 462, 418, 344, 236, 566, 978, 328, 162, 758, 918, 100000]
+
+#29. Write a Python program to print out a set containing all the colors from colorlist1 which are not present in colorlist2.
+"""
+Test Data : 
+colorlist1 = set(["White", "Black", "Red"]) 
+colorlist2 = set(["Red", "Green"])
+Expected Output : {'Black', 'White'}
+"""
+colorlist1 = set(["White", "Black", "Red"]) 
+colorlist2 = set(["Red", "Green"])
+print(colorlist1.union(colorlist2)) #print {'Green', 'Red', 'White', 'Black'}
+print(colorlist1.intersection(colorlist2)) #print {'Red'}
+print(colorlist1.difference(colorlist2)) #print {'Black', 'White'}
+print(colorlist2.difference(colorlist1)) #print {'Green'}
+#source: https://www.python-course.eu/sets_frozensets.php
+"""
+RM:  long way
+colorlist1 = list(colorlist1)
+colorlist2 = list(colorlist2)
+print(colorlist1) #print ['Red', 'Black', 'White']
+print(colorlist2) #print ['Green', 'Red']
+colorlist3 = []
+for eachcolorlist1 in colorlist1:
+	if eachcolorlist1 not in colorlist2:
+		colorlist3.append(eachcolorlist1)
+print(set(colorlist3)) #print {'Black', 'White'}
+"""
