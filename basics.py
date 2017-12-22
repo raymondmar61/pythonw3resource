@@ -271,3 +271,20 @@ for eachcolorlist1 in colorlist1:
 		colorlist3.append(eachcolorlist1)
 print(set(colorlist3)) #print {'Black', 'White'}
 """
+
+#30. Write a Python program that will accept the base and height of a triangle and compute the area
+def areatriangle(base, height):
+	return base*height*0.5
+# baseheight = input("Enter the base and height of a triangle separated by a space ")
+# baseheight = baseheight.split(" ")
+# print(areatriangle(float(baseheight[0]),float(baseheight[1])))
+print(areatriangle(5,4.5)) #print 11.25
+
+#31. Write a Python program to compute the greatest common divisor (GCD) of two positive integers.  RM:  function from Barry Brown
+def gcd(a, b):
+	"""Return the greatest common divisor of a and b.  gcd(10, 5) is 5, (14, 21) is 7, (80, 30) is 10, (7, 15) is 1, (9, 0) is 9 """
+	if b == 0:
+		return a
+	else:
+		return gcd(b, a % b) #recursion
+print(gcd(20,10)) #return 10
