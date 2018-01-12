@@ -288,3 +288,36 @@ def gcd(a, b):
 	else:
 		return gcd(b, a % b) #recursion
 print(gcd(20,10)) #return 10
+
+#32.  Write a Python program to get the least common multiple (LCM) of two positive integers.
+def isprime(n):
+	if n == 1:
+		return False #1 is not a prime number
+	for d in range(2, n):
+		if n % d == 0:
+			return False
+	return True
+number1 = 3000
+number2 = 45550
+prime1 = isprime(number1)
+prime2 = isprime(number2)
+#a pair of prime numbers the LCM is their product
+if prime1 == True and prime2 == True:
+	print(number1*number2,"is the lowest common multiple")
+else:
+	set1 = set()
+	set2 = set()
+	eachnumber = 1
+	while True:
+		try:
+			#create two sets of number1 multiples and number2 multiples
+			set1.add(eachnumber*number1)
+			set2.add(eachnumber*number2)
+			min(set1.intersection(set2))
+		#no value for min(set1.intersection(set2)) add 1 to eachnumber and continue addting multiples to the two sets
+		except ValueError:
+			eachnumber +=1
+			continue
+		else:
+			print(min(set1.intersection(set2)),"is the lowest common multiple",number1,"and",number2)
+			break
