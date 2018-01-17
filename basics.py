@@ -289,7 +289,7 @@ def gcd(a, b):
 		return gcd(b, a % b) #recursion
 print(gcd(20,10)) #return 10
 
-#32.  Write a Python program to get the least common multiple (LCM) of two positive integers.
+#32.  Write a Python program to get the least common multiple (LCM) of two positive integers.  Official solution: https://www.w3resource.com/python-exercises/python-basic-exercise-32.php
 def isprime(n):
 	if n == 1:
 		return False #1 is not a prime number
@@ -297,6 +297,7 @@ def isprime(n):
 		if n % d == 0:
 			return False
 	return True
+#number1 and number2 are the two positive integers
 number1 = 3000
 number2 = 45550
 prime1 = isprime(number1)
@@ -321,3 +322,44 @@ else:
 		else:
 			print(min(set1.intersection(set2)),"is the lowest common multiple",number1,"and",number2)
 			break
+
+#33. Write a Python program to sum of three given integers. However, if two values are equal sum will be zero.
+def sumthreeintegers(x,y,z):
+	"""Returns the sum of three different integers.  Press q to exit."""
+	if x<0 or y<0 or z<0:
+		positivenumbers = abs(x)+abs(y)+abs(z)
+		print("I converted all numbers to positive:",positivenumbers)		
+	elif (x==y) or (y==z) or (x==z):
+		print(0)
+	else:
+		print(x+y+z)
+def sumthreeintegers2(x,y,z):
+	"""Returns the sum of three different integers.  Press q to exit."""
+	if x<0 or y<0 or z<0:
+		positivenumbers = abs(x)+abs(y)+abs(z)
+		convert = "I converted all numbers to positive:",str(positivenumbers)
+		return " ".join(convert)
+	elif (x==y) or (y==z) or (x==z):
+		return 0
+	else:
+		return x+y+z
+#three given integers.  I modified problem to positive integers only.
+x=10
+y=-15
+z=100
+sumthreeintegers(x,y,z)
+print(sumthreeintegers2(x,y,z))
+#RM:  reminder help for a function.
+#print(help(sumthreeintegers)) #print Help on function sumthreeintegers in module __main__: sumthreeintegers(x, y, z) Returns the sum of three different integers.  Press q to exit.
+
+#34. Write a Python program to sum of two given integers. However, if the sum is between 15 to 20 it will return 20.
+def sumtwointegers(x,y):
+	if ((x+y) >=15) and ((x+y) <=20):
+		return 20
+	else:
+		return x+y
+#two given integers
+print(sumtwointegers(20,12))
+print(sumtwointegers(4,12))
+print(sumtwointegers(12,4))
+print(sumtwointegers(20,-3))
