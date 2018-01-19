@@ -363,3 +363,66 @@ print(sumtwointegers(20,12))
 print(sumtwointegers(4,12))
 print(sumtwointegers(12,4))
 print(sumtwointegers(20,-3))
+
+#35. Write a Python program that will return true if the two given integer values are equal or their sum or difference is 5.
+def givenintegers(a,b):
+	if (a == b) or (abs(a)-abs(b)==5) or (abs(b)-abs(a)==5):
+		return True
+	else:
+		return False
+print(givenintegers(505,-500))
+print(givenintegers(1000,1000))
+print(givenintegers(-33,10))
+
+#36. Write a Python program to add two objects if both objects are an integer type.
+object1 = 5
+object2 = 6
+if isinstance(object1, int) is True and isinstance(object2, int) is True:
+	print(object1 + object2)
+if type(object1) is int and type(object2) is int:
+	print(object1 + object2)
+
+#37. Write a Python program to display your details like name, age, address in three different lines.
+description = ["Name","Age","Address"]
+yourdetails = input("Enter your first name, age, address separated by a ! ")
+yourdetails = yourdetails.split("!")
+n=0
+for eachyourdetails in yourdetails:
+	print(description[n]+": "+eachyourdetails)
+	n+=1
+
+#38. Write a Python program to solve (x + y) * (x + y).  Test Data : x = 4, y = 3 Expected Output : (4 + 3) ^ 2) = 49
+def xy(x,y,power):
+	print(pow((x+y),power))
+xy(4,3,2)
+
+#39. Write a Python program to compute the future value of a specified principal amount, rate of interest, and a number of years. Test Data : amt = 10000, int = 3.5, years = 7 Expected Output : 12722.79
+#RM: Compounded Annual Interest.  Interest rate applied to each year's cumulative account balance.  FV=I*((1+R)^T) or future value = principal*((1+interest rate per year)^number of years)) #https://www.investopedia.com/terms/f/futurevalue.asp
+def futurevalue(principal, interestrate, years):
+	return (principal*((1+interestrate)**years))
+print(round(futurevalue(10000,.035,7),2))
+
+#40. Write a Python program to compute the distance between the points (x1, y1) and (x2, y2).
+#We use the Pythagoras Theorem to derive a formula for finding the distance between two points in 2- and 3- dimensional space.  Let P = (x1,y1) and Q = (x2,y2) be two points on the Cartesian plane.  Then from the Pythagoras Theorem we find that the distance between P and Q is PQ = (((x2-x1)**2)+((y2-y1)**2))**.5
+#http://mathsfirst.massey.ac.nz/Al gebra/PythagorasTheorem/pythapp.htm
+import matplotlib.pyplot as plt
+from math import sqrt
+def distance(x1,y1,x2,y2):
+	return sqrt(((x2-x1)**2)+((y2-y1)**2))
+firstpoint = input("Enter x and y for first point separated by a space ")
+secondpoint = input("Enter x and y for second point separated by a space ")
+firstpoint = firstpoint.split(" ")
+secondpoint = secondpoint.split(" ")
+x1=float(firstpoint[0])
+y1=float(firstpoint[1])
+x2=float(secondpoint[0])
+y2=float(secondpoint[1])
+p=[x1,y1]
+q=[x2,y2]
+plt.plot(p,q, label="firstlineforlegend")
+plt.xlabel("xlabel")
+plt.ylabel("ylabel")
+plt.title("title\ntitlenewline")
+plt.legend()
+plt.show()
+print(distance(x1,y1,x2,y2))
