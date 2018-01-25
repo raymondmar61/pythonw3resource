@@ -21,6 +21,7 @@ Twinkle, twinkle, little star,
 #2. Write a Python program to get the Python version you are using
 import sys
 print(sys.version) #print 3.5.2 (default, Nov 17 2016, 17:05:23)\n [GCC 5.4.0 20160609]
+print(sys.maxsize) #print 9223372036854775807
 
 #3. Write a Python program to display the current date and time.
 from datetime import datetime
@@ -426,3 +427,61 @@ plt.title("title\ntitlenewline")
 plt.legend()
 plt.show()
 print(distance(x1,y1,x2,y2))
+
+#41. Write a Python program to check whether a file exists.
+filename = "temptestmatplotlib.py"
+with open(filename) as fileobject:
+	reviewopenfile=fileobject.read()
+print(reviewopenfile)
+filename = "temptestmatplotlib2.py"
+try:
+	with open(filename) as fileobject:
+		contents=fileobject.read()
+except FileNotFoundError:
+	print(filename+" file doesn't exist.")
+else:
+	print(contents)
+
+#42. Write a Python program to determine if a Python shell is executing in 32bit or 64bit mode on OS.
+import ctypes
+print(ctypes.sizeof(ctypes.c_voidp)) #print 8.  4 for 32bit or 8 for 64bit
+import platform
+print(platform.architecture()) #print ('64bit', 'ELF')
+
+#43. Write a Python program to get OS name, platform and release information.
+import os
+print(os.name) #print posix
+import platform
+print(platform.system()) #print Linux
+print(platform.release()) #print 4.4.0-89-generic
+
+#44. Write a Python program to locate Python site-packages.  site-packages is the location where Python installs its modules.
+import sys
+print([f for f in sys.path if f.endswith('packages')]) #print ['/home/mar/.local/lib/python3.5/site-packages', '/usr/local/lib/python3.5/dist-packages', '/usr/lib/python3/dist-packages']
+
+#45. Write a python program to call an external command in Python.
+#RM:  skip for now.
+
+#46. Write a python program to get the path and name of the file that is currently executing.  RM:  also folder name or directory name. 
+import os
+print(os.path.basename(__file__)) #print pythonexercises.py
+print(os.path.realpath(__file__)) #print /home/mar/Python/w3resource/pythonexercises.py
+print(os.path.dirname(path))
+import sys
+print(sys.argv[0]) #print pythonexercises.py
+print(sys.argv) #print ['pythonexercises.py']
+
+#47. Write a Python program to find out the number of CPUs using.
+import multiprocessing
+print(multiprocessing.cpu_count()) #print 2
+
+#48. Write a Python program to parse a string to Float or Integer.
+word = 255
+print(int(word)) #print 255
+print(float(word)) #print 255.0
+
+#49. Write a Python program to list all files in a directory in Python. 
+import os
+for root, dirs, files in os.walk("."):
+    for filename in files:
+        print(filename) #prints all file names its extension
