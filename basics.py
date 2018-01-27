@@ -466,7 +466,9 @@ print([f for f in sys.path if f.endswith('packages')]) #print ['/home/mar/.local
 import os
 print(os.path.basename(__file__)) #print pythonexercises.py
 print(os.path.realpath(__file__)) #print /home/mar/Python/w3resource/pythonexercises.py
-print(os.path.dirname(path))
+print(os.path.dirname(os.path.realpath(__file__))) #print /home/mar/Python/w3resource
+foldername = os.path.realpath(__file__)
+print(os.path.dirname(foldername)) #print /home/mar/Python/w3resource
 import sys
 print(sys.argv[0]) #print pythonexercises.py
 print(sys.argv) #print ['pythonexercises.py']
@@ -485,3 +487,30 @@ import os
 for root, dirs, files in os.walk("."):
     for filename in files:
         print(filename) #prints all file names its extension
+
+#50. Write a Python program to print without newline or space.
+wordlist = "abcdef"
+for eachwordlist in wordlist:
+	print(eachwordlist, end="") #print abcdef in one line
+print("\n")
+
+#51. Write a Python program to determine profiling of Python programs. Go to the editor  Note: A profile is a set of statistics that describes how often and for how long various parts of the program executed. These statistics can be formatted into reports via the pstats module.
+
+#52. Write a Python program to print to stderr.
+
+#53. Write a python program to access environment variables.
+import os
+print(os.environ)
+
+#54. Write a Python program to get the current username
+import getpass
+username = getpass.getuser()
+print(username)
+
+#55. Write a Python to find local IP addresses using Python's stdlib
+
+#56. Write a Python program to get height and width of the console window.
+import os
+ts = os.get_terminal_size()
+print(ts.lines)
+print(ts.columns)
