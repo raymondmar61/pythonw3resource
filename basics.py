@@ -514,3 +514,37 @@ import os
 ts = os.get_terminal_size()
 print(ts.lines)
 print(ts.columns)
+
+#57. Write a program to get execution time for a Python method.
+import time
+print(time.time()) #prints number of seconds since Jan 1, 1970
+startime = time.time() #prints number of seconds since Jan 1, 1970
+#python
+endtime = time.time()
+print((endtime-startime),"seconds")
+print((round(endtime-startime)),"seconds")
+
+import time
+startime = time.clock()
+#python
+endtime = time.clock()
+print((endtime-startime),"seconds")
+print((round(endtime-startime)),"seconds")
+
+import time
+startime = time.time()
+#python
+endtime = time.time()
+timetaken = endtime - startime # time_taken is in seconds
+hours, rest = divmod(timetaken,3600)
+minutes, seconds = divmod(rest, 60)
+print(timetaken)
+print(hours, rest, minutes, seconds)
+
+#58. Write a python program to sum of the first n positive integers.
+n = 100
+sumn = 0
+for eachnumber in range(1,n+1):
+	sumn = sumn + eachnumber
+print(sumn)
+
