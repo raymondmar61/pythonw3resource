@@ -548,3 +548,40 @@ for eachnumber in range(1,n+1):
 	sumn = sumn + eachnumber
 print(sumn)
 
+#59. Write a Python program to convert height (in feet and inches) to centimeters.
+height = input("Enter height in feet and inches separate feet and inches with a space.  I convert to centimeters. ")
+heightsplit = height.split()
+print(int(heightsplit[0])*30.48+(int(heightsplit[1])*2.54))
+
+#60. Write a Python program to calculate the hypotenuse of a right angled triangle.
+legs = input("Enter the two legs of the right triangle separate the two lengths with a space.  I calculate the hypotenuse. ")
+legssplit = legs.split()
+print(legssplit)
+print(int(legssplit[0])**2+(int(legssplit[1])**2))
+
+#61. Write a Python program to convert the distance (in feet) to inches, yards, and miles.
+import math
+feettomiles = 0.0001894
+feettoinches = 12
+feettoyards = 0.333
+milestoinches = 63360
+milestofeet = 5280.0
+distancefeet = float(input("Enter the distance in feet "))
+print(distancefeet*feettoyards,"yards")
+print(distancefeet*feettoinches,"inches")
+print(distancefeet*feettomiles,"miles")
+
+#Bonus answer.  Convert decimal miles to feet.
+miles = distancefeet * feettomiles
+math.modf(miles)
+print(math.modf(miles))
+decimalmiles, integermiles = math.modf(miles)
+print(integermiles,"miles")
+if 0 < decimalmiles < 1.0000:	
+	print(round(decimalmiles*milestofeet,4),"feet")
+else:
+	pass
+#Another way separate math.modf() tuple
+# modftuple = math.modf(miles)
+# print(modftuple[0])
+# print(modftuple[1])
