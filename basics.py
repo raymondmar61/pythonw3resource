@@ -585,3 +585,32 @@ else:
 # modftuple = math.modf(miles)
 # print(modftuple[0])
 # print(modftuple[1])
+
+#62. Write a Python program to convert all units of time into seconds.
+inputtime = input("Enter the hours and minutes separated by a space ")
+inputtimelist = inputtime.split()
+print(int(inputtimelist[0])*60*60+int(inputtimelist[1])*60,"seconds")
+
+#63. Write a Python program to get an absolute file path.
+import os
+print(os.path.abspath(__file__))
+
+#64. Write a Python program to get file creation and modification date/times.
+import os, time
+print(os.stat(__file__))
+print(os.path.getctime(__file__))
+print(os.path.getmtime(__file__))
+print(time.ctime(os.path.getctime(__file__))+" creation date")
+print(time.ctime(os.path.getmtime(__file__))+" modified date")
+print("Can't get creation date in Linux FYI.")
+
+#65. Write a Python program to convert seconds to day, hour, minutes and seconds.  RM:  used sample solution
+time = float(input("Input time in seconds: "))
+day = time // (24 * 3600)
+time = time % (24 * 3600)
+hour = time // 3600
+time %= 3600
+minutes = time // 60
+time %= 60
+seconds = time
+print("d:h:m:s-> %d:%d:%d:%d" % (day, hour, minutes, seconds))
