@@ -614,3 +614,35 @@ minutes = time // 60
 time %= 60
 seconds = time
 print("d:h:m:s-> %d:%d:%d:%d" % (day, hour, minutes, seconds))
+
+#66. Write a Python program to calculate body mass index.
+weight = int(input("Enter weight in pounds "))
+height = input("Enter height in feet and inches separated by a space ")
+height = height.split(" ")
+height = (int(height[0])*12)+(int(height[1]))
+bodymassindex = (weight/height**2)*703
+print("Your body mass index is",round(bodymassindex,2))
+
+#67. Write a Python program to convert pressure in kilopascals to pounds per square inch, a millimeter of mercury (mmHg) and atmosphere pressure.
+
+#68. Write a Python program to calculate the sum of the digits in an integer.
+integerinput = 123456789
+integerinputsum = 0
+for eachintegerinput in str(integerinput):
+	integerinputsum = integerinputsum + int(eachintegerinput)
+print(integerinputsum)
+
+#69. Write a Python program to sort three integers without using conditional statements and loops.
+threeintegers = input("Enter three integers separated by a space ")
+threeintegers = threeintegers.split(" ")
+threeintegers = list(map(int,threeintegers)) #convert list string to list integers
+threeintegers.sort()
+print(str(threeintegers).strip("[]")) #extract integers out of list to string with commas
+
+#70. Write a Python program to sort files by date.  RM:  used sample solution
+import glob
+import os
+files = glob.glob("*.py")
+files.sort(key=os.path.getmtime)
+print("\n".join(files))
+#RM:  First time I saw glob module
