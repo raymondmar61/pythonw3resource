@@ -646,3 +646,103 @@ files = glob.glob("*.py")
 files.sort(key=os.path.getmtime)
 print("\n".join(files))
 #RM:  First time I saw glob module
+
+#71. Write a Python program to get a directory listing, sorted by creation date.  RM:  used sample solution
+from stat import S_ISREG, ST_CTIME, ST_MODE
+import os, sys, time
+#Relative or absolute path to the directory
+dir_path = sys.argv[1] if len(sys.argv) == 2 else r'.'
+#all entries in the directory w/ stats
+data = (os.path.join(dir_path, fn) for fn in os.listdir(dir_path))
+data = ((os.stat(path), path) for path in data)
+#regular files, insert creation date
+data = ((stat[ST_CTIME], path)
+           for stat, path in data if S_ISREG(stat[ST_MODE]))
+for cdate, path in sorted(data):
+    print(time.ctime(cdate), os.path.basename(path))
+
+#72. Write a Python program to get the details of math module.
+import math
+print(dir(math))
+
+#73. Write a Python program to calculate midpoints of a line.
+def midpoint(x1,y1,x2,y2):
+	answer = (round(((x1+x2)/2),2),round(((y1+y2)/2),2))
+	print(answer)
+firstpoint = input("Enter x and y for first point separated by a space ")
+secondpoint = input("Enter x and y for second point separated by a space ")
+firstpoint = firstpoint.split(" ")
+secondpoint = secondpoint.split(" ")
+x1=float(firstpoint[0])
+y1=float(firstpoint[1])
+x2=float(secondpoint[0])
+y2=float(secondpoint[1])
+midpoint(x1,y1,x2,y2)
+
+#74. Write a Python program to hash a word. 
+#first python code is sample solution
+soundex=[0,1,2,3,0,1,2,0,0,2,2,4,5,5,0,1,2,6,2,3,0,1,0,2,0,2]
+print(len(soundex))
+word=input("Input the word be hashed: ") 
+word=word.upper() 
+coded=word[0] 
+for a in word[1:len(word)]:
+    i=65-ord(a)
+    coded=coded+str(soundex[i])
+print("The coded word is: "+coded)
+#Source: https://www.pythoncentral.io/hashing-strings-with-python/
+import hashlib
+print(hashlib.algorithms_available)
+print(hashlib.algorithms_guaranteed)
+hash_object = hashlib.sha1(b'Hello World')
+hex_dig = hash_object.hexdigest()
+print(hex_dig) #print 0a4d55a8d778e5022fab701977c5d840bbc486d0
+hash_object = hashlib.sha224(b'Hello World')
+hex_dig = hash_object.hexdigest()
+print(hex_dig) #print c4890faffdb0105d991a461e668e276685401b02eab1ef4372795047
+
+#75. Write a Python program to get the copyright information.
+#RM:  used sample solution. i.e. print the Python Copyrights
+import sys
+print("Python Copyright Information")
+print(sys.copyright)
+
+#76. Write a Python program to get the command-line arguments (name of the script, the number of arguments, arguments) passed to a script.
+#RM:  used sample solution.
+import sys
+print("This is the name/path of the script:"),sys.argv[0]
+print("Number of arguments:",len(sys.argv))
+print("Argument List:",str(sys.argv))
+
+#77. Write a Python program to test whether the system is a big-endian platform or little-endian platform.
+#RM:  used sample solution.
+import sys
+if sys.byteorder == "little":
+    #intel, alpha
+    print("Little-endian platform.")
+else:
+    #motorola, sparc
+    print("Big-endian platform.")
+
+#78. Write a Python program to find the available built-in modules.
+#RM:  used sample solution.
+import sys
+print(sys.builtin_module_names) #print ('_ast', '_bisect', '_codecs', '_collections', '_datetime', '_elementtree', '_functools', '_heapq', '_imp', '_io', '_locale', '_md5', '_operator', '_pickle', '_posixsubprocess', '_random', '_sha1', '_sha256', '_sha512', '_signal', '_socket', '_sre', '_stat', '_string', '_struct', '_symtable', '_thread', '_tracemalloc', '_warnings', '_weakref', 'array', 'atexit', 'binascii', 'builtins', 'errno', 'faulthandler', 'fcntl', 'gc', 'grp', 'itertools', 'marshal', 'math', 'posix', 'pwd', 'pyexpat', 'select', 'spwd', 'sys', 'syslog', 'time', 'unicodedata', 'xxsubtype', 'zipimport', 'zlib')
+import math
+print(dir(math))
+import select
+print(dir(select))
+import pwd
+print(dir(pwd))
+
+#79. Write a Python program to get the size of an object in bytes.
+import sys
+x = 2
+print(sys.getsizeof(x)) #print 28
+print(sys.getsizeof("this also")) #print 58
+
+#80. Write a Python program to get the current value of the recursion limit.
+#RM:  used sample solution.
+import sys
+print("Current value of the recursion limit:")
+print(sys.getrecursionlimit())
