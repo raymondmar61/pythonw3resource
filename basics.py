@@ -746,3 +746,47 @@ print(sys.getsizeof("this also")) #print 58
 import sys
 print("Current value of the recursion limit:")
 print(sys.getrecursionlimit())
+
+#81. Write a Python program to concatenate N strings.
+def liststring(liststring):
+	print(" ".join(liststring))	
+userinput = ""
+stringconcatenate = []
+while userinput != "q":
+	userinput = str(input("Enter a string to concatenate.  Type q to quit. "))
+	if userinput == "q":
+		break
+	stringconcatenate.append(userinput)
+	liststring(stringconcatenate)
+
+#82. Write a Python program to calculate the sum over a container.
+import random
+numberslist = []
+count = random.randint(1,101)
+for i in range(1,count):
+	addnumber = random.randint(1,101)
+	numberslist.append(addnumber)
+print(numberslist)
+print(sum(numberslist))
+
+#83. Write a Python program to test if a certain number is greater than all numbers of a list.
+import random
+def greaterallinlist(testcertainnumber):
+	#create number list
+	numberslist = []
+	count = random.randint(5,11)
+	for i in range(1,count):
+		addnumber = random.randint(1,51)
+		numberslist.append(addnumber)
+	numberslist.sort()
+	print(numberslist)
+	#check testcertainnumber greater than all numbers in number list
+	for j in range(len(numberslist)-1,-1,-1):
+		print(numberslist[j])
+		if testcertainnumber > numberslist[j]:
+			print("testcertainnumber "+str(testcertainnumber)+" is greater than all numbers in list")
+			break
+		else:
+			print("testcertainnumber "+str(testcertainnumber)+" is not greater than all numbers in list")
+			break
+greaterallinlist(40)
