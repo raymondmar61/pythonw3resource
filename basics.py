@@ -790,3 +790,147 @@ def greaterallinlist(testcertainnumber):
 			print("testcertainnumber "+str(testcertainnumber)+" is not greater than all numbers in list")
 			break
 greaterallinlist(40)
+
+#84. Write a Python program to count the number occurrence of a specific character in a string.
+stringinput = "The quick brown fox jumped over the lazy dog"
+characterinput = "e"
+counter = 0
+for eachstringinput in stringinput:
+	if eachstringinput == characterinput:
+		counter += 1
+print(counter) #print 4 RM:  yes there are four e's
+
+#85. Write a Python program to check if a file path is a file or a directory.
+#RM copied solution
+import os  
+path="abc.txt" #print It is a special file (socket, FIFO, device file)
+#path = "pythonexercises.py" #print It is a normal file
+#path = "/home/mar/Python/w3resource" #print It is a directory
+if os.path.isdir(path):  
+    print("\nIt is a directory")  
+elif os.path.isfile(path):  
+    print("\nIt is a normal file")  
+else:  
+    print("It is a special file (socket, FIFO, device file)" )
+print()
+
+#86. Write a Python program to get the ASCII value of a character.
+character = "A"
+print(ord(character)) #print 65
+asciinumber = 65
+print(chr(asciinumber)) #print A
+character = "@"
+print(ord(character)) #print 65
+asciinumber = 64
+print(chr(asciinumber)) #print @
+
+#87. Write a Python program to get the size of a file (or file size filesize)
+'''
+1 Byte = 8 Bit
+1 Kilobyte = 1,024 Bytes
+1 Megabyte = 1,048,576 Bytes
+1 Gigabyte = 1,073,741,824 Bytes
+1 Terabyte = 1,099,511,627,776 Bytes
+'''
+import os
+statinfo = os.stat("pythonexercises.py")
+print(statinfo) #print os.stat_result(st_mode=33204, st_ino=524627, st_dev=2049, st_nlink=1, st_uid=1000, st_gid=1000, st_size=739, st_atime=1519783679, st_mtime=1519783678, st_ctime=1519783678)
+print(statinfo.st_size) #print 739
+print(statinfo.st_size/1048576,"mb")
+print(statinfo.st_size/1073741824,"gb")
+print(statinfo.st_size/1099511627776,"tb")
+
+from pathlib import Path
+file = Path() / 'pythonexercises.py'  # or Path('./doc.txt')
+size = file.stat().st_size
+print(size) #print 739
+
+#88. Given variables x=30 and y=20, write a Python program to print t "30+20=50".
+x = 30
+y = 20
+print("%s+%s=50"%(x,y)) #print 30+20=50
+
+#89. Write a Python program to perform an action if a condition is true. Given a variable name, if the value is 1, display the string "First day of a Month!" and do nothing if the value is not equal.
+variablename = 1
+if variablename == 1:
+	print("First day of a Month!")
+else:
+	pass
+
+#90. Write a Python program to create a copy of its own source code.
+#RM:  copied solution.  WTH?!?
+print((lambda str='print(lambda str=%r: (str %% str))()': (str % str))()) #print print(lambda str='print(lambda str=%r: (str %% str))()': (str % str))()
+
+#91. Write a Python program to swap two variables.
+variable1 = "abc"
+variable2 = "def"
+print(variable1) #print abc
+print(variable2) #print def
+variable3 = variable2
+variable2 = variable1
+variable1 = variable3
+print(variable1) #print def
+print(variable2) #print abc
+
+#92. Write a Python program to define a string containing special characters in various forms.  RM:  copied solution.  I didn't understand the question.
+print("\#{'}${\"}@/")
+print("\#{'}${"'"'"}@/")
+print(r"""\#{'}${"}@/""")
+print('\#{\'}${"}@/')
+print('\#{'"'"'}${"}@/')
+print(r'''\#{'}${"}@/''')
+
+#93. Write a Python program to get the identity of an object.
+#RM:  copied solution
+obj1 = object()
+obj1_address = id(obj1)
+print(obj1_address) #print 140671348023456
+
+#94. Write a Python program to convert a byte string to a list of integers.
+import sys
+xstring = "abcdefghijklmnopqrstuvwyz"
+bytestring = sys.getsizeof(xstring)
+print(bytestring) #print 74
+bytestring = str(bytestring)
+listintegers = []
+for eachbytestring in bytestring:
+	listintegers.append(eachbytestring)
+listintegers = list(map(int,listintegers))
+print(listintegers) #print [7,4]
+
+#bonus random generator string
+from random import randint, choice
+numberstrings = randint(1,101)
+xstring = []
+counter = 1
+while counter < numberstrings:
+	asciinumber = choice([randint(65,90),randint(97,122)])
+	xstring.append(chr(asciinumber))
+	counter += 1
+print("".join(map(str,xstring)))
+bytestring = sys.getsizeof(xstring)
+print(bytestring)
+bytestring = str(bytestring)
+listintegers = []
+for eachbytestring in bytestring:
+	listintegers.append(eachbytestring)
+listintegers = list(map(int,listintegers))
+print(listintegers)
+
+#95. Write a Python program to check if a string is numeric.
+stringcheck = 55
+print(type(stringcheck))
+if type(stringcheck) is str:
+	print("String is string")
+elif type(stringcheck) is int:
+	print("String is integer")
+else:
+	print("String is something else.  Float?")
+
+#solution
+#stringcheck2 = 55
+stringcheck2 = "a55"
+try:
+	i = float(stringcheck2)
+except (ValueError, TypeError):
+	print("Not a number")
