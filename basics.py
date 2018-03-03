@@ -934,3 +934,82 @@ try:
 	i = float(stringcheck2)
 except (ValueError, TypeError):
 	print("Not a number")
+
+#96. Write a Python program to print the current call stack.
+#source: https://stackoverflow.com/questions/1156023/print-current-call-stack-from-a-method-in-python-code
+import traceback
+def f():
+    g()
+def g():
+    for line in traceback.format_stack():
+        print(line.strip())
+f()
+#solution
+import traceback
+def f1():return abc()
+def abc():traceback.print_stack()
+f1()
+#RM:  what's current call stack?
+
+#97. Write a Python program to list the special variables used within the language.  
+#Python comes with a number of special variables and methods whose name is preceeded and followed by __.
+#RM:  copied solution
+s_var_names = sorted((set(globals().keys()) | set(__builtins__.__dict__.keys())) - set('_ names i'.split()))
+print( '\n'.join(' '.join(s_var_names[i:i+8]) for i in range(0, len(s_var_names), 8)) )
+
+#98. Write a Python program to get the system time.
+import datetime
+print(datetime.datetime.now().time()) #print 19:55:29.995253
+print(datetime.datetime.today()) #print 2018-03-02 19:55:29.995320
+
+#99. Write a Python program to clear the screen or terminal.
+import os
+#os.system('cls')  # For Windows
+os.system('clear')  # For Linux/OS X
+
+#100. Write a Python program to get the name of the host on which the routine is running.
+import socket
+print(socket.gethostname()) #print mar-VirtualBox
+import os
+myhost = os.uname()[1]
+print(myhost) #print mar-VirtualBox
+
+#101. Write a Python program to access and print a URL's content to the console.
+import urllib.request
+contents = urllib.request.urlopen("http://www.google.com").read()
+print(contents)
+print("\n")
+
+#solution
+from http.client import HTTPConnection
+conn = HTTPConnection("www.google.com")
+conn.request("GET", "/")  
+result = conn.getresponse()
+# retrieves the entire contents.  
+contents = result.read() 
+print(contents)
+
+#102. Write a Python program to get system command output.
+#RM:  copied solution
+import subprocess
+# file and directory listing
+returned_text = subprocess.check_output("dir", shell=True, universal_newlines=True)
+print("dir command to list file and directory")
+print(returned_text)
+#RM:  printed all the files in present directory
+
+#103. Write a Python program to extract the filename from a given path.
+#solution
+import os
+print(os.path.basename("/home/mar/Python/w3resource/basics.py")) #print basics.py
+
+#better because it prints all files in a list from present directory
+from os import walk
+filenameslist = []
+for (dirpath, dirnames, filenames) in walk("/home/mar/Python/w3resource"):
+    filenameslist.extend(filenames)   
+    break
+print(filenameslist)
+
+#104. Write a Python program to get the effective group id, effective user id, real group id, a list of supplemental group ids associated with the current process. Note: Availability: Unix.
+
