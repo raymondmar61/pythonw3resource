@@ -1,4 +1,5 @@
 #https://www.w3resource.com/python-exercises/python-basic-exercises.php
+#RM 03/22/2018 2022 create a basics.py non Python os, file programs.
 
 #1. Write a Python program to print the following string in a specific format: Sample String : "Twinkle, twinkle, little star, How I wonder what you are! Up above the world so high, Like a diamond in the sky. Twinkle, twinkle, little star, How I wonder what you are" Output :
 """
@@ -1013,3 +1014,128 @@ print(filenameslist)
 
 #104. Write a Python program to get the effective group id, effective user id, real group id, a list of supplemental group ids associated with the current process. Note: Availability: Unix.
 
+#105. Write a Python program to get the users environment.
+import os
+print(os.environ)
+print("\n")
+#exampls of specific environment attributes
+print(os.environ["HOME"]) #must be caps HOME
+print(os.environ["LANGUAGE"]) #must be caps LANGUAGE
+
+#106. Write a Python program to divide a path on the extension separator.  RM:  I don't understand.  w3 solution below.
+import os.path
+for path in [ 'test.txt', 'filename', '/user/system/test.txt', '/', '' ]:
+    print('"%s" :' % path, os.path.splitext(path))
+
+#107. Write a Python program to retrieve file properties.  List of files.  Files list.  File attributes.
+import os
+print(os.listdir()) #prints all files in present directory running Python file in a list format
+for filename in os.listdir():
+	info = os.stat(filename)
+	print(filename,info)
+	print(filename,"modification time",info.st_mtime)
+print("\n")
+
+import os.path
+import time
+#print present file to run Python
+# print('File         :', __file__)
+# print('Access time  :', time.ctime(os.path.getatime(__file__)))
+# print('Modified time:', time.ctime(os.path.getmtime(__file__)))
+# print('Change time  :', time.ctime(os.path.getctime(__file__)))
+# print('Size         :', os.path.getsize(__file__))
+#print all files in present directory running Python file
+for filename2 in os.listdir():
+	print('File         :', filename2)
+	print('Access time  :', time.ctime(os.path.getatime(filename2)))
+	print('Modified time:', time.ctime(os.path.getmtime(filename2)))
+	print('Change time  :', time.ctime(os.path.getctime(filename2)))
+	print('Size         :', os.path.getsize(filename2))
+	print("\n")
+
+#108. Write a Python program to find path refers to a file or directory when you encounter a path name.  RM:  copied solution
+import os.path
+for file in [ __file__, os.path.dirname(__file__), '/', './broken_link']:
+    print('File        :', file)
+    print('Absolute    :', os.path.isabs(file))
+    print('Is File?    :', os.path.isfile(file))
+    print('Is Dir?     :', os.path.isdir(file))
+    print('Is Link?    :', os.path.islink(file))
+    print('Exists?     :', os.path.exists(file))
+    print('Link Exists?:', os.path.lexists(file))
+
+#109. Write a Python program to check if a number is positive, negative or zero.
+def check(n):
+	if n == 0:
+		print("zero")
+	elif n > 0:
+		print("positive")
+	else:
+		print("negative")
+check(0) #print zero
+check(0.000001) #print positive
+check(-0.000001) #print negative
+
+#110. Write a Python program to get numbers divisible by fifteen from a list using an anonymous function.
+def check(n):
+	if n == 0:
+		print("zero")
+	elif n > 0:
+		print("positive")
+	else:
+		print("negative")
+check(0) #print zero
+check(0.000001) #print positive
+check(-0.000001) #print negative
+
+#111. Write a Python program to make file lists from current directory using a wildcard.
+import glob
+file_list = glob.glob('*.*')
+print(file_list)
+file_list = glob.glob('*pl*')
+print(file_list) #print ['salesreplistfour.txt', 'temptestmatplotlib.py']
+
+#112. Write a Python program to remove the first item from a specified list.
+thelist = ["apple","orange","grape","tangerine"]
+thelist.pop(0)
+print(thelist)
+
+#113. Write a Python program to input a number, if it is not a number generate an error message.
+#RM:  solution is integers
+#Source: https://www.tutorialspoint.com/python/python_strings.htm
+pretenduserinput = "5000000"
+if pretenduserinput.isdigit() == True:
+	print("It's a number")
+
+try:
+	#userinput = int(input("Enter a number "))
+	userinput = int("a$")
+except ValueError:
+	print("You didn't enter a number")
+else:
+	print(userinput,"is a number")
+
+#114. Write a Python program to filter the positive numbers from a list.
+wantpositivenumbers = [-987,-963,992,545,82,-556,649,-342,402,-606,-762,-59,-401,-297]
+gotpositivenumbers = []
+for eachwantpositivenumbers in wantpositivenumbers:
+	if eachwantpositivenumbers > 0:
+		gotpositivenumbers.append(eachwantpositivenumbers)
+print(gotpositivenumbers) #print [992, 545, 82, 649, 402]
+print(list(map(lambda x: x>0,wantpositivenumbers))) #print [False, False, True, True, True, False, True, False, True, False, False, False, False, False]
+print(list(filter(lambda x: x>0,wantpositivenumbers))) #print [992, 545, 82, 649, 402]
+
+#115. Write a Python program to compute the product of a list of integers (without using for loop).
+from functools import reduce
+productlist = [9,6,10,5,10,4,1,8,1,6,1,8,2,1]
+print(reduce(lambda x,y: x*y,productlist)) #print 82944000
+#import numpy as np
+#print(np.prod(np.array(productlist))) #takes longer
+
+#116. Write a Python program to print Unicode characters.
+print("\u0394"+" Greek capital letter delta")
+print("\u007B"+" {")
+print("\u0233"+" y bar")
+print("\u002d"+" hyphen")
+unicodestring = "\u0050\u0079\u0074\u0068\u006f\u006e \u0045\u0078\u0065\u0072\u0063\u0069\u0073\u0065\u0073 \u002d \u0077\u0033\u0072\u0065\u0073\u006f\u0075\u0072\u0063\u0065"
+print(unicodestring) #print Python Exercises - w3resource from solution
