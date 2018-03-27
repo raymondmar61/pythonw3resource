@@ -1077,16 +1077,14 @@ check(0.000001) #print positive
 check(-0.000001) #print negative
 
 #110. Write a Python program to get numbers divisible by fifteen from a list using an anonymous function.
-def check(n):
-	if n == 0:
-		print("zero")
-	elif n > 0:
-		print("positive")
-	else:
-		print("negative")
-check(0) #print zero
-check(0.000001) #print positive
-check(-0.000001) #print negative
+listnumbers = [15,30,100,151,5000,4500,79,81,697,1236879]
+list15 = []
+def divisible15(n):
+	for eachn in n:
+		if eachn % 15 == 0:
+			list15.append(eachn)
+divisible15(listnumbers)
+print(list15) #print [15, 30, 4500]
 
 #111. Write a Python program to make file lists from current directory using a wildcard.
 import glob
@@ -1139,3 +1137,64 @@ print("\u0233"+" y bar")
 print("\u002d"+" hyphen")
 unicodestring = "\u0050\u0079\u0074\u0068\u006f\u006e \u0045\u0078\u0065\u0072\u0063\u0069\u0073\u0065\u0073 \u002d \u0077\u0033\u0072\u0065\u0073\u006f\u0075\u0072\u0063\u0065"
 print(unicodestring) #print Python Exercises - w3resource from solution
+
+#117. Write a Python program to prove that two string variables of same value point same memory location.  RM:  copied solution.
+str1 = "Python"
+str2 = "Python"
+print("Memory location of str1 =", hex(id(str1)))
+print("Memory location of str2 =", hex(id(str2)))
+
+#118. Write a Python program to create a bytearray from a list.  RM:  I don'tunderstand.  Copied solution.
+nums = [10, 20, 56, 35, 17, 99]
+# Create bytearray from list of integers.
+values = bytearray(nums)
+for x in values: print(x)
+
+#119. Write a Python program to display a floating number in specified numbers.
+floatingnumber = 1123.5678
+specifieddigits = 2
+print(round(floatingnumber,specifieddigits)) #print 1123.57
+print("{0:.2f}".format(floatingnumber)) #print 1123.57
+stringfloatingnumber = str(floatingnumber)
+decimalindex = stringfloatingnumber.find(".")
+print(stringfloatingnumber[0:decimalindex+specifieddigits+1]) #print 1123.56
+
+#120. Write a Python program to format a specified string to limit the number of characters to 6.
+formatstring = "the quickbrown fox jumped over the lazy dog"
+print(formatstring[0:6]) #print the qu
+
+#121. Write a Python program to determine if variable is defined or not.
+#error message below SyntaxError: invalid syntax
+# try:
+# 	definedvariable = ""
+# except SyntaxError:
+# 	print("definedvariable is not defined")
+# else:
+# 	print(definedvariable)
+#RM:  solution
+try:
+	definedvariable
+except NameError:
+	print("definedvariable is not defined") #print the except
+else:
+	print("definedvariable is defined"+definedvariable)
+
+#122. Write a Python program to empty a variable without destroying it.  RM:  copied solution
+n = 20
+d = {"x":200}
+l = [1,3,5]
+t= (5,7,8)
+print(type(n)()) #print 0
+print(type(d)()) #print {}
+print(type(l)()) #print []
+print(type(t)()) #print ()
+
+#123. Write a Python program to determine the largest and smallest integers, longs, floats.  RM:  Python 3x use integers for longs.
+def maxmin(inputlist):
+	print(max(inputlist))
+	print(min(inputlist))
+integerslist = [1,2,3,4,5,6,7,8,9,10]
+maxmin(integerslist) #return 10\n 1
+floatslist = [1.2,5.5,6.7,6.9,5.75]
+maxmin(floatslist) #return 6.9\n 1.2
+
