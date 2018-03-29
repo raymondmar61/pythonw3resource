@@ -1198,3 +1198,76 @@ maxmin(integerslist) #return 10\n 1
 floatslist = [1.2,5.5,6.7,6.9,5.75]
 maxmin(floatslist) #return 6.9\n 1.2
 
+#124. Write a Python program to check if multiple variables have the same value.
+x=1
+y=1
+z=1
+if x==y==z:
+	print("x y z multiple variables have the same value.")
+
+#125. Write a Python program to sum of all counts in a collections?  RM:  What are collections?  Answer is a module import collections.  https://pymotw.com/3/collections/counter.html  I used collections for Project Euler #39 Integer Right Triangles
+import collections
+numberlist = [2,2,4,6,6,8,6,10,4]
+print(sum(numberlist)) #print 48
+print(collections.Counter(numberlist)) #print Counter({6: 3, 2: 2, 4: 2, 8: 1, 10: 1})
+print(sum(collections.Counter(numberlist).values())) #print 9.   9 is correct.  We want the sum of the counts, not sum of the numbers in numberlist.
+
+#126. Write a Python program to get the actual module object for a given object.  RM:  copied solution
+from inspect import getmodule
+from math import sqrt
+print(getmodule(sqrt)) #print <module 'math' (built-in)>
+
+#127. Write a Python program to check if an integer fits in 64 bits.  RM:  copied solution
+int_val = 30
+if int_val.bit_length() <= 63:
+    print((-2 ** 63).bit_length()) #print 64
+    print((2 ** 63).bit_length()) #print 64
+
+#128. Write a Python program to check if lowercase letters exist in a string.
+astring = "THE QUICK BROWN FOX JUMPEd OVeR THE LAZY DOG"
+for eachastring in astring:
+	if eachastring == " ":
+		continue
+	lowercase = eachastring.lower()
+	if eachastring == lowercase:
+		print("There is a lowercase letter "+eachastring) #print There is a lowercase letter d\n There is a lowercase letter e
+
+#129. Write a Python program to add leading zeroes to a string.
+astring = "THE QUICK BROWN FOX JUMPEd OVeR THE LAZY DOG"
+azero = "0"
+numberofzeros = 5
+print((azero*numberofzeros)+astring) #print 00000THE QUICK BROWN FOX JUMPEd OVeR THE LAZY DOG
+
+#130. Write a Python program to use double quotes to display strings.
+astring = "THE QUICK BROWN FOX JUMPEd OVeR THE LAZY DOG"
+doublequotes = "\""
+print(doublequotes+astring+doublequotes) #print "THE QUICK BROWN FOX JUMPEd OVeR THE LAZY DOG"
+
+#131. Write a Python program to split a variable length string into variables.  RM:  https://stackoverflow.com/questions/19300174/python-assign-each-element-of-a-list-to-a-separate-variable says not a good idea.  In other words, don't create dynamic variables.  Another opinion https://stackoverflow.com/questions/20688324/python-assign-values-to-list-elements-in-loop
+var_list = ['a', 'b', 'c']
+x, y, z = (var_list + [None] * 3)[:3]
+print(x, y, z) #print a b c
+print(x) #print a
+print(y) #print b
+print(z) #print c
+var_list2 = [100, 20.25]
+x, y = (var_list2 + [None] * 2)[:2]
+print(x, y) #print 100 20.25
+print(x) #print 100
+print(y) #print 20.25
+
+#132. Write a Python program to list home directory without absolute path.
+import os.path
+print(os.path.expanduser('~'))
+
+#133. Write a Python program to calculate the time runs (difference between start and current time) of a program.
+import time
+startime = time.time()
+endtime = time.time()
+print((endtime-startime),"seconds")
+print((round(endtime-startime)),"seconds")
+#also
+from timeit import default_timer
+start = default_timer()
+print(default_timer()-start)
+print(round(default_timer()-start),"seconds")
