@@ -1271,3 +1271,35 @@ from timeit import default_timer
 start = default_timer()
 print(default_timer()-start)
 print(round(default_timer()-start),"seconds")
+
+#134. Write a Python program to input two integers in a single line.
+twointegers = input("Enter two integers ")
+print(twointegers,end="")
+#RM: official solution doesn't work on 3.5; however, user input correct
+x, y = [int(x) for x in input("numbers: ").split()]
+print("The value of x & y are: ",x,y)
+
+#135. Write a Python program to print a variable without spaces between values. Sample value: x=30 Expected output: Value of x is "30"
+x=30
+print("Value of x is \""+str(x)+"\"") #print Value of x is "30"
+print("Value of x is ""\""+str(x)+"\"") #print Value of x is "30"
+#RM:  Official solution
+x = 30
+print('Value of x is "{}"'.format(x))
+
+#136. Write a Python program to find files and skip directories of a given directory.
+#RM:  Official solution
+import os
+print([f for f in os.listdir('/home/students') if os.path.isfile(os.path.join('/home/students', f))])
+
+#137. Write a Python program to extract single key-value pair of a dictionary in variables.
+stocks = {"GOOG": 434,"AAPL": 325,"FB": 54,"AMZN": 623,"F": 32,"MSFT": 549,}
+for key, value in stocks.items():
+	print(key, value) #print AMZN 623\n FB 54\n GOOG 434\n MSFT 549\n AAPL 325\n F 32
+
+#138. Write a Python program to convert true to 1 and false to 0.
+#RM:  Official solution
+numbertrue = True
+numberfalse = False
+print(int(numbertrue))
+print(int(numberfalse))
