@@ -1303,3 +1303,96 @@ numbertrue = True
 numberfalse = False
 print(int(numbertrue))
 print(int(numberfalse))
+
+#139. Write a Python program to valid a IP address. 
+#RM:  Official solution
+import socket
+addr = '127.0.0.2561'
+try:
+    socket.inet_aton(addr)
+    print("Valid IP")
+except socket.error:
+    print("Invalid IP")
+
+#140. Write a Python program to convert an integer to binary keep leading zeros.  Sample data : 50.  Expected output : 00001100, 0000001100
+integerconvert = 50
+print(bin(integerconvert)) #print 0b110011
+print("{0:b}".format(integerconvert)) #print 110010
+print("{0:010b}".format(integerconvert)) #print 0000110010
+print("{0:012b}".format(integerconvert)) #print 000000110010
+
+#141. Write a python program to convert decimal to hexadecimal. Go to the editor Sample decimal number: 30, 4.  Expected output: 1e, 04.
+print(hex(30)) #print 0x1e
+print("{0:x}".format(30)) #print 1e
+print(hex(4)) #print 0x4
+print("{0:x}".format(4)) #print 4
+print(hex(15)) #print 0xf
+print("{0:x}".format(15)) #print f
+
+#142. Write a Python program to find the operating system name, platform and platform release date
+import os
+print(os.name) #print posix
+import platform
+print(platform.system()) #print Linux
+print(platform.release()) #print 4.4.0-89-generic
+
+#143. Write a Python program to determine if the python shell is executing in 32bit or 64bit mode on operating system.
+import platform
+print(platform.architecture()) #print ('64bit', 'ELF')
+
+#144. Write a Python program to check if variable is of integer or string.
+stringvariable = "paper"
+print(type(stringvariable)) #print class 'str'>
+integervariable = 55
+print(type(integervariable)) #print class 'int'>
+
+#145. Write a Python program to find the operating system name, platform and platform release date
+import os
+print(os.name) #print posix
+import platform
+print(platform.system()) #print Linux
+print(platform.release()) #print 4.4.0-89-generic
+
+#146. Write a Python program to find the location of Python module sources.
+#RM:  Official solution
+import sys
+print("\nList of directories in sys module:")
+print(sys.path)
+print("\nList of directories in os module:")
+import os
+print(os.path)
+
+#147. Write a Python function to check whether a number is divisible by another number. Accept two integers values form the user.
+def quotientzero(dividend, divisor):
+	if dividend % divisor == 0:
+		print(dividend,"is divisible by",divisor)
+	else:
+		print(dividend,"is not divisible by",str(divisor)+".  The quotent is %.2f." % (dividend/divisor))
+division = input("Enter the dividend and the divisor separated by a space.  Dividend is the number to be divided.  Divisor is the number by.  e.g. 20/5 20 is the dividend and 5 is the divisor to get the quotient 4.  ")
+divisionnumbers = division.split()
+quotientzero(int(divisionnumbers[0]),int(divisionnumbers[1]))
+
+#148. Write a Python function to find the maximum and minimum numbers from a sequence of numbers. Note: Do not use built-in functions.
+inputsequence = input("Enter integers separated by a space ")
+inputsequencelist = inputsequence.split()
+resultsinteger = list(map(int,inputsequencelist))
+print(resultsinteger)
+maximum = 0
+minimum = 0
+for eachnumber in resultsinteger:
+	if eachnumber > 0:
+		maximum = eachnumber
+	if eachnumber < 0:
+		minimum = eachnumber
+print(maximum)
+print(minimum)
+
+#149. Write a Python function that takes a positive integer and returns the sum of the cube of all the positive integers smaller than the specified number.
+def sumcube(positiveinteger):
+	sumcube = 0
+	for eachnumber in range(1,positiveinteger):	
+		sumcube = sumcube + pow(eachnumber,3)
+	print(sumcube)
+sumcube(12)
+
+#150. Write a Python function to find a distinct pair of numbers whose product is odd from a sequence of integer values.
