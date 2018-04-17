@@ -1396,3 +1396,12 @@ def sumcube(positiveinteger):
 sumcube(12)
 
 #150. Write a Python function to find a distinct pair of numbers whose product is odd from a sequence of integer values.
+from random import randint
+from itertools import combinations
+start = randint(1,50)
+sequencelength = randint(5,25)
+sequencelist = list(range(start,start+sequencelength))
+print(sequencelist)
+for combopairs in combinations(sequencelist, 2):
+	if combopairs[0]*combopairs[1] % 2 != 0:
+		print((combopairs[0]*combopairs[1]),(combopairs))
