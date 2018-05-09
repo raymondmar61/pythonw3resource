@@ -88,3 +88,53 @@ counter = Counter(words)
 wordsfrequencycount = counter.most_common()
 print(wordsfrequencycount) #print [('the', 49), ('of', 30), ('and', 15), ('in', 13), ('to', 12), ('Declaration', 12), ('a', 10), ('on', 9), ('The', 9), ('was', 8), ('that', 8), ('by', 8), ('July', 7), ('Congress', 6), ('which', 6), ('States', 6), ('Independence', 6), . . . ,('across', 1), ('may', 1), ('pursuit', 1), ('Netherlands', 1), ('sentence:', 1)]
 
+#7. Write a Python program to count the number of each character of a given text of a text file.
+#open text file, convert string to uppercase, convert file to a list of characters
+filename = "declarationofindependence.txt"
+with open(filename) as fileobject:
+	lines = fileobject.read().upper()
+eachcharacter = list(lines)
+#print the counter in a dictionary format defaultdict
+from collections import defaultdict
+countlist = defaultdict(int)
+for eacheachcharacter in eachcharacter:
+	countlist[eacheachcharacter] += 1
+print(dict(countlist)) #print {'1': 6, 'C': 117, 'X': 4, 'G': 61, 'T': 290, '"': 6, '8': 2, '3': 1, 'N': 277, ' ': 616, '–': 1, ',': 34, 'Y': 54, 'F': 72, 'I': 236, '2': 3, ')': 5, '.': 28, 'E': 425, 'V': 25, 'L': 128, 'U': 79, 'O': 212, 'A': 277, 'K': 8, 'H': 159, 'J': 17, '5': 1, 'B': 46, '6': 3, '7': 5, '[': 1, '4': 3, 'D': 168, '(': 5, '\n': 17, "'": 3, 'M': 61, 'W': 45, 'Z': 1, ':': 2, ']': 1, '-': 5, 'R': 184, '9': 3, 'S': 196, 'Q': 3, 'P': 68}
+
+#8. Write a Python program to get the top stories from Google news.
+
+#9. Write a Python program to get a list of locally installed Python modules.
+print(help('modules'))
+#At the command-line, type-->pydoc modules
+#At the command-line for pip modules such as numpy and matplotlib, type-->pip list
+
+#10. Write a Python program to display some information about the OS where the script is running
+
+#11. Write a Python program to check the sum of three elements (each from an array) from three arrays is equal to a target value. Print all those three-element combinations. Go to the editor
+# Sample data:
+# X = [10, 20, 20, 20]
+# Y = [10, 20, 30, 40]
+# Z = [10, 30, 40, 20]
+# target = 70
+from itertools import combinations
+x = [10, 20, 20, 20]
+y = [10, 20, 30, 40]
+z = [10, 30, 40, 20]
+combinationelement = 3
+target = 70
+#function sum target value 70 from three-element combinations
+def targetfunction(numberlist):
+	targetlist = []
+	findtarget = list(combinations(numberlist,combinationelement))
+	for eachfindtarget in findtarget:
+		if sum(eachfindtarget) == target:
+			targetlist.append(eachfindtarget)
+	print(targetlist)
+# targetfunction(x)
+# targetfunction(y)
+# targetfunction(z) #incorrect, combine three lists into one array
+#combine three lists to one list or one array
+xyz = x + y + z
+targetfunction(xyz)
+
+
