@@ -137,4 +137,27 @@ def targetfunction(numberlist):
 xyz = x + y + z
 targetfunction(xyz)
 
+#12. Write a Python program to create all possible permutations from a given collection of distinct numbers.  RM:  added combinations
+from random import sample
+from itertools import permutations, combinations
+numberslist = list(range(1,21))
+print(numberslist)
+#select three numbers from the numberslist
+selectednumberslist = sample(numberslist,3)
+print(selectednumberslist) #print [11, 4, 8]
+print(list(permutations(selectednumberslist,len(selectednumberslist)))) #print [(11, 4, 8), (11, 8, 4), (4, 11, 8), (4, 8, 11), (8, 11, 4), (8, 4, 11)]
+print(list(combinations(selectednumberslist,2))) #print [(11, 4), (11, 8), (4, 8)]
 
+#13. Write a Python program to get all possible two digit letter combinations from a digit (1 to 9) string.
+from random import randint
+from itertools import combinations
+string_maps = {"1": "abc","2": "def","3": "ghi","4": "jkl","5": "mno","6": "pqrs","7": "tuv","8": "wxy","9": "z"}
+# print(string_maps[str(randint(1,9))][randint(0,2)])
+randomnumber1 = randint(1,9)
+if randomnumber1 == 9:
+	combolist = string_maps["9"]
+else:
+	combolist = string_maps[str(randint(1,9))]
+combolist2 = list(map(str,combolist))
+print(combolist2)
+print(list(combinations(combolist2,2)))
