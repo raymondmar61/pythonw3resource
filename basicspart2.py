@@ -161,3 +161,41 @@ else:
 combolist2 = list(map(str,combolist))
 print(combolist2)
 print(list(combinations(combolist2,2)))
+
+#14. Write a Python program to add two positive integers without using the '+' operator. Note: Use bitwise operations to add two numbers.
+
+#15. Write a Python program to check the priority of the four operators (+, -, *, /).
+
+#16. Write a Python program to get the third side of right angled triangle from two given sides.
+twosides = input("Enter two sides of a right triangle separated by a space: ")
+twosides = twosides.split(" ")
+twosides = list(map(float,twosides))
+thirdside = (twosides[0]**2)+(twosides[1]**2)
+print("The third side is "+str(round(thirdside**0.5,2)))
+
+#17. Write a Python program to get all strobogrammatic numbers that are of length n. A strobogrammatic number is a number whose numeral is rotationally symmetric, so that it appears the same when rotated 180 degrees. In other words, the numeral looks the same right-side up and upside down (e.g., 69, 96, 1001). For example, Given n = 2, return ["11", "69", "88", "96"]. Given n = 3, return ['818', '111', '916', '619', '808', '101', '906', '609', '888', '181', '986', '689']
+
+#When written using standard characters (ASCII), the numbers, 0, 1, 8 are symmetrical around the horizontal axis, and 6 and 9 are the same as each other when rotated 180 degrees.  https://en.wikipedia.org/wiki/Strobogrammatic_number
+
+from itertools import product
+strobnumber = [0,1,6,8,9]
+def strobogrammatic(n):
+	answerlist = []
+	finalanswerlist = []
+	if n == 1:
+		print(strobnumber)
+	else:
+		for combopairs in product(strobnumber, repeat=n):
+			#product() combopairs returns a tuple.  Convert tuple to a string and append to answerlist.
+			answerlist.append("".join(map(str,combopairs)))
+		#convert answerlist items from string to integer
+		answerlist = list(map(int,answerlist))
+		for eachanswerlist in answerlist:
+			#return n-digit integers which are not divisible by 10
+			if (len(str(eachanswerlist)) == n) and (eachanswerlist % 10 != 0):
+				finalanswerlist.append(eachanswerlist)
+		print(finalanswerlist)
+strobogrammatic(1)
+strobogrammatic(2)
+strobogrammatic(3)
+strobogrammatic(4)
