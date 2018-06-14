@@ -155,12 +155,12 @@ string_maps = {"1": "abc","2": "def","3": "ghi","4": "jkl","5": "mno","6": "pqrs
 # print(string_maps[str(randint(1,9))][randint(0,2)])
 randomnumber1 = randint(1,9)
 if randomnumber1 == 9:
-	combolist = string_maps["9"]
+	print(list(string_maps["9"]))
 else:
-	combolist = string_maps[str(randint(1,9))]
-combolist2 = list(map(str,combolist))
-print(combolist2)
-print(list(combinations(combolist2,2)))
+	combolist = string_maps[str(randomnumber1)]
+	combolist2 = list(map(str,combolist))
+	print(combolist2) #print ['d', 'e', 'f']
+	print(list(combinations(combolist2,2))) #print [('d', 'e'), ('d', 'f'), ('e', 'f')]
 
 #14. Write a Python program to add two positive integers without using the '+' operator. Note: Use bitwise operations to add two numbers.
 

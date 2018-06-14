@@ -86,3 +86,60 @@ for index, eachtwostrings in enumerate(twostrings):
 		twostrings[index] = eachtwostrings.replace(eachtwostrings[0:2],swapfirst)
 threestring = " ".join(twostrings)
 print(threestring)
+
+#6. Write a Python program to add 'ing' at the end of a given string (length should be at least 3). If the given string already ends with 'ing' then add 'ly' instead. If the string length of the given string is less than 3, leave it unchanged. Sample String: 'abc' Expected Result: 'abcing'. Sample String: 'string' Expected Result: 'stringly'
+def ingly(word):
+	if len(word) <= 2:
+		return word
+	elif word[len(word)-3:] == "ing":
+		return word+"ly"
+	else:
+		return word+"ing"
+print(ingly("abc")) #print abcing
+print(ingly("string")) #print stringingly
+print(ingly("up")) #print up
+
+#7. Write a Python program to find the first appearance of the substring 'not' and 'poor' from a given string, if 'bad' follows the 'poor', replace the whole 'not'...'poor' substring with 'good'. Return the resulting string. Sample String: 'The lyrics is not that poor!' Expected Result: 'The lyrics is good!'
+samplestring = "The lyrics is not that poor!"
+print(samplestring.find("not")) #print 14
+print(samplestring.find("poor")) #print 23
+print(samplestring.replace(samplestring[samplestring.find("not"):samplestring.find("poor")+len("poor")],"good")) #print The lyrics is good!
+samplestring = "The lyrics is not really absolutely confidently poor."
+print(samplestring.replace(samplestring[samplestring.find("not"):samplestring.find("poor")+len("poor")],"good")) #print The lyrics is good.
+
+#8. Write a Python function that takes a list of words and returns the length of the longest one.
+listofwords = ["Down", "at", "the", "train", "they", "go", "to", "Independence", "every", "day", "But", "anywhere", "else", "now", "seems", "like", "a", "million", "miles", "away", "xmenmarvelvscapcomstreetfighter", "And", "I", "must", "have", "been", "high", "to", "believe", "that", "i", "would", "ever", "leave", "Now", "I'm", "just", "a", "flat", "fine", "line", "like", "the", "Wichita", "Skyline", "longestwordever"]
+longestone = 0
+for eachlistofwords in listofwords:
+	if len(eachlistofwords) > longestone:
+		longestone = len(eachlistofwords)
+print(longestone)
+
+#9. Write a Python program to remove the nth index character from a nonempty string.
+nonemptystring = "The quick brown fox jumped over the lazy dog."
+print(nonemptystring.replace(nonemptystring[5],"")) #print The qick brown fox jmped over the lazy dog.
+print(nonemptystring.replace(nonemptystring[3],"")) #print Thequickbrownfoxjumpedoverthelazydog.
+print(nonemptystring.replace(nonemptystring[3],"",1)) #print Thequick brown fox jumped over the lazy dog.
+print(nonemptystring.replace(nonemptystring[3],"",2)) #print Thequickbrown fox jumped over the lazy dog.
+print(nonemptystring.replace(nonemptystring[3],"",3)) #print Thequickbrownfox jumped over the lazy dog.
+
+#10. Write a Python program to change a given string to a new string where the first and last chars have been exchanged.
+givenstring = "The quick brown fox jumped over the lazy dog"
+print(givenstring[len(givenstring)-1]+givenstring[1:len(givenstring)-1]+givenstring[0]) #print ghe quick brown fox jumped over the lazy doT
+
+#11. Write a Python program to remove the characters which have odd index values of a given string.
+#In Python, strings are immutable, so you have to create a new string.  https://stackoverflow.com/questions/3559559/how-to-delete-a-character-from-a-string-using-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+givenstring = "The quick brown fox jumped over the lazy dog"
+newgivenstring = ""
+for x in range(0,len(givenstring)):
+	if x % 2 == 0:
+		newgivenstring = newgivenstring + givenstring[x]
+print(newgivenstring) #print Teqikbonfxjme vrtelz o
+
+#12. Write a Python program to count the occurrences of each word in a given sentence.
+from collections import Counter
+givensentence = "The quick brown fox jumped over the lazy dog with brown cat and brown hamster."
+words = givensentence.split() #converts each string word into a list of words
+counter = Counter(words)
+wordsfrequencycount = counter.most_common()
+print(wordsfrequencycount) #[('brown', 3), ('jumped', 1), ('dog', 1), ('fox', 1), ('the', 1), ('with', 1), ('lazy', 1), ('and', 1), ('quick', 1), ('The', 1), ('cat', 1), ('hamster.', 1), ('over', 1)]
