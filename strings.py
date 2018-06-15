@@ -128,13 +128,21 @@ givenstring = "The quick brown fox jumped over the lazy dog"
 print(givenstring[len(givenstring)-1]+givenstring[1:len(givenstring)-1]+givenstring[0]) #print ghe quick brown fox jumped over the lazy doT
 
 #11. Write a Python program to remove the characters which have odd index values of a given string.
-#In Python, strings are immutable, so you have to create a new string.  https://stackoverflow.com/questions/3559559/how-to-delete-a-character-from-a-string-using-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+#In Python, strings are immutable, so you have to create a new string.  Existing strings can't be modified.  You must create a new string.  You can convert them to a list which is mutable.  Then convert the list back to a string after changes.  https://stackoverflow.com/questions/3559559/how-to-delete-a-character-from-a-string-using-python?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 givenstring = "The quick brown fox jumped over the lazy dog"
 newgivenstring = ""
 for x in range(0,len(givenstring)):
 	if x % 2 == 0:
 		newgivenstring = newgivenstring + givenstring[x]
 print(newgivenstring) #print Teqikbonfxjme vrtelz o
+#bonus
+examplestring = "examples"
+newexamplestring = examplestring.replace("m","")
+print(newexamplestring) #print exaples
+#delete middle character
+examplestringmiddlelength = len(examplestring)//2  #examplestringmiddlelength must be an integer
+newexamplestring = examplestring[:examplestringmiddlelength]+examplestring[examplestringmiddlelength+1:]
+print(newexamplestring) #print examles
 
 #12. Write a Python program to count the occurrences of each word in a given sentence.
 from collections import Counter
