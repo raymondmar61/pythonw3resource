@@ -151,3 +151,131 @@ words = givensentence.split() #converts each string word into a list of words
 counter = Counter(words)
 wordsfrequencycount = counter.most_common()
 print(wordsfrequencycount) #[('brown', 3), ('jumped', 1), ('dog', 1), ('fox', 1), ('the', 1), ('with', 1), ('lazy', 1), ('and', 1), ('quick', 1), ('The', 1), ('cat', 1), ('hamster.', 1), ('over', 1)]
+
+#13. Write a Python script that takes input from the user and displays that input back in upper and lower cases.
+def upperlower(word):
+	uppercase = word.upper()
+	lowercase = word.lower()
+	print(uppercase)
+	print(lowercase)
+upperlower("Speaker") #return SPEAKER\n speaker
+
+#14. Write a Python program that accepts a comma separated sequence of words as input and prints the unique words in sorted form (alphanumerically). Sample Words: red, white, black, red, green, black.  Expected Result: black, green, red, white.
+def sequenceofwords(samplewords):
+	samplewords = list(set(samplewords))
+	samplewords.sort()
+	print(samplewords) 
+sequenceofwords(["red", "white", "black", "red", "green", "black"]) #return ['black', 'green', 'red', 'white']
+
+#15. Write a Python function to create the HTML string with tags around the word(s).  Sample function and result:  add_tags('i', 'Python') -> '<i>Python</i>'.  add_tags('b', 'Python Tutorial') -> '<b>Python Tutorial </b>'
+def addtags(html, word):
+	print("<{}>{}</{}>".format(html,word,html))
+addtags("i","Python") #return <i>Python</i>
+addtags("b","Python Tutorial") #return <b>Python Tutorial</b>
+
+#16. Write a Python function to insert a string in the middle of a string. Sample function and result: insert_sting_middle('[[]]<<>>', 'Python') -> [[Python]].  insert_sting_middle('{{}}', 'PHP') -> {{PHP}}.
+def insertstringmiddle(insertstring, middlestring):
+	if len(insertstring) == 1:
+		print("{}{}{}".format(insertstring,middlestring,insertstring))
+	else:
+		leftinsertstring = insertstring[0:insertstring.rfind(insertstring[0])+1]
+		rightinsertstring = insertstring[insertstring.find(insertstring[len(insertstring)-1]):]
+		print("{}{}{}".format(leftinsertstring,middlestring,rightinsertstring))
+insertstringmiddle("[[[]]]]]]","Python") #return [[[Python]]]]]]
+insertstringmiddle("{{}}","PHP") #return {{PHP}} 
+insertstringmiddle("=","equal") #return =equal=
+#.find() and.rfind()
+insertstring = "[[[]]]]]]"
+print(insertstring.find(insertstring[0])) #print 0
+print(insertstring.rfind(insertstring[0])) #print 2
+print(insertstring.find(insertstring[len(insertstring)-1])) #print 3
+
+#17. Write a Python function to get a string made of 4 copies of the last two characters of a specified string (length must be at least 2). Sample function and result: insert_end('Python') -> onononon.  insert_end('Exercises') -> eseseses.
+def insertend(fourcopiesstringend):
+	if len(fourcopiesstringend) <= 1:
+		print("String must be two characters or greater.")
+	else:
+		print(fourcopiesstringend[len(fourcopiesstringend)-2:]*4)
+insertend("Python") #print onononon
+insertend("Exercises") #print eseseses
+
+#18. Write a Python function to get a string made of its first three characters of a specified string. If the length of the string is less than 3 then return the original string.  Sample function and result: first_three('ipy') -> ipy. first_three('python') -> pyt.
+def firstthree(stringword):
+	if len(stringword) < 3:
+		return stringword
+	else:
+		return stringword[0:3]
+print(firstthree("ipy")) #print ipy
+print(firstthree("python")) #print pyt
+print(firstthree("id")) #print id
+
+#19. Write a Python program to get the last part of a string before a specified character.  https://www.w3resource.com/python-exercises  https://www.w3resource.com/python
+thestring = "https://www.w3resource.com/python-exercises"
+thecharacter = thestring.find("-")
+print(thecharacter) #print 33
+print(thestring[0:thecharacter]) #print https://www.w3resource.com/python
+
+#20. Write a Python function to reverses a string if it's length is a multiple of 4.
+def multiple4string(word):
+	if len(word) % 4 == 0:
+		print(word[::-1])
+	else:
+		print(word)
+multiple4string("abcdefgh") #return hgfedcba
+multiple4string("operation") #return operation
+multiple4string("candylandgameset") #return tesemagdnalydnac
+
+#21. Write a Python function to convert a given string to all uppercase if it contains at least 2 uppercase characters in the first 4 characters.
+def uppercase(word):
+	count = 0
+	for n in range(0,4):
+		if word[n] == word[n].upper():
+			count = count+1
+	if count >=2:
+		print(word.upper())
+uppercase("AlUmni") #return ALUMNI
+uppercase("PHONe") #return PHONE
+uppercase("nocapitalletters") #return nothing
+#bonus
+print("rancore".upper()) #print RANCORE
+
+#22.Write a Python program to sort a string lexicographically.
+def lexicographicsorted(string):
+	answer = sorted(sorted(string), key=len)
+	return "".join(answer)
+print(lexicographicsorted("w3resource")) #print 3ceeorrsuw
+print(lexicographicsorted("quickbrown")) #print bciknoqruw
+print(lexicographicsorted("RaymonD")) #print DRamnoy
+print(lexicographicsorted("RaymonD.5hZ=")) #print .5=DRZahmnoy
+#bonus
+string1 = "aAaBbcCdE"
+string1 = list(string1)
+string1.sort()
+print("".join(string1)) #print ABCEaabcd
+
+#23. Write a Python program to remove a newline in Python.
+#RM:  copied solution for which it's partially correct
+str1='Python Exercises\n'
+print(str1) #print Python Exercises\n
+print(str1.rstrip()) #print Python Exercises
+str1='Python Exercises\nokay'
+print(str1) #print Python Exercises\nokay
+print(str1.rstrip()) #print Python Exercises\nokay
+
+#24. Write a Python program to check whether a string starts with specified characters.
+def check(checkstring, startscharacters):
+	if checkstring.find(startscharacters,0,len(startscharacters)) == 0:
+		print("{} starts with {}.".format(checkstring,startscharacters))
+	else:
+		print("No match")
+check("scrabble","scra") #return scrabble starts with scra.
+check("scrabble","cra") #return No match
+check("9874","9874") #return 9874 starts with 9874.
+check("a","b") #return No match
+check("a","a") #return a starts with a.
+#bonus
+checkscrabble = "scrabble"
+startscharacters = "scra"
+print(checkscrabble.find(startscharacters,0,len(startscharacters))) #print 0
+#RM:  prints -1 if false.  .find() returns an integer.
+
