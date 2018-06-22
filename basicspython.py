@@ -67,11 +67,14 @@ print("The examination will start from:", examstartdate[0],"/",examstartdate[1],
 #10. Write a Python program that accepts an integer (n) and computes the value of n+nn+nnn. Sample value of n is 5. Expected Result : 615.
 n = 5
 print(n+(n**2)+(n**3)) #print 155
-n=5
-n1=str(n+1)
-n2=str(n-4)
-n3=str(n)
-print(n1+n2+n3)
+a = 5
+n1 = int( "%s" % a )
+print(n1) #print 5
+n2 = int( "%s%s" % (a,a) )
+print(n2) #print 55
+n3 = int( "%s%s%s" % (a,a,a) )
+print(n3) #print 555
+print(n1+n2+n3) #print 615
 
 #12. Write a Python program to print the calendar of a given month and year.  Note: Use 'calendar' module.
 import calendar
@@ -119,7 +122,7 @@ if givennumber >=900 or givennumber <=1100:
 elif givennumber >=1900 or givennumber <=2100:
 	print(givennumber,"Given number is within 2000 +/- 100")
 else:
-	print("Given number is not within 1000 +/-100 or 2000 +/-100")
+	print("Given number is not within 1000 +/100 or 2000 +/-100")
 
 #18. Write a Python program to calculate the sum of three given numbers, if the values are equal then return thrice of their sum.
 def sumthreenumbers(a, b, c):
