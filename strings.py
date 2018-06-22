@@ -279,3 +279,126 @@ startscharacters = "scra"
 print(checkscrabble.find(startscharacters,0,len(startscharacters))) #print 0
 #RM:  prints -1 if false.  .find() returns an integer.
 
+#25. Write a Python program to create a Caesar encryption.
+#reference https://stackoverflow.com/questions/15784590/how-can-you-print-a-key-given-a-value-in-a-dictionary-for-python
+originalword = "Blue horseshoe loves Bluestar Airlines"
+
+#create alphabet dictionary and encryption dictionary
+alphabet = {}
+encryption = {}
+#lowercase letters a is 1 z is 26
+x = 1
+for n in range(97,123):
+	alphabet[chr(n)] = x
+	encryption[chr(n)] = x
+	x = x + 1
+#uppercase letters A is 27 Z is 52
+x = 27
+for n in range(65,91):
+	alphabet[chr(n)] = x
+	encryption[chr(n)] = x
+	x = x + 1
+
+#create encryption dictionary
+caesarsaysnumber = 3  #positive number moves alphabet numbers to the right; negative number moves alphabet numbers to the left
+for letter, number in encryption.items():
+	if (caesarsaysnumber < 0):
+		encryption[letter] = encryption[letter] + abs(caesarsaysnumber)
+		if (encryption[letter] >= 53):
+			encryption[letter] = encryption[letter] - 52
+	elif (caesarsaysnumber > 0):
+		encryption[letter] = encryption[letter] - caesarsaysnumber
+		if encryption[letter] <= 0:
+			encryption[letter] = encryption[letter] + 52
+print(sorted(zip(alphabet.values(), alphabet.keys()))) #alphabet dictionary sorted
+print(sorted(zip(encryption.values(), encryption.keys()))) #encrypted dictionary sorted
+
+#get original word alphabet numbers
+originalwordnumbers = []
+for letter in originalword:
+	if letter in alphabet.keys():
+		originalwordnumbers.append(alphabet[letter])
+#encrypt original word matching alphabet numbers dictionary with encrypted numbers dictionary
+encryptedword = []
+for eachoriginalwordnumbers in originalwordnumbers:	
+	for key, value in encryption.items():
+		if eachoriginalwordnumbers == value:			
+			encryptedword.append(key)
+print(originalword) #original word
+print("".join(encryptedword)) #encrypted original word
+
+#26. Write a Python program to display formatted text (width=50) as output.
+import textwrap
+sampletext = '''Python is a widely used high-level, general-purpose, interpreted,
+dynamic programming language. Its design philosophy emphasizes
+code readability, and its syntax allows programmers to express
+concepts in fewer lines of code than possible in languages such
+as C++ or Java.'''
+print(textwrap.fill(sampletext, width=50)) 
+'''print
+Python is a widely used high-level, general-
+purpose, interpreted, dynamic programming
+language. Its design philosophy emphasizes code
+readability, and its syntax allows programmers to
+express concepts in fewer lines of code than
+possible in languages such as C++ or Java.
+'''
+
+#27. Write a Python program to remove existing indentation from all of the lines in a given text.
+import textwrap
+sampletext = '''
+	Python is a widely used high-level, general-purpose, interpreted,
+	dynamic programming language. Its design philosophy emphasizes
+	code readability, and its syntax allows programmers to express
+	concepts in fewer lines of code than possible in languages such
+	as C++ or Java.
+'''
+text_without_Indentation = textwrap.dedent(sampletext)
+print(text_without_Indentation)
+''' print
+Python is a widely used high-level, general-purpose, interpreted,
+dynamic programming language. Its design philosophy emphasizes
+code readability, and its syntax allows programmers to express
+concepts in fewer lines of code than possible in languages such
+as C++ or Java.
+'''
+
+#28. Write a Python program to add a prefix text to all of the lines in a string.
+import textwrap
+sampletext = '''
+	Python is a widely used high-level, general-purpose, interpreted,
+	dynamic programming language. Its design philosophy emphasizes
+	code readability, and its syntax allows programmers to express
+	concepts in fewer lines of code than possible in languages such
+	as C++ or Java.
+'''
+textwithoutindention = textwrap.dedent(sampletext)
+wrapped = textwrap.fill(textwithoutindention, width=50)
+finalresult = textwrap.indent(wrapped, '> ')
+print(finalresult)
+''' print
+>  Python is a widely used high-level, general-
+> purpose, interpreted, dynamic programming
+> language. Its design philosophy emphasizes code
+> readability, and its syntax allows programmers to
+> express concepts in fewer lines of code than
+> possible in languages such as C++ or Java.
+'''
+
+#29. Write a Python program to set the indentation of the first line.
+import textwrap
+sampletext = '''
+	Python is a widely used high-level, general-purpose, interpreted,
+	dynamic programming language. Its design philosophy emphasizes
+	code readability, and its syntax allows programmers to express
+	concepts in fewer lines of code than possible in languages such
+	as C++ or Java.
+'''
+text1 =  textwrap.dedent(sampletext).strip()
+print(textwrap.fill(text1, initial_indent='', subsequent_indent=' ' * 4, width=80,))
+''' print
+Python is a widely used high-level, general-purpose, interpreted, dynamic
+    programming language. Its design philosophy emphasizes code readability, and
+    its syntax allows programmers to express concepts in fewer lines of code
+    than possible in languages such as C++ or Java.
+
