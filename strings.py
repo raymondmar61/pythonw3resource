@@ -401,4 +401,96 @@ Python is a widely used high-level, general-purpose, interpreted, dynamic
     programming language. Its design philosophy emphasizes code readability, and
     its syntax allows programmers to express concepts in fewer lines of code
     than possible in languages such as C++ or Java.
+'''
 
+#30. Write a Python program to print the following floating numbers up to 2 decimal places.
+floatnumber = 5.69123456789
+print("{:.2f}".format(floatnumber)) #print 5.69
+floatnumber = 5.756123456789
+print("{:.2f}".format(floatnumber)) #print 5.76
+
+#31. Write a Python program to print the following floating numbers up to 2 decimal places with a sign.
+def withasign(floatnumber):
+	if floatnumber > 0:
+		sign = "+"
+	else:
+		sign = ""
+	print(sign+"{:.2f}".format(floatnumber))
+withasign(5.69123456789) #print +5.69
+withasign(-5.756123456789) #print -5.76
+withasign(0) #print 0.00
+
+#32. Write a Python program to print the following floating numbers with no decimal places
+def nodecimal(floatnumber):
+	floatnumber = str(floatnumber)
+	solution = []
+	for eachfloatnumber in floatnumber:
+		if eachfloatnumber == ".":
+			continue
+		else:
+			solution.append(eachfloatnumber)
+	print("".join(map(str, solution)))
+nodecimal(5.69123456789) #print 569123456789
+nodecimal(5.756123456789) #print 5756123456789
+
+#33. Write a Python program to print the following integers with zeros on the left of specified width.
+def leftzeroes(number):
+	numberlength = len(str(number))
+	if numberlength >= 10:
+		print(number)
+	else:
+		numberofzeros = 10 - numberlength
+		print(("0"*numberofzeros)+str(number))
+leftzeroes(123456) #print 0000123456
+leftzeroes(123456789) #print 0123456789
+leftzeroes(98765432111) #print 98765432111
+
+#34. Write a Python program to print the following integers with zeros on the left of specified width.
+def rightasterik(number):
+	numberlength = len(str(number))
+	if numberlength >= 10:
+		print(number)
+	else:
+		numberofasterik = 10 - numberlength
+		print(str(number)+("*"*numberofasterik))
+rightasterik(123456) #print 123456****
+rightasterik(123456789) #print 123456789*
+rightasterik(98765432111) #print 98765432111
+
+#35. Write a Python program to display a number with a comma separator.
+print("{:,}".format(1000000)) #print 1,000,000
+print("{:,}".format(123456789)) #print 123,456,789
+print("{:,}".format(-987654321)) #print -987,654,321
+
+#36. Write a Python program to format a number with a percentage.
+half = 1/2
+print("Percentage: {}%".format(half)) #print Percentage: 0.5%
+third = 1/3
+print("Percentage: {}%".format(third)) #print Percentage: 0.3333333333333333%
+
+#37. Write a Python program to display a number in left, right and center aligned of width 10.
+number = 123456
+print("{:>10}" .format(str(number))) #print    123456 align right.
+print("{:<10}" .format(str(number))) #print 123456    align left.
+print("{:^10}" .format(str(number))) #print   123456   align center.
+
+#38. Write a Python program to count occurrences of a substring in a string.  RM:  count the number of something in a string.
+def countsomething(thestring,something):
+	thestring = thestring.lower()
+	something = something.lower()
+	print(thestring.count(something))
+countsomething("Paris in the the string","the") #return 2
+countsomething("Finished files are the result of years of scientific study combined with the experience of years.","f") #return 6
+
+#39. Write a Python program to reverse a string.
+astring = "The quick brown fox jumped over the lazy dog."
+print(astring[::-1]) #print .god yzal eht revo depmuj xof nworb kciuq ehT
+
+#40. Write a Python program to reverse words in a string.
+text = "We hope to one day become the world's leader in free, education resources.  We are constantly " \
+"discovering and adding more free content to the website everyday.  There is already an enormous " \
+"amount of resoruces online that can be accessed for free by anyone in the world, the main issue " \
+"right now is that very little of it is organized or structured in any way.  We want to be the " \
+"solution to that problem."
+words = text.split()
+print(" ".join(map(str, words[::-1]))) #print problem. that to solution the be to want We way. any in structured or organized is it of little very that is now right issue main the world, the in anyone by free for accessed be can that online resoruces of amount enormous an already is There everyday. website the to content free more adding and discovering constantly are We resources. education free, in leader world's the become day one to hope We
