@@ -494,3 +494,128 @@ text = "We hope to one day become the world's leader in free, education resource
 "solution to that problem."
 words = text.split()
 print(" ".join(map(str, words[::-1]))) #print problem. that to solution the be to want We way. any in structured or organized is it of little very that is now right issue main the world, the in anyone by free for accessed be can that online resoruces of amount enormous an already is There everyday. website the to content free more adding and discovering constantly are We resources. education free, in leader world's the become day one to hope We
+
+#41. Write a Python program to strip a set of characters from a string.
+stripword = "The quick brown fox jumped over the lazy dog"
+for eachstripword in stripword:
+	print(eachstripword)
+print(set(stripword)) #print set([' ', 'T', 'a', 'c', 'b', 'e', 'd', 'g', 'f', 'i', 'h', 'k', 'j', 'm', 'l', 'o', 'n', 'q', 'p', 'r', 'u', 't', 'w', 'v', 'y', 'x', 'z'])
+# from more_itertools import unique_everseen
+# print("Using more_itertools.unique_everseen run on python 2.7")
+# print(list(unique_everseen(stripword))) #print ['T', 'h', 'e', ' ', 'q', 'u', 'i', 'c', 'k', 'b', 'r', 'o', 'w', 'n', 'f', 'x', 'j', 'm', 'p', 'd', 'v', 't', 'l', 'a', 'z', 'y', 'g']
+# print("".join(list(unique_everseen(stripword)))) #print The quickbrownfxjmpdvtlazyg
+#official solution is removing selected characters.  Selected characters is all vowels.
+vowels = "aeiou"
+for eachstripword in stripword:
+	if eachstripword not in vowels:
+		print(eachstripword,end="") #print Th qck brwn fx jmpd vr th lzy dg
+
+#42. Write apython program to count repeated characters in a string. Sample string: "thequickbrownfoxjumpsoverthelazydog"
+samplestring = "thequickbrownfoxjumpsoverthelazydog"
+from collections import defaultdict
+countlist = defaultdict(int)
+for eachsamplestring in samplestring:
+	countlist[eachsamplestring] += 1
+dictionarycountlist = dict(countlist)
+print(dictionarycountlist) #print {'e': 3, 's': 1, 'x': 1, 'r': 2, 'a': 1, 'o': 4, 'j': 1, 'q': 1, 'z': 1, 'n': 1, 'i': 1, 'l': 1, 'b': 1, 't': 2, 'p': 1, 'c': 1, 'k': 1, 'v': 1, 'g': 1, 'w': 1, 'm': 1, 'u': 2, 'f': 1, 'h': 2, 'y': 1, 'd': 1}
+repeatedcharacters = []
+for key, value in dictionarycountlist.items():
+	if value >= 2:
+		repeatedcharacters.append((str(value)+" "+str(key)))
+repeatedcharacters.sort(reverse=True)
+print("\n".join(list(map(str,repeatedcharacters)))) #print 4 o\n 3 e\n 2 u\n 2 t\n 2 r\n 2 h
+
+#43. Write a Python program to print the square and cube symbol in the area of a rectangle and volume of a cylinder.  The area of the rectangle is 1256.66cm^2.  The volume of the cylinder is 1254.725cm^3
+#Source:  https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts
+print("The area of the rectangle is 1256.66cm\u00b2") #print The area of the rectangle is 1256.66cm²
+print("The volume of the cylinder is 1254.725cm\u00b3") #The volume of the cylinder is 1254.725cm³
+
+#44. Write a Python program to print the index of the character in a string.
+samplestring = "w3resource"
+for eachsamplestring in samplestring:
+	print("Current character "+eachsamplestring+ " position at " +str(samplestring.index(eachsamplestring))) #print . . . Current character e position at 3
+for indexposition, character in enumerate(samplestring):
+	print("Current character "+character+ " position at " +str(indexposition)) #print . . . Current character e position at 9
+
+#45. Write a Python program to check if a string contains all letters of the alphabet.
+letters = [" "]
+#lowercase letters a is 1 z is 26
+for n in range(97,123):
+	letters.append(chr(n))
+#uppercase letters A is 27 Z is 52
+for n in range(65,91):
+	letters.append(chr(n))
+print(letters)
+def checkstring(stringinput):
+	for eachstringinput in stringinput:
+		if eachstringinput not in letters:
+			print("String doesn't contain all letters")
+			break
+		if eachstringinput == stringinput[-1]:
+			print("String contains all letters")
+checkstring("12 monkeys") #print String doesn't contain all letters
+checkstring("The") #print String contains all letters
+checkstring("abcdefghijklmnopqrstuvwyz") #print String contains all letters
+checkstring("pac12") #print String doesn't contain all letters
+checkstring("chairman5") #print String doesn't contain all letters
+
+#46. Write a Python program to convert a string in a list.
+convertstring = "The quick brown fox jumped over the lazy dog"
+print(list(convertstring)) #print ['T', 'h', 'e', ' ', 'q', 'u', 'i', 'c', 'k', ' ', 'b', 'r', 'o', 'w', 'n', ' ', 'f', 'o', 'x', ' ', 'j', 'u', 'm', 'p', 'e', 'd', ' ', 'o', 'v', 'e', 'r', ' ', 't', 'h', 'e', ' ', 'l', 'a', 'z', 'y', ' ', 'd', 'o', 'g']
+convertlist = ['g', 'o', 'o', 'g', 'l', 'e', '.', 'c', 'o', 'm']
+print("".join(map(str,convertlist))) #print google.com
+
+#47. Write a Python program to lowercase first n characters in a string.
+originalstring = "OPERAtion"
+number = 3
+counter = 0
+finalstring = ""
+for eachoriginalstring in originalstring:
+	if counter <= number-1:		
+		finalstring = finalstring + eachoriginalstring.lower()
+	else:
+		finalstring = finalstring + eachoriginalstring
+	counter += 1
+print(finalstring) #print opeRAtion
+
+#48. Write a Python program to swap comma and dot in a string. Sample string: "32.054,23"  Expected Output: "32,054.23"
+number = "32.054,23"
+swapnumber = ""
+for eachnumber in number:	
+	if eachnumber == ".":
+		eachnumber = eachnumber.replace(".",",")
+		swapnumber = swapnumber + eachnumber
+	elif eachnumber == ",":
+		eachnumber = eachnumber.replace(",",".")
+		swapnumber = swapnumber + eachnumber
+	else:
+		swapnumber = swapnumber + eachnumber
+print(swapnumber) #print 32,054.23
+#Source:  https://stackoverflow.com/questions/3411771/multiple-character-replace-with-python
+name = "raymond"
+name = name.replace("r","R").replace("d","D")
+print(name) #print RaymonD
+
+#49. Write a Python program to count and display the vowels of a given text.
+samplestring = "thequickbrownfoxjumpsoverthelazydog"
+from collections import defaultdict
+countlist = defaultdict(int)
+for eachsamplestring in samplestring:
+	countlist[eachsamplestring] += 1
+dictionarycountlist = dict(countlist)
+print(dictionarycountlist) #print {'e': 3, 's': 1, 'x': 1, 'r': 2, 'a': 1, 'o': 4, 'j': 1, 'q': 1, 'z': 1, 'n': 1, 'i': 1, 'l': 1, 'b': 1, 't': 2, 'p': 1, 'c': 1, 'k': 1, 'v': 1, 'g': 1, 'w': 1, 'm': 1, 'u': 2, 'f': 1, 'h': 2, 'y': 1, 'd': 1}
+vowels = []
+for key, value in dictionarycountlist.items():
+	if key in "aeiou":
+		vowels.append((str(value)+" "+str(key)))
+vowels.sort(reverse=True)
+print("\n".join(list(map(str,vowels)))) #print 4 o\n 3 e\n 2 u\n 1 i\n 1 a
+
+#50. Write a Python program to split a string on the last occurrence of the delimiter.
+splitstring = "The quick brown fox jumped over the lazq dog"
+print(splitstring.rsplit("q",1)) #print ['The quick brown fox jumped over the laz', ' dog']
+print(splitstring.rsplit("q",-1)) #print ['The ', 'uick brown fox jumped over the laz', ' dog']
+print(splitstring.rsplit("e",1)) #print ['The quick brown fox jumped over th', ' lazq dog']
+print(splitstring.rsplit("o",1)) #print ['The quick brown fox jumped over the lazq d', 'g']
+print(splitstring.rsplit("o",2)) #print ['The quick brown fox jumped ', 'ver the lazq d', 'g']
+print(splitstring.rsplit("o",3)) #print ['The quick brown f', 'x jumped ', 'ver the lazq d', 'g']
