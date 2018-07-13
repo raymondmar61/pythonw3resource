@@ -412,7 +412,7 @@ plt.show()
 print(distance(x1,y1,x2,y2))
 
 #48. Write a Python program to parse a string to Float or Integer.
-word = 255
+word = "255"
 print(int(word)) #print 255
 print(float(word)) #print 255.0
 
@@ -426,21 +426,21 @@ print("\n")
 import time
 print(time.time()) #prints number of seconds since Jan 1, 1970
 startime = time.time() #prints number of seconds since Jan 1, 1970
-#python
+#python code
 endtime = time.time()
 print((endtime-startime),"seconds")
 print((round(endtime-startime)),"seconds")
 
 import time
 startime = time.clock()
-#python
+#python code
 endtime = time.clock()
 print((endtime-startime),"seconds")
 print((round(endtime-startime)),"seconds")
 
 import time
 startime = time.time()
-#python
+#python code
 endtime = time.time()
 timetaken = endtime - startime # time_taken is in seconds
 hours, rest = divmod(timetaken,3600)

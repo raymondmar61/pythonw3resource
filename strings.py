@@ -395,12 +395,12 @@ sampletext = '''
 	as C++ or Java.
 '''
 text1 =  textwrap.dedent(sampletext).strip()
-print(textwrap.fill(text1, initial_indent='', subsequent_indent=' ' * 4, width=80,))
+print(textwrap.fill(text1, initial_indent=' ' * 4, subsequent_indent='', width=80,))
 ''' print
-Python is a widely used high-level, general-purpose, interpreted, dynamic
-    programming language. Its design philosophy emphasizes code readability, and
-    its syntax allows programmers to express concepts in fewer lines of code
-    than possible in languages such as C++ or Java.
+    Python is a widely used high-level, general-purpose, interpreted, dynamic
+programming language. Its design philosophy emphasizes code readability, and
+its syntax allows programmers to express concepts in fewer lines of code
+than possible in languages such as C++ or Java.
 '''
 
 #30. Write a Python program to print the following floating numbers up to 2 decimal places.
@@ -432,6 +432,9 @@ def nodecimal(floatnumber):
 	print("".join(map(str, solution)))
 nodecimal(5.69123456789) #print 569123456789
 nodecimal(5.756123456789) #print 5756123456789
+#RM:  bonus
+print("5.69123456789".replace(".","")) #print 569123456789
+print(str(5.756123456789).replace(".","")) #print 5756123456789
 
 #33. Write a Python program to print the following integers with zeros on the left of specified width.
 def leftzeroes(number):
@@ -510,7 +513,7 @@ for eachstripword in stripword:
 	if eachstripword not in vowels:
 		print(eachstripword,end="") #print Th qck brwn fx jmpd vr th lzy dg
 
-#42. Write apython program to count repeated characters in a string. Sample string: "thequickbrownfoxjumpsoverthelazydog"
+#42. Write a python program to count repeated characters in a string. Sample string: "thequickbrownfoxjumpsoverthelazydog"
 samplestring = "thequickbrownfoxjumpsoverthelazydog"
 from collections import defaultdict
 countlist = defaultdict(int)
