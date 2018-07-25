@@ -277,3 +277,35 @@ from random import randint
 from collections import Counter
 numberlist = [randint(1,101) for x in range(0,randint(10,40))]
 print(Counter(numberlist)) #print Counter({12: 2, 30: 2, 91: 2, 4: 2, 45: 2, 46: 2, 22: 2, 96: 1, 80: 1, 34: 1, 49: 1, 40: 1, 41: 1, 98: 1, 78: 1, 52: 1, 21: 1, 47: 1, 25: 1, 42: 1, 23: 1, 44: 1, 2: 1, 32: 1, 48: 1, 89: 1, 55: 1, 67: 1, 11: 1, 9: 1, 70: 1})
+
+#31. Write a Python program to count the number of elements in a list within a specified range.  RM:  count how many items are between two numbers inclusive.
+from random import randint
+numberlist = [randint(1,101) for x in range(0,randint(10,40))]
+minimumrange = 40
+maximumrange = 80
+count = 0
+for eachnumberlist in numberlist:
+	if eachnumberlist >= minimumrange and eachnumberlist <=maximumrange:
+		count += 1
+numberlist.sort()
+print(numberlist)
+print(count)
+
+#32. Write a Python program to check whether a list contains a sublist.  Function source https://stackoverflow.com/questions/35964155/checking-if-list-is-a-sublist.  RM:  I don't understand.
+def sublist(lst1, lst2):
+   ls1 = [element for element in lst1 if element in lst2]
+   ls2 = [element for element in lst2 if element in lst1]
+   return ls1 == ls2
+a = [2,4,3,5,7]
+b = [4,3]
+c = [3,7]
+d = [1000,100,2]
+e = [1,2,3,4]
+f = [1,2,5,6,7,8,5,76,4,3]
+g = [0,3,2]  
+print(sublist(a,b)) #print True
+print(sublist(a,c)) #print True
+print(sublist(a,d)) #print True
+print(sublist(d,a)) #print True
+print(sublist(e,f)) #print False
+print(sublist(f,g)) #print False
