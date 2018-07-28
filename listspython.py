@@ -291,21 +291,74 @@ numberlist.sort()
 print(numberlist)
 print(count)
 
-#32. Write a Python program to check whether a list contains a sublist.  Function source https://stackoverflow.com/questions/35964155/checking-if-list-is-a-sublist.  RM:  I don't understand.
+#32. Write a Python program to check whether a list contains a sublist.  Function source https://stackoverflow.com/questions/35964155/checking-if-list-is-a-sublist.  RM:  Check two lists.  Does each list have same items in same order from left to right.
 def sublist(lst1, lst2):
-   ls1 = [element for element in lst1 if element in lst2]
-   ls2 = [element for element in lst2 if element in lst1]
-   return ls1 == ls2
+	sublist1 = []
+	sublist2 = []	
+	for eachlst1 in lst1:
+		if eachlst1 in lst2:
+			#print("in lst1 also in lst2",eachlst1)
+			sublist1.append(eachlst1)
+	for eachlst2 in lst2:
+		if eachlst2 in lst1:
+			#print("in lst2 also in lst1",eachlst2)
+			sublist2.append(eachlst2)
+	print(sublist1)
+	print(sublist2)
+	print(sublist1==sublist2)
+   #ls1 = [element for element in lst1 if element in lst2]
+   #ls2 = [element for element in lst2 if element in lst1]
+   #return ls1 == ls2
 a = [2,4,3,5,7]
 b = [4,3]
-c = [3,7]
+c = [7,3]
 d = [1000,100,2]
 e = [1,2,3,4]
 f = [1,2,5,6,7,8,5,76,4,3]
-g = [0,3,2]  
-print(sublist(a,b)) #print True
-print(sublist(a,c)) #print True
-print(sublist(a,d)) #print True
-print(sublist(d,a)) #print True
-print(sublist(e,f)) #print False
-print(sublist(f,g)) #print False
+g = [0,3,2]
+sublist(a,b) #print [4,3]\n [4,3]\n True
+sublist(a,c) #print [3,7]\n [7,3]\n False
+sublist(a,d) #print [2]\n [2]\n True
+sublist(d,a) #print [2]\n [2]\n True
+sublist(e,f) #print [1, 2, 3, 4]\n [1, 2, 4, 3]\n False
+sublist(f,g) #print [2,3]\n [3,2]\n False
+
+#33. Write a Python program to generate all sublists of a list.  RM:  create all possible sublists from mainlist no repeats.
+from itertools import combinations
+def generatesublists(mainlist):
+	newlist = [[]]
+	n = 0
+	while n <= len(mainlist):
+		for eachmainlist in combinations(mainlist,n+1):
+			#print(eacha)
+			newlist.append(list(eachmainlist))
+		n +=1
+	print(newlist)
+generatesublists(["x","y","z"]) #print [[], ['x'], ['y'], ['z'], ['x', 'y'], ['x', 'z'], ['y', 'z'], ['x', 'y', 'z']]
+generatesublists([10, 20, 30, 40]) #print [[], [10], [20], [30], [40], [10, 20], [10, 30], [10, 40], [20, 30], [20, 40], [30, 40], [10, 20, 30], [10, 20, 40], [10, 30, 40], [20, 30, 40], [10, 20, 30, 40]]
+
+#34. Write a Python program using Sieve of Eratosthenes method for computing primes upto a specified number.
+def checkifprime(n): #n must be greater than one
+	if n == 2:
+		return True
+	if n % 2 == 0:
+		return False
+	i = 3
+	while i * i <= n:
+		if n % i == 0:
+			return False
+		i += 2
+	return True
+primenumberlistcheckifprime=[]
+for number in range(2,101):
+	if checkifprime(number) == True:
+		primenumberlistcheckifprime.append(number)
+print(primenumberlistcheckifprime) #print [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+
+#35. Write a Python program to create a list by concatenating a given list which range goes from 1 to n. Sample list: ['p', 'q']. n=5. Sample Output: ['p1', 'q1', 'p2', 'q2', 'p3', 'q3', 'p4', 'q4', 'p5', 'q5'].
+def concatenatenumber(inputlist, number):
+	outputlist = [eachinputlist+str(eachn) for eachinputlist in inputlist for eachn in range(1,number+1)]
+	print(outputlist)
+inputlist = ["p","q"]
+n = 5
+concatenatenumber(inputlist, n) #return ['p1', 'p2', 'p3', 'p4', 'p5', 'q1', 'q2', 'q3', 'q4', 'q5']
