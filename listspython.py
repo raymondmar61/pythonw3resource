@@ -362,3 +362,39 @@ def concatenatenumber(inputlist, number):
 inputlist = ["p","q"]
 n = 5
 concatenatenumber(inputlist, n) #return ['p1', 'p2', 'p3', 'p4', 'p5', 'q1', 'q2', 'q3', 'q4', 'q5']
+
+#36. Write a Python program to get variable unique identification number or string.  RM:  I don't understand.  Copied solution.
+x = 100
+print(format(id(x), 'x')) #print a70680
+s = "w3resource"
+print(format(id(s), 'x')) #print 7f128e97bef0
+
+#https://www.geeksforgeeks.org/id-function-python/  id(object) returns the identity of an object. This identity has to be unique and constant for this object during the lifetime.  This is random but when running in the same program, it generates unique and same identity.
+print(id("geek")) #print 139991246589880
+string1 = "geek"
+string2 = "geek"
+print(id(string1)) #print 139991246589880
+print(id(string2)) #print 139991246589880
+print(id(string1)==id(string2)) #print True
+
+#37. Write a Python program to find common items from two lists.
+firstlist = [0, 1, 2, 3, 4, 5]
+secondlist = [200, 100, 1578, 3, 4, 5, 6, -5]
+firstlist = set(firstlist)
+secondlist = set(secondlist)
+print(list(firstlist.intersection(secondlist))) #print [3, 4, 5]
+print(", ".join(map(str,list(firstlist.intersection(secondlist))))) #print 3, 4, 5
+firstlist = ["Johnson","Operation","X-Men","Bargain","Speakers"]
+secondlist = ["X-Men","Johnson","Dixit","Spoons","Rock","Johnson"]
+firstlist = set(firstlist)
+secondlist = set(secondlist)
+print(list(firstlist.intersection(secondlist))) #print ['Johnson', 'X-Men']
+print(", ".join(map(str,list(firstlist.intersection(secondlist))))) #print Johnson, X-Men
+
+#38. Write a Python program to change the position of every n-th value with the (n+1)th in a list. Sample list: [0,1,2,3,4,5].  Expected Output: [1, 0, 3, 2, 5, 4].  RM:  copied solution.  New functions from a module.
+from itertools import zip_longest, chain, tee
+def replace2copy(lst):
+    lst1, lst2 = tee(iter(lst), 2)
+    return list(chain.from_iterable(zip_longest(lst[1::2], lst[::2])))
+n = [0,1,2,3,4,5]
+print(replace2copy(n)) #print [1, 0, 3, 2, 5, 4]
