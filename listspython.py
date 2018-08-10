@@ -398,3 +398,11 @@ def replace2copy(lst):
     return list(chain.from_iterable(zip_longest(lst[1::2], lst[::2])))
 n = [0,1,2,3,4,5]
 print(replace2copy(n)) #print [1, 0, 3, 2, 5, 4]
+#RM:  cleaned up code after learning iterables outsidethebook
+from itertools import zip_longest, chain
+def replace2copy(lst):
+    print(lst[1::2]) #print [1, 3, 5]
+    print(lst[::2]) #print [0, 2, 4]
+    return list(chain.from_iterable(zip_longest(lst[1::2], lst[::2])))    
+n = [0,1,2,3,4,5]
+print(replace2copy(n)) #print [1, 0, 3, 2, 5, 4]
