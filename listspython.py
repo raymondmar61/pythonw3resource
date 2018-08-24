@@ -252,7 +252,7 @@ numberlist.sort()
 print(numberlist) #print [8, 17, 28, 38, 44, 51, 59, 59, 61]
 print(numberlist[1]) #print 17
 
-#28. Write a Python program to find the second smallest number in a list.  RM:  duh sort the list smallest to largest.  No max() and min().
+#28. Write a Python program to find the second largest number in a list.  RM:  duh sort the list smallest to largest.  No max() and min().
 from random import randint
 # y = []
 # for x in range(0,randint(5,20)):
@@ -406,3 +406,42 @@ def replace2copy(lst):
     return list(chain.from_iterable(zip_longest(lst[1::2], lst[::2])))    
 n = [0,1,2,3,4,5]
 print(replace2copy(n)) #print [1, 0, 3, 2, 5, 4]
+
+#39. Write a Python program to convert a list of multiple integers into a single integer.  Sample list: [11, 33, 50] Expected Output: 113350
+multipleintegers = [11, 33, 50]
+singleinteger = int("".join(map(str,multipleintegers)))
+print(singleinteger)  #print 113350
+print(type(singleinteger)) #print <class 'int'>
+
+#40. Write a Python program to split a list based on first character of word.  RM:  return the list of words by the first letter for each word.  The answer is not a list.  The answer is words grouped by the first letter for each word.
+from itertools import groupby
+from operator import itemgetter
+word_list = ['be','have','do','say','get','make','go','know','take','see','come','think',
+     'look','want','give','use','find','tell','ask','work','seem','feel','leave','call']
+for letter, words in groupby(sorted(word_list), key=itemgetter(0)):
+    print(letter)
+    for word in words:
+        print(word)
+"""print
+a
+ask
+b
+be
+c
+call
+come
+d
+do
+. . . 
+"""
+
+#41. Write a Python program to create multiple lists.  Solution:  https://stackoverflow.com/questions/13520876/how-can-i-make-multiple-empty-lists-in-python
+n = 5
+multiplelists = [[] for x in range(0,5)]
+print(multiplelists) #print [[], [], [], [], []]
+
+#official solution
+obj = {}
+for i in range(1, 21):
+    obj[str(i)] = []
+print(obj) #print {'1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': [], '10': [], '11': [], '12': [], '13': [], '14': [], '15': [], '16': [], '17': [], '18': [], '19': [], '20': []}
