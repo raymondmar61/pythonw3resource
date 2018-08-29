@@ -445,3 +445,115 @@ obj = {}
 for i in range(1, 21):
     obj[str(i)] = []
 print(obj) #print {'1': [], '2': [], '3': [], '4': [], '5': [], '6': [], '7': [], '8': [], '9': [], '10': [], '11': [], '12': [], '13': [], '14': [], '15': [], '16': [], '17': [], '18': [], '19': [], '20': []}
+
+#42. Write a Python program to find missing and additional values in two lists. Sample data : Missing values in second list: b,a,c.  Additional values in second list: g,h.
+firstlist = ["a", "b", "c", "d", "e", "f"]
+secondlist = ["d", "e", "f","g","h"]
+print(list(set(firstlist).difference(set(secondlist)))) #print ['a','b','c']
+print(list(set(secondlist).difference(set(firstlist)))) #print ['g','h']
+
+#43. Write a Python program to split a list into different variables.  RM:  split a list with tuples technically speaking
+gamelist = [("candy land","chutes and ladders","winnie the pooh"),("mystery mansion","silicon valley","bargain hunter"),("settlers of catan","pandemic","dominion")]
+gamelist1, gamelist2, gamelist3 = gamelist
+print(gamelist1) #print ('candy land', 'chutes and ladders', 'winnie the pooh')
+print(gamelist2) #print ('mystery mansion', 'silicon valley', 'bargain hunter')
+print(gamelist3) #print ('settlers of catan', 'pandemic', 'dominion')
+
+#44. Write a Python program to generate groups of five consecutive numbers in a list.
+from itertools import count
+from random import randint
+mainlist = []
+def groupoffivenumbers():
+	randomnumber = randint(1,100)
+	counter = 0
+	grouplist = []
+	for i in count(randomnumber):
+		if counter == 5:
+			break
+		else:
+			grouplist.append(i)
+			counter += 1
+	mainlist.append(grouplist)
+numberofgroups = randint(1,11)
+counter = 0
+while counter <= numberofgroups:
+	groupoffivenumbers()
+	counter += 1
+print(mainlist) #print [[81, 82, 83, 84, 85], [5, 6, 7, 8, 9], [39, 40, 41, 42, 43], [87, 88, 89, 90, 91], [32, 33, 34, 35, 36], [75, 76, 77, 78, 79], [30, 31, 32, 33, 34], [92, 93, 94, 95, 96]]
+
+#45. Write a Python program to convert a pair of values into a sorted unique array.  RM:  a list consisting of tuples.  Two numbers per tuple.  Extract unique numbers.  Sort extracted unique numbers in one list.
+from random import randint
+tupleslist = []
+def twonumbertuple():
+	generatetwonumbers = randint(1,100), randint(1,100)
+	tupleslist.append(generatetwonumbers)
+numberoftuples = randint(20,26)
+counter = 0
+while counter <= numberoftuples:
+	twonumbertuple()
+	counter +=1
+print(tupleslist) #print [(32, 1), (37, 16), (74, 91), (38, 49), (100, 15), (35, 82), (60, 17), (73, 7), (61, 66), (48, 3), (35, 25), (72, 29), (51, 85), (72, 19), (59, 91), (30, 93), (83, 61), (42, 21), (64, 14), (81, 33), (33, 35)]
+print(set().union(*tupleslist)) #print {1, 3, 7, 14, 15, 16, 17, 19, 21, 25, 29, 30, 32, 33, 35, 37, 38, 42, 48, 49, 51, 59, 60, 61, 64, 66, 72, 73, 74, 81, 82, 83, 85, 91, 93, 100}
+print(sorted(set().union(*tupleslist))) #print [1, 3, 7, 14, 15, 16, 17, 19, 21, 25, 29, 30, 32, 33, 35, 37, 38, 42, 48, 49, 51, 59, 60, 61, 64, 66, 72, 73, 74, 81, 82, 83, 85, 91, 93, 100]
+
+#create a tuple integers
+twonumbers = 5, 6
+print(twonumbers) #print (5,6)
+print(type(twonumbers)) #print <class 'tuple'>
+
+#46. Write a Python program to select the odd items of a list.
+colorlist = ["red","green","blue","white","black","orange","yellow","pink","brown","gold","silver"]
+oddcolorlist = [colorlist[n] for n in range(1,len(colorlist)) if n % 2 != 0]
+print(oddcolorlist) #print ['green', 'white', 'orange', 'pink', 'gold']
+
+#47. Write a Python program to insert an element before each element of a list.  RM:  my guess is insert an item second most right of a list.
+sportslist = ["baseball"]
+sportslist.insert(len(sportslist)-1,"football")
+print(sportslist) #print ['football', 'baseball']
+sportslist.insert(len(sportslist)-1,"basketball")
+print(sportslist) #print ['football', 'basketball', 'baseball']
+sportslist.insert(len(sportslist)-1,"hockey")
+print(sportslist) #print ['football', 'basketball', 'hockey', 'baseball']
+
+#48. Write a Python program to print a nested lists (each list on a new line) using the print() function.
+nestedlists = [[81, 82, 83, 84, 85], [5, 6, 7, 8, 9], [39, 40, 41, 42, 43], [87, 88, 89, 90, 91], [32, 33, 34, 35, 36], [75, 76, 77, 78, 79], [30, 31, 32, 33, 34], [92, 93, 94, 95, 96]]
+for eachlist in range(0,len(nestedlists)):
+	print(nestedlists[eachlist][:]) #print [81, 82, 83, 84, 85]\n . . . [30, 31, 32, 33, 34]\n [92, 93, 94, 95, 96]
+
+#49. Write a Python program to convert list to list of dictionaries. Sample lists: ["Black", "Red", "Maroon", "Yellow"], ["#000000", "#FF0000", "#800000", "#FFFF00"].  Expected Output: [{'color_name': 'Black', 'color_code': '#000000'}, {'color_name': 'Red', 'color_code': '#FF0000'}, {'color_name': 'Maroon', 'color_code': '#800000'}, {'color_name': 'Yellow', 'color_code': '#FFFF00'}]
+samplelistcolor = ["Black", "Red", "Maroon", "Yellow"]
+samplelisthtml = ["#000000", "#FF0000", "#800000", "#FFFF00"]
+expectedoutput = []
+listcolorhtml = list(zip(samplelistcolor,samplelisthtml))
+for eachlistcolorhtml in listcolorhtml:
+	expectedoutputdictionary = {}
+	expectedoutputdictionary["color_name"] = eachlistcolorhtml[0]
+	expectedoutputdictionary["color_code"] = eachlistcolorhtml[1]
+	expectedoutput.append(expectedoutputdictionary)
+print(expectedoutput) #print [{'color_name': 'Black', 'color_code': '#000000'}, {'color_name': 'Red', 'color_code': '#FF0000'}, {'color_name': 'Maroon', 'color_code': '#800000'}, {'color_name': 'Yellow', 'color_code': '#FFFF00'}]
+
+#50. Write a Python program to sort a list of nested dictionaries.
+stocks = {"GOOG": 520.54, "FB": 76.45, "YHOO": 39.28, "AMZN": 305.21, "AAPL": 99.76}
+print(sorted(zip(stocks.values(), stocks.keys()))) #print [(39.28, 'YHOO'), (76.45, 'FB'), (99.76, 'AAPL'), (305.21, 'AMZN'), (520.54, 'GOOG')] values sorted smallest to largest
+print(sorted(zip(stocks.keys(), stocks.values()))) #print [('AAPL', 99.76), ('AMZN', 305.21), ('FB', 76.45), ('GOOG', 520.54), ('YHOO', 39.28)] keys sorted smallest to largest
+
+#official solution
+my_list = [{'key': {'subkey': 1}}, {'key': {'subkey': 10}}, {'key': {'subkey': 5}}]
+print("Original List: ")
+print(my_list) #print [{'key': {'subkey': 1}}, {'key': {'subkey': 10}}, {'key': {'subkey': 5}}]
+my_list.sort(key=lambda e: e['key']['subkey'], reverse=True)
+print("Sorted List: ")
+print(my_list) #print [{'key': {'subkey': 10}}, {'key': {'subkey': 5}}, {'key': {'subkey': 1}}]
+
+#51. Write a Python program to split a list every Nth element. Sample list: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'].  Expected Output: [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+
+#41. Write a Python program to create multiple lists.  Solution:  https://stackoverflow.com/questions/13520876/how-can-i-make-multiple-empty-lists-in-python
+n = 3
+multiplelists = [[] for x in range(0,n)]
+print(multiplelists) #print [[], [], [], [], []]
+samplelist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+for eachletter in samplelist:
+	#multiplelists[0].append(eachletter)
+print(multiplelists)
+
+#NOT COMPLETED
