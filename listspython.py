@@ -439,7 +439,14 @@ do
 n = 5
 multiplelists = [[] for x in range(0,5)]
 print(multiplelists) #print [[], [], [], [], []]
-
+#also
+samplelist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+n = len(samplelist)
+multiplelists = [[] for x in range(0,n)]
+print(multiplelists) #print [[], [], [], [], [], [], [], [], [], [], [], [], [], []]
+for eachletter in samplelist:
+	multiplelists[samplelist.index(eachletter)].append(eachletter)
+print(multiplelists) #print [['a'], ['b'], ['c'], ['d'], ['e'], ['f'], ['g'], ['h'], ['i'], ['j'], ['k'], ['l'], ['m'], ['n']]
 #official solution
 obj = {}
 for i in range(1, 21):
@@ -546,14 +553,58 @@ print("Sorted List: ")
 print(my_list) #print [{'key': {'subkey': 10}}, {'key': {'subkey': 5}}, {'key': {'subkey': 1}}]
 
 #51. Write a Python program to split a list every Nth element. Sample list: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n'].  Expected Output: [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
-
-#41. Write a Python program to create multiple lists.  Solution:  https://stackoverflow.com/questions/13520876/how-can-i-make-multiple-empty-lists-in-python
+samplelist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
 n = 3
 multiplelists = [[] for x in range(0,n)]
-print(multiplelists) #print [[], [], [], [], []]
-samplelist = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+print(multiplelists) #print [[], [], []]
+counter = 0
 for eachletter in samplelist:
-	#multiplelists[0].append(eachletter)
-print(multiplelists)
+	if counter == 0:
+		multiplelists[0].append(eachletter)
+	elif counter == 1:
+		multiplelists[1].append(eachletter)
+	elif counter == 2:
+		multiplelists[2].append(eachletter)
+	counter += 1
+	if counter == 3:
+		counter = 0
+print(multiplelists) #print [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
+#official solution
+C = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
+def list_slice(S, step):
+    return [S[i::step] for i in range(step)]
+print(list_slice(C,3)) #print [['a', 'd', 'g', 'j', 'm'], ['b', 'e', 'h', 'k', 'n'], ['c', 'f', 'i', 'l']]
 
-#NOT COMPLETED
+#52. Write a Python program to compute the similarity between two lists. Sample data: ["red", "orange", "green", "blue", "white"], ["black", "yellow", "green", "blue"].  Expected Output: Color1-Color2: ['white', 'orange', 'red'] Color2-Color1: ['black', 'yellow']
+color1 = ["red", "orange", "green", "blue", "white"]
+color2 = ["black", "yellow", "green", "blue"]
+#print(color1-color2)  #error message
+color1set = set(color1)
+color2set = set(color2)
+print(list(color1set-color2set)) #print ['white', 'orange', 'red']
+print(list(color2set-color1set)) #print ['yellow', 'black']
+
+#53. Write a Python program to create a list with infinite elements.  Source:  https://stackoverflow.com/questions/13910259/list-with-infinite-elments
+def infinitenumbers():
+	infiniteelementslist = []
+	count = 0
+	while True:
+		infiniteelementslist.append(count)
+		if count % 100 == 0:
+			print(infiniteelementslist)
+		count += 1
+		if count == 1000:
+			break
+infinitenumbers()
+from itertools import count, islice
+for i in islice(count(10),100):
+	print(i) #print 10\n 11\n 12\n . . . 107\n 108\n 109
+#official solution
+import itertools
+c = itertools.count()
+print(next(c)) #print 0
+print(next(c)) #print 1
+print(next(c)) #print 2
+print(next(c)) #print 3
+print(next(c)) #print 4
+
