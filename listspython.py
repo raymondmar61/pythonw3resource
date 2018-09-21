@@ -608,3 +608,28 @@ print(next(c)) #print 2
 print(next(c)) #print 3
 print(next(c)) #print 4
 
+#54. Write a Python program to concatenate elements of a list.  RM:  take all elements in a list and combine into one string.
+separateelements = ["Sorry","Monopoly","UNO","Candy Land"]
+print(", ".join(separateelements)) #print Sorry, Monopoly, UNO, Candy Land
+print(" ".join(separateelements)) #print Sorry Monopoly UNO Candy Land
+print("".join(separateelements)) #print SorryMonopolyUNOCandy Land
+numberseparateelements = [4,5,9,7,8,9,6]
+print(" ".join(map(str, numberseparateelements))) #print 4 5 9 7 8 9 6
+print("".join(map(str, numberseparateelements))) #print 4597896
+
+#55. Write a Python program to remove key values pairs from a list of dictionaries.
+pizza = {"crust": ["thick","thin","gluten free"],"toppings": ["mushrooms", "extra cheese", "pepperoni","salami","bell peppers"], "soda": ["Coke","Pepsi"]}
+print(pizza) #print {'crust': ['thick', 'thin', 'gluten free'], 'toppings': ['mushrooms', 'extra cheese', 'pepperoni', 'salami', 'bell peppers'], 'soda': ['Coke', 'Pepsi']}
+del pizza["soda"]
+print(pizza) #print {'crust': ['thick', 'thin', 'gluten free'], 'toppings': ['mushrooms', 'extra cheese', 'pepperoni', 'salami', 'bell peppers']}
+
+#56. Write a Python program to convert a string to a list.
+astring = "The quick brown fox jumped over the lazy dog"
+print(astring.split()) #print ['The', 'quick', 'brown', 'fox', 'jumped', 'over', 'the', 'lazy', 'dog']
+
+#57. Write a Python program to check if all items of a list is equal to a given string.
+laptopslist = ["Dell","HP","Apple","ASUS","Sony","Panasonic","Chrome"]
+givenstring = "Apple"
+for eachlaptopslist in laptopslist:
+	if eachlaptopslist == givenstring:
+		print("Yes {} is in the list".format(givenstring))
