@@ -633,3 +633,37 @@ givenstring = "Apple"
 for eachlaptopslist in laptopslist:
 	if eachlaptopslist == givenstring:
 		print("Yes {} is in the list".format(givenstring))
+
+#58. Write a Python program to replace the last element in a list with another list. Sample data: [1, 3, 5, 7, 9, 10], [2, 4, 6, 8].  Expected Output: [1, 3, 5, 7, 9, 2, 4, 6, 8].
+firstlist = [1, 3, 5, 7, 9, 10]
+secondlist = [2, 4, 6, 8]
+firstlist.pop()  #deletes last item in a list
+for eachsecondlist in secondlist:
+	firstlist.append(eachsecondlist)
+print(firstlist) #print [1, 3, 5, 7, 9, 2, 4, 6, 8]
+#also
+firstlist = [1, 3, 5, 7, 9, 10]
+secondlist = [2, 4, 6, 8]
+firstlist.pop()  #deletes last item in a list
+print(firstlist+secondlist)  #print [1, 3, 5, 7, 9, 2, 4, 6, 8]
+
+#59. Write a Python program to check if the n-th element exists in a given list.
+gameslist = ["monopoly","mystery","bargain","gijoe","xmen","set","life","operation"]
+def findgameslist(game):
+	if game in gameslist:
+		print("Found {}".format(game))
+	else:
+		print("{} doesn't exist in list".format(game))
+findgameslist("monopoly") #print Found monopoly
+findgameslist("candy land") #print candy land doesn't exist in list
+
+#60. Write a Python program to find a tuple, the smallest second index value from a list of tuples.
+numbertuple = (11,9,23,1,5,3,7,17)
+numberlist = list(numbertuple)
+numberlist.sort()
+print(numberlist) #print [1, 3, 5, 7, 9, 11, 17, 23]
+print(numberlist[1]) #print 3
+#also
+datanumbers = (7, 2, 5, 6, 1, 3, 9, 10, 4, 8) 
+print(sorted(datanumbers)) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] convert a tuple to a list print(datanumbers) #print (7, 2, 5, 6, 1, 3, 9, 10, 4, 8)
+print(datanumbers[1]) #print 2
