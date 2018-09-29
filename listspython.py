@@ -667,3 +667,84 @@ print(numberlist[1]) #print 3
 datanumbers = (7, 2, 5, 6, 1, 3, 9, 10, 4, 8) 
 print(sorted(datanumbers)) #print [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] convert a tuple to a list print(datanumbers) #print (7, 2, 5, 6, 1, 3, 9, 10, 4, 8)
 print(datanumbers[1]) #print 2
+
+#61. Write a Python program to create a list of empty dictionaries.
+emptylist = []
+emptydictionary = {}
+for n in range(1,6):
+	emptylist.append(emptydictionary)
+	n +=1
+print(emptylist) #print [{}, {}, {}, {}, {}]
+#list comprehension
+emptydictionary2 = [{} for n in range(1,6)]
+print(emptydictionary2) #print [{}, {}, {}, {}, {}]
+
+#62. Write a Python program to print a list of space-separated elements.  RM:  take items out of a list separated by a space.
+listtostring = ["Scrabble","UNO","X-Men","Poker","Axis & Allies"]
+print(" ".join(map(str,listtostring))) #print Scrabble UNO X-Men Poker Axis & Allies
+listtointeger = [5, 6, 1, 5, 9, 8, 5, 3, 4, 9]
+print(" ".join(map(str,listtointeger))) #print 5 6 1 5 9 8 5 3 4 9
+print(str(listtointeger).strip("[]")) #print 5, 6, 1, 5, 9, 8, 5, 3, 4, 9
+#official solution
+num = [1, 2, 3, 4, 5]
+print(*num) #print 1 2 3 4 5
+#added to official solution
+string = ["Nothing","dance","dance","Justin","Timberlake"]
+print(*string) #print Nothing dance dance Justin Timberlake
+
+#63. Write a Python program to insert a given string at the beginning of all items in a list. Sample list: [1,2,3,4], string: emp.  Expected output: ['emp1', 'emp2', 'emp3', 'emp4'].
+samplelist = [1, 2, 3, 4]
+insertstring = "emp"
+for n in range(0,len(samplelist)):
+	samplelist[n] = insertstring+str(samplelist[n])
+print(samplelist) #print ['emp1', 'emp2', 'emp3', 'emp4']
+
+#64. Write a Python program to iterate over two lists simultaneously.
+list1= ["starcraft 2","team fotress 2","portal","crysis"]
+list2 = ["monitor","desktop case","hd","video card","ram","fan"]
+if len(list1) > len(list2):
+	for n in range(len(list2),len(list1)):
+		list2.append("")
+	biggerlist = list1
+else:
+	for n in range(len(list1),len(list2)):
+		list1.append("")
+	biggerlist = list2
+for n in range(0,len(biggerlist)):
+	iterate = (list1[n]+" "+list2[n]).strip()
+	print(iterate) #print starcraft 2 monitor\n team fotress 2 desktop case\n portal hd\n crysis video card\n ram\n fan
+#official solution
+num = [1, 2, 3, 4]
+color = ['red', 'while', 'black']
+for (a,b) in zip(num, color):
+     print(a, b) #print 1 red\n 2 while\n 3 black
+#RM:  4 is not printed
+
+#65. Write a Python program to access dictionary keys element by index.
+hobbies = {"hiking":"castle rock", "board games":"settlers of catan", "music":"the beatles", "books":"fiction", "cooking":"broccoli beef", "gym":"weights"}
+for key, value in hobbies.items(): #key and value temporary varables pair can be any temporary variables pair
+	print("Key: " +key+ " Value: " +value) #print Key: hiking Value: castle rock\n Key: board games Value: settlers of catan\n Key: music Value: the beatles\n Key: books Value: fiction\n Key: cooking Value: broccoli beef\n Key: gym Value: weights
+#also
+for hobby, example in hobbies.items(): #key and value temporary varables pair can be any temporary variables pair
+	print("Key: " +hobby+ " Value: " +example) #print Key: hiking Value: castle rock\n Key: board games Value: settlers of catan\n Key: music Value: the beatles\n Key: books Value: fiction\n Key: cooking Value: broccoli beef\n Key: gym Value: weights
+for eachhobbieskeys in hobbies.keys():
+	print(eachhobbieskeys) #print hiking\n board games\n music\n books\n cooking\n gym
+for eachhexamplevalues in hobbies.values():
+	print(eachhexamplevalues) #print castle rock\n settlers of catan\n the beatles\n fiction\n broccoli beef\n weights
+#official solution
+num = {'physics': 80, 'math': 90, 'chemistry': 86}
+print(list(num)[0]) #print physics
+#RM:  convert a dictionary to a list.  Print the key referencing index value.
+
+#66. Write a Python program to find the list in a list of lists whose sum of elements is the highest. Sample lists: [1,2,3], [4,5,6], [10,11,12], [7,8,9].  Expected Output: [10, 11, 12]
+samplelist = [[1,2,3], [4,5,6], [10,11,12], [7,8,9]]
+highestsum = 0
+for eachsamplelist in samplelist:
+	eachsamplelistsum = sum(eachsamplelist)
+	if eachsamplelistsum > highestsum:
+		highestsum = eachsamplelistsum
+		output = eachsamplelist
+print(output) #print [10, 11, 12]
+#official solution
+num = [[1,2,3], [4,5,6], [10,11,12], [7,8,9]]
+print(max(num, key=sum)) #print [10, 11, 12]
