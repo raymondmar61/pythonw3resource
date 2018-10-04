@@ -748,3 +748,53 @@ print(output) #print [10, 11, 12]
 #official solution
 num = [[1,2,3], [4,5,6], [10,11,12], [7,8,9]]
 print(max(num, key=sum)) #print [10, 11, 12]
+
+#67. Write a Python program to find all the values in a list are greater than a specified number.
+from random import randint
+numberofitems = randint(10,20)
+valuesinlist = [randint(1,50) for n in range(5,numberofitems+1)]
+print(valuesinlist) #print [12, 26, 1, 42, 9, 18, 38, 39, 15, 14]
+specifiednumber = 18
+greaterinlist = [eachvaluesinlist for eachvaluesinlist in valuesinlist if eachvaluesinlist>specifiednumber]
+print(greaterinlist) #print [26, 42, 38, 39]
+
+#68. Write a Python program to extend a list without append. Sample data: [10, 20, 30] [40, 50, 60].  Expected output: [40, 50, 60, 10, 20, 30].
+sampledata1 = [10, 20, 30]
+sampledata2 = [40, 50, 60]
+sampledata2 = sampledata2 + sampledata1
+print(sampledata2) #print [40, 50, 60, 10, 20, 30]
+
+#69. Write a Python program to remove duplicates from a list of lists.  Sample list: [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]].  New List: [[10, 20], [30, 56, 25], [33], [40]]
+#samplelist = [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]
+duplicatelist = [10, 20, 30, 40, 20, 30, 10]
+print(list(set(duplicatelist))) #print [40, 10, 20, 30]
+#official solution
+from itertools import groupby
+num = [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]
+print("Original List", num) #print Original List [[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]]
+num.sort()
+new_num = list(num for num,_ in groupby(num))
+print("New List", new_num) #print New List [[10, 20], [30, 56, 25], [33], [40]]
+
+#70. Write a Python program to get the depth of a dictionary.
+stocks = {"GOOG": 434,"AAPL": 325,"FB": 54,"AMZN": 623,"F": 32,"MSFT": 549}
+print(len(stocks)) #print 6
+
+#71. Write a Python program to check if all dictionaries in a list are empty or not.  Sample list: [{},{},{}].  Return value: True.  Sample list: [{1,2},{},{}].  Return value: False.
+emptylist = [{},{},{}]
+for eachemptylist in emptylist:
+	if eachemptylist:
+		print("List is full")
+		break
+	else:
+		print("List is empty")
+fulllist = [{},{1,2},{},{}]
+for eachfulllist in fulllist:
+	if eachfulllist:
+		print("List is full")
+		break
+	else:
+		print("List is empty")
+#official solution
+print(all(not d for d in emptylist)) #print True
+print(all(not d for d in fulllist)) #print False
