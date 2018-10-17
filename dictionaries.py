@@ -84,3 +84,52 @@ alien_1 = {"color1": "yellow", "points2": 10}
 alien_2 = {"color2": "red", "points3": 20}
 aliensthreemerge = {**alien_0, **alien_1, **alien_2}
 print(aliensthreemerge) #print {'color0': 'green', 'points1': 5, 'color1': 'yellow', 'points2': 10, 'color2': 'red', 'points3': 20}
+
+#9. Write a Python program to iterate over dictionaries using for loops.
+favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
+for key, value in favorite_sports.items():
+	print(key, value) #print Ralph William Football\n Michael Tippett Basketball\n Edward Elgar Baseball\n Rebecca Clarke Netball\n Ethel Smyth Badminton\n Frank Bridge Rugby
+
+#10. Write a Python program to sum all the items in a dictionary.
+zooanimals = {'Unicorn':'Cotton Candy House', 'Sloth':'Rainforest Exhibit',
+'Bengal Tiger':'Jungle House', 'Atlantic Puffin':'Arctic Exhibit', 'Rockhopper Penguin':'Arctic Exhibit'}
+print((zooanimals.items())) #print dict_items([('Unicorn', 'Cotton Candy House'), ('Sloth', 'Rainforest Exhibit'), ('Bengal Tiger', 'Jungle House'), ('Atlantic Puffin', 'Arctic Exhibit'), ('Rockhopper Penguin', 'Arctic Exhibit')])
+print(len(zooanimals.items())) #print 5
+#official solution
+my_dict = {'data1':100,'data2':-54,'data3':247}
+print(sum(my_dict.values())) #print 293
+
+#11. Write a Python program to multiply all the items in a dictionary.
+my_dict = {'data1':100,'data2':-54,'data3':247}
+#print(product(my_dict.values())) #print 293
+product = 1
+for eachvalue in my_dict.values():
+	product = product * eachvalue
+print(product) #print -1333800
+
+#12. Write a Python program to remove a key from a dictionary.
+favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
+del favorite_sports["Ethel Smyth"]
+print(favorite_sports) #print {'Ralph William': 'Football', 'Michael Tippett': 'Basketball', 'Edward Elgar': 'Baseball', 'Rebecca Clarke': 'Netball', 'Frank Bridge': 'Rugby'}
+
+#13. Write a Python program to map two lists into a dictionary.
+names = ["Tom","Jerry","Dick","Matt"]
+colors = ["Red","Green","Blue","Yellow"]
+favoritecolors = {}
+for eachnames, eachcolors in zip(names, colors):
+	favoritecolors[eachnames] = eachcolors
+print(favoritecolors) #print {'Tom': 'Red', 'Jerry': 'Green', 'Dick': 'Blue', 'Matt': 'Yellow'}
+#official solution
+favoritecolors2 = dict(zip(names, colors))
+print(favoritecolors2) #print {'Tom': 'Red', 'Jerry': 'Green', 'Dick': 'Blue', 'Matt': 'Yellow'}
+
+#14. Write a Python program to sort a dictionary by key.
+favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
+print(sorted(zip(favorite_sports.keys(), favorite_sports.values()))) #print [('Edward Elgar', 'Baseball'), ('Ethel Smyth', 'Badminton'), ('Frank Bridge', 'Rugby'), ('Michael Tippett', 'Basketball'), ('Ralph William', 'Football'), ('Rebecca Clarke', 'Netball')]
+from operator import itemgetter
+favorite_sports = sorted(favorite_sports.items(), key=itemgetter(0))
+print(favorite_sports) #print [('Edward Elgar', 'Baseball'), ('Ethel Smyth', 'Badminton'), ('Frank Bridge', 'Rugby'), ('Michael Tippett', 'Basketball'), ('Ralph William', 'Football'), ('Rebecca Clarke', 'Netball')]
+#official solution
+favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
+for key in sorted(favorite_sports):
+ 	print(key,favorite_sports[key]) #print Edward Elgar Baseball\n Ethel Smyth Badminton\n Frank Bridge Rugby\n Michael Tippett Basketball\n Ralph William Football\n Rebecca Clarke Netball
