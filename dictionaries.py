@@ -133,3 +133,57 @@ print(favorite_sports) #print [('Edward Elgar', 'Baseball'), ('Ethel Smyth', 'Ba
 favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
 for key in sorted(favorite_sports):
  	print(key,favorite_sports[key]) #print Edward Elgar Baseball\n Ethel Smyth Badminton\n Frank Bridge Rugby\n Michael Tippett Basketball\n Ralph William Football\n Rebecca Clarke Netball
+
+#15. Write a Python program to get the maximum and minimum value in a dictionary.
+stocks = {"GOOG": 434, "AAPL": 325,	"FB": 54, "AMZN": 623, "F": 32, "MSFT": 549, "TWTR":29, "FIT":5}
+print(max(stocks)) #print TWTR
+print(min(stocks)) #print AAPL
+minprice = min(zip(stocks.values(), stocks.keys()))
+print(minprice) #print (5, 'FIT')
+maxprice = max(zip(stocks.values(), stocks.keys()))
+print(maxprice) #print (623, 'AMZN')
+maxprice = max(zip(stocks.values()))
+print(maxprice) #print (623,)
+maxprice = max(stocks.values())
+print(maxprice) #print  623
+minprice = min(stocks.values())
+print(minprice) #print 5
+print(min(stocks.keys())) #print AAPL
+print(min(stocks.values())) #print 5
+
+#16. Write a Python program to get a dictionary from an object's fields.
+#copied solution
+class dictObj(object):
+     def __init__(self):
+         self.x = 'red'
+         self.y = 'Yellow'
+         self.z = 'Green'
+     def do_nothing(self):
+         pass
+test = dictObj()
+print(test.__dict__) #print {'x': 'red', 'y': 'Yellow', 'z': 'Green'}
+
+#17. Write a Python program to remove duplicates from Dictionary.
+invalidnamescolors = {"barry":"white", "bud":"black", "draymond":"green", "vanna":"white", "stone":"red", "steve":"blue", "walter":"white", "rose":"yellow", "draymond":"green"}
+#keys must be unique in a dictionary
+validnamescolors = {"barry":"white", "bud":"black", "draymond":"green", "vanna":"white", "stone":"red", "steve":"blue", "walter":"white", "rose":"yellow"}
+print(set(validnamescolors)) #print {'steve', 'bud', 'barry', 'rose', 'draymond', 'stone', 'walter', 'vanna'}
+print(set(validnamescolors.items())) #print {('walter', 'white'), ('rose', 'yellow'), ('bud', 'black'), ('stone', 'red'), ('steve', 'blue'), ('barry', 'white'), ('draymond', 'green'), ('vanna', 'white')}
+noduplicates = {}
+for key, value in validnamescolors.items():
+	if value not in noduplicates.values():
+		noduplicates[key] = value
+print(noduplicates) #print {'barry': 'white', 'bud': 'black', 'draymond': 'green', 'stone': 'red', 'steve': 'blue', 'rose': 'yellow'}
+
+#18. Write a Python program to check a dictionary is empty or not.
+nopeopleages = {}
+if not nopeopleages:
+	print("Dictionary is empty")
+
+#19. Write a Python program to combine two dictionary adding values for common keys.  d1 = {'a': 100, 'b': 200, 'c':300}.  d2 = {'a': 300, 'b': 200, 'd':400}.  Sample output: Counter({'a': 400, 'b': 400, 'd': 400, 'c': 300})
+d1 = {'a': 100, 'b': 200, 'c':300}
+d2 = {'a': 300, 'b': 200, 'd':400}
+from collections import Counter
+dsum = Counter(d1) + Counter(d2)
+print(dsum) #print Counter({'a': 400, 'b': 400, 'd': 400, 'c': 300})
+
