@@ -187,3 +187,37 @@ from collections import Counter
 dsum = Counter(d1) + Counter(d2)
 print(dsum) #print Counter({'a': 400, 'b': 400, 'd': 400, 'c': 300})
 
+#20. Write a Python program to print all unique values in a dictionary.  Sample Data: [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}].  Expected Output: Unique Values:{'S005', 'S002', 'S007', 'S001', 'S009'}
+sampledata = [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+expectedoutput = []
+for eachsampledata in sampledata:
+	for key, value in eachsampledata.items():
+		expectedoutput.append(value)
+print(set(expectedoutput)) #print {'S001', 'S005', 'S007', 'S002', 'S009'}
+#official solution
+expectedoutput2 = set(value for eachsampledata in sampledata for value in eachsampledata.values()) #list comprehension.  Why am I using paranthesis instead of brackets?
+print(expectedoutput2) #print {'S002', 'S007', 'S001', 'S009', 'S005'}
+#or
+expectedoutput3 = [value for eachsampledata in sampledata for value in eachsampledata.values()] #list comprehension.
+print(set(expectedoutput3)) #print {'S002', 'S007', 'S001', 'S009', 'S005'}
+
+#21. Write a Python program to create and display all combinations of letters, selecting each letter from a different key in a dictionary. Sample data: {'1':['a','b'], '2':['c','d']}.  Expected Output: ac ad bc bd
+sampledata = {'1':['a','b'], '2':['c','d']}
+from itertools import combinations, product
+list1 = ["a","b"]
+list2 = ["c","d"]
+print(product(sampledata["1"],sampledata["2"])) #print <itertools.product object at 0x7f8821db46c0>
+print(" ".join(map(str,(product(sampledata["1"],sampledata["2"]))))) #print ('a', 'c') ('a', 'd') ('b', 'c') ('b', 'd')
+print(list(product(sampledata["1"],sampledata["2"]))) #print [('a', 'c'), ('a', 'd'), ('b', 'c'), ('b', 'd')]
+answerlist = []
+for combopairs in product(sampledata["1"],sampledata["2"]):
+	#product() combopairs returns a tuple.  Convert tuple to a string and append to answerlist.
+	answerlist.append("".join(map(str,combopairs)))
+answerlist = list(map(str,answerlist))
+print(answerlist) #print ['ac', 'ad', 'bc', 'bd']
+print(" ".join(map(str,answerlist))) #print ac ad bc bd
+#official solution
+import itertools      
+d ={'1':['a','b'], '2':['c','d']}
+for combo in itertools.product(*[d[k] for k in sorted(d.keys())]):
+    print(''.join(combo)) #print ac\n ad\n bd\n bd
