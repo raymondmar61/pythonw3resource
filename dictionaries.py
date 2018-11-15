@@ -221,3 +221,49 @@ import itertools
 d ={'1':['a','b'], '2':['c','d']}
 for combo in itertools.product(*[d[k] for k in sorted(d.keys())]):
     print(''.join(combo)) #print ac\n ad\n bd\n bd
+
+#22. Write a Python program to find the highest 3 values in a dictionary.
+stocks = {"GOOG": 520.54, "FB": 76.45, "YHOO": 39.28, "AMZN": 305.21, "AAPL": 99.76, "PGE": 25, "JD": 21, "TWTR": 34, "berka": 100}
+from heapq import nlargest, nsmallest
+topthreestocks = nlargest(3, stocks, key=stocks.get)
+print(topthreestocks) #print ['GOOG', 'AMZN', 'berka']
+bottomtwostocks = nsmallest(2, stocks, key=stocks.get)
+print(bottomtwostocks) #print ['JD', 'PGE']
+print(nsmallest(3, stocks,  key=lambda F:F[0])) #print ['AMZN', 'AAPL', 'FB']
+print(nsmallest(3, stocks,  key=lambda E:E[1])) #print ['AAPL', 'FB', JD]
+print(nlargest(3, stocks,  key=lambda W:W[0])) #print ['berka', 'YHOO', 'TWTR']
+print(nlargest(3, stocks,  key=lambda E:E[1])) #print ['berka', 'GOOG', 'AMZN']
+
+#23. Write a Python program to combine values in python list of dictionaries. Sample data: [{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount': 300}, {'item': 'item1', 'amount': 750}].  Expected Output: Counter({'item1': 1150, 'item2': 300})
+#RM:  copied solution.
+from collections import Counter
+sampledata = [{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount': 300}, {'item': 'item1', 'amount': 750}]
+result = Counter()
+for d in sampledata:
+    result[d['item']] += d['amount']
+print(result) #print Counter({'item1': 1150, 'item2': 300})
+
+#24. Write a Python program to create a dictionary from a string.  Note: Track the count of the letters from the string.  Sample string : 'w3resource'. Expected output: {'3': 1, 's': 1, 'r': 2, 'u': 1, 'w': 1, 'c': 1, 'e': 2, 'o': 1}
+from collections import Counter
+samplestring = "w3resource"
+words = list(samplestring)
+counter = Counter(words)
+print(counter) #print Counter({'r': 2, 'e': 2, 'w': 1, '3': 1, 's': 1, 'o': 1, 'u': 1, 'c': 1})
+#official solution
+from collections import defaultdict, Counter
+my_dict = {}
+for letter in samplestring:
+    my_dict[letter] = my_dict.get(letter, 0) + 1
+print(my_dict) #print {'o': 1, '3': 1, 's': 1, 'r': 2, 'w': 1, 'u': 1, 'e': 2, 'c': 1}
+
+#25. Write a Python program to print a dictionary in table format.
+#official solution
+my_dict = {'C1':[1,2,3],'C2':[5,6,7],'C3':[9,10,11]}
+for row in zip(*([key] + (value) for key, value in sorted(my_dict.items()))):
+    print(*row)
+'''
+C1 C2 C3
+1 5 9
+2 6 10
+3 7 11
+'''
