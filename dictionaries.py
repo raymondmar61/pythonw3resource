@@ -267,3 +267,191 @@ C1 C2 C3
 2 6 10
 3 7 11
 '''
+
+#26. Write a Python program to count the values associated with key in a dictionary.  Sample data: = [{'id': 1, 'success': True, 'name': 'Lary'}, {'id': 2, 'success': False, 'name': 'Rabi'}, {'id': 3, 'success': True, 'name': 'Alex'}]  Expected result: Count of how many dictionaries have success as True
+sampledata = [{'id': 1, 'success': True, 'name': 'Lary'}, {'id': 2, 'success': False, 'name': 'Rabi'}, {'id': 3, 'success': True, 'name': 'Alex'}]
+truecounter = 0
+for eachsampledata in sampledata:
+	if eachsampledata["success"] is True:
+		truecounter += 1
+print(truecounter) #print 2
+#official solution
+print(sum(d['success'] for d in sampledata)) #print 2
+
+#27. Write a Python program to convert a list into a nested dictionary of keys.
+#RM:  copied solution.  I understood after seeing the answer.
+num_list = [1, 2, 3, 4]
+new_dict = current = {}
+for name in num_list:
+    current[name] = {}
+    current = current[name]	
+    #print(current) #print {}\n{}\n{}\n{}\n
+print(new_dict) #print {1: {2: {3: {4: {}}}}}
+
+#28. Write a Python program to sort a list alphabetically in a dictionary.
+#RM:  dictionary comprehension
+num = {'n1': [2, 3, 1], 'n2': [5, 1, 2], 'n3': [3, 2, 4]}
+sortednum = {}
+for key, value in num.items():
+	sortednum[key] = (sorted(value))
+print(sortednum) #{'n1': [1, 2, 3], 'n2': [1, 2, 5], 'n3': [2, 3, 4]}
+#official solution
+sorted_dict = {x: sorted(y) for x, y in num.items()}
+print(sorted_dict) #print {'n1': [1, 2, 3], 'n2': [1, 2, 5], 'n3': [2, 3, 4]}
+
+#29. Write a Python program to remove spaces from dictionary keys.
+spaceskey = {'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}
+nospaceskey = {}
+for key, value in spaceskey.items():
+	key = key.replace(" ","")	
+	nospaceskey[key] = value
+print(nospaceskey) #print {'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}
+#official solution
+student_dict = {x.translate({32: None}): y for x, y in spaceskey.items()}
+print("New dictionary: ",student_dict) #print New dictionary:  {'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}
+
+#30. Write a Python program to get the top three items in a shop. Sample data: {'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}.  Expected Output: item4 55 item1 45.5 item3 41.3
+sampledata = {'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}
+from heapq import nlargest
+topthreesampledata = nlargest(3, sampledata, key=sampledata.get)
+for eachtopthreesampledata in topthreesampledata:
+	print(eachtopthreesampledata,sampledata[eachtopthreesampledata]) #print item4 55\n item1 45.5\n item3 41.3
+#official solution
+from heapq import nlargest
+from operator import itemgetter
+items = {'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}
+for name, value in nlargest(3, items.items(), key=itemgetter(1)):
+    print(name, value) #print item4 55\n item1 45.5\n item3 41.3
+
+#31. Write a Python program to get the key, value and item in a dictionary.
+#copied solution
+dict_num = {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+print("key  value  count")
+for count, (key, value) in enumerate(dict_num.items(), 1):
+    print(key,'   ',value,'    ', count)
+'''
+key  value  count
+1     10      1
+2     20      2
+3     30      3
+4     40      4
+5     50      5
+6     60      6
+'''
+favorite_sports = {"Ralph William":"Football", "Michael Tippett":"Basketball", "Edward Elgar":"Baseball", "Rebecca Clarke":"Netball","Ethel Smyth":"Badminton", "Frank Bridge":"Rugby"}
+print("key  value  count")
+for count, (key, value) in enumerate(favorite_sports.items(), 1):
+    print(key,'   ',value,'    ', count)
+'''
+key  value  count
+Ralph William     Football      1
+Michael Tippett     Basketball      2
+Edward Elgar     Baseball      3
+Rebecca Clarke     Netball      4
+Ethel Smyth     Badminton      5
+Frank Bridge     Rugby      6
+'''
+
+#32. Write a Python program to print a dictionary line by line.
+#copied solution
+students = {'Alex':{'class':'V','rolld_id':2}, 'Pam':{'class':'V','roll_id':3}, 'Ann':{'class':'V','roll_id':4}, 'Jack':{'class':'V','roll_id':5}, 'Kelvin':{'class':'V','roll_id':7}, 'Otto':{'class':'V','roll_id':9}, 'Timmy':{'class':'V','roll_id':16}}
+for key in students:
+	print(key) #print Alex\n Pam\n . . . Otto\n Timmy  RM:  print each key on its own line
+for value in students:
+	print(value) #print Alex\n Pam\n . . . Otto\n Timmy  RM:  print each key on its own line
+for key in students.items():
+	print(key) #print ('Alex', {'class': 'V', 'rolld_id': 2})\n . . . ('Timmy', {'class': 'V', 'roll_id': 16})  RM:  print each key and its dictionary on its own line as a tuple
+for value in students.items():
+	print(value) #print ('Alex', {'class': 'V', 'rolld_id': 2})\n . . . ('Timmy', {'class': 'V', 'roll_id': 16})  RM:  print each key and its dictionary on its own line as a tuple
+for key, value in students.items():
+	print(key, value) #print 'Alex' {'class': 'V', 'rolld_id': 2}\n . . . 'Timmy' {'class': 'V', 'roll_id': 16}  RM:  print each key and its value as dictionary on its own line
+for key in students:
+	print(key+":") #print Alex:
+	for eachvalue in students[key]:
+		print(eachvalue) #print class ... roll_id
+		print(students[key][eachvalue]) #print V ... 2
+		print(eachvalue,":",students[key][eachvalue]) #print class: V ... roll_id: 2
+'''
+Alex:
+class
+V
+class :  V
+rolld_id
+2
+rolld_id :  2
+Pam:
+class
+V
+class :  V
+roll_id
+3
+roll_id :  3
+Ann:
+class
+V
+class :  V
+roll_id
+4
+roll_id :  4
+'''
+
+#33. Write a Python program to check multiple keys exists in a dictionary.
+#copied solution
+#RM:  what is the purpose?
+student = {'name': 'Alex', 'class': 'V', 'roll_id': '2'}
+print(student.keys() >= {'class', 'name'}) #print True
+print(student.keys() >= {'name', 'Alex'}) #print False
+print(student.keys() >= {'roll_id', 'name'}) #print True
+
+#34. Write a Python program to count number of items in a dictionary value that is a list.
+num = {'the1': [2, 3, 1, 4, 5, 7], 'the2': [5, 1, 2, 200], 'the3': [3, 2, 4, 33, 44, 55, 66, 77]}
+for key, value in num.items():
+	print(key,len(value)) #print the1 6\n the2 4\n the3 8
+
+#35. Write a Python program to sort Counter by value.  Sample data : {'Math':81, 'Physics':83, 'Chemistry':87}.  Expected data: [('Chemistry', 87), ('Physics', 83), ('Math', 81)]
+sampledata =  {'Math':81, 'Physics':83, 'Chemistry':87}
+print(sorted(zip(sampledata.values(), sampledata.keys()))) #print [(81, 'Math'), (83, 'Physics'), (87, 'Chemistry')]
+sampledatareverse = sorted(sampledata.items(), key=itemgetter(1), reverse=True)
+print(sampledatareverse) #print [('Chemistry', 87), ('Physics', 83), ('Math', 81)]
+sampledatakeyforward = sorted(sampledata.items(), key=itemgetter(0), reverse=False)
+print(sampledatakeyforward) #print [('Chemistry', 87), ('Math', 81), ('Physics', 83)]
+#official solution
+from collections import Counter
+x = Counter({'Math':81, 'Physics':83, 'Chemistry':87})
+print(x.most_common())
+
+#36. Write a Python program to create a dictionary from two lists without losing duplicate values.  Sample lists: ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII'], [1, 2, 2, 3].  Expected Output: defaultdict(<class 'set'>, {'Class-VII': {2}, 'Class-VI': {2}, 'Class-VIII': {3}, 'Class-V': {1}})
+#copied solution
+from collections import defaultdict
+list1 = ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII']
+list2 = [1, 2, 2, 3]
+temp = defaultdict(set)
+for c, i in zip(list1, list2):
+    temp[c].add(i)
+print(temp) #print defaultdict(<class 'set'>, {'Class-V': {1}, 'Class-VI': {2}, 'Class-VII': {2}, 'Class-VIII': {3}})
+
+#37. Write a Python program to replace dictionary values with their sum.
+num = {'the1': [2, 3, 1, 4, 5, 7], 'the2': [5, 1, 2, 200], 'the3': [3, 2, 4, 33, 44, 55, 66, 77]}
+for key in num:
+	numsum = 0
+	for eachvalue in num[key]:
+		numsum = numsum + eachvalue
+	num[key] = []
+	num[key].append(numsum)
+print(num) #print {'the1': [22], 'the2': [208], 'the3': [284]}
+#official solution
+def sum_math_v_vi_average(list_of_dicts):
+    for d in list_of_dicts:
+        n1 = d.pop('V')
+        n2 = d.pop('VI')
+        d['V+VI'] = (n1 + n2)/2
+    return list_of_dicts 
+student_details= [{'id' : 1, 'subject' : 'math', 'V' : 70, 'VI' : 82}, {'id' : 2, 'subject' : 'math', 'V' : 73, 'VI' : 74}, {'id' : 3, 'subject' : 'math', 'V' : 75, 'VI' : 86}]
+print(sum_math_v_vi_average(student_details)) #print [{'subject': 'math', 'id': 1, 'V+VI': 76.0}, {'subject': 'math', 'id': 2, 'V+VI': 73.5}, {'subject': 'math', 'id': 3, 'V+VI': 80.5}]
+
+#38. Write a Python program to match key values in two dictionaries. Sample dictionary: {'key1': 1, 'key2': 3, 'key3': 2}, {'key1': 1, 'key2': 2}.  Expected output: key1: 1 is present in both x and y.
+#copied solution
+x = {'key1': 1, 'key2': 3, 'key3': 2}
+y = {'key1': 1, 'key2': 2}
+for (key, value) in set(x.items()) & set(y.items()):
+    print('%s: %s is present in both x and y' % (key, value)) #print key1: 1 is present in both x and y 
