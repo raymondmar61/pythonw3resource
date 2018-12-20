@@ -137,3 +137,86 @@ print(tuplex[::-1]) #print (1, 6, 8, 7, 6, 4, 5, 3, 4, 2)
 reversetuplex = reversed(tuplex)
 print(reversetuplex) #print <reversed object at 0x7fb22f56b7f0>
 print(tuple(reversetuplex)) #print (1, 6, 8, 7, 6, 4, 5, 3, 4, 2)
+
+#19. Write a Python program to convert a list of tuples into a dictionary.
+hardwarepctuplelist = [("case",80), ("hard drive",200), ("RAM",160), ("Motherboard",180), ("video card",180), ("cpu",250)]
+hardwarepcdictionary = dict(hardwarepctuplelist)
+print(hardwarepcdictionary) #print {'case': 80, 'hard drive': 200, 'RAM': 160, 'Motherboard': 180, 'video card': 180, 'cpu': 250}
+#official solution
+xyzlist = [("x", 1), ("x", 2), ("x", 3), ("y", 1), ("y", 2), ("z", 1)]
+xyzdictionary = {}
+for key, value in xyzlist:
+	xyzdictionary.setdefault(key, []).append(value)
+print(xyzdictionary) #print {'x': [1, 2, 3], 'y': [1, 2], 'z': [1]}
+
+#20. Write a Python program to print a tuple with string formatting. Sample tuple: (100, 200, 300).  Output: This is a tuple (100, 200, 300).
+sampletuple = (100, 200, 300)
+print("This is a tuple", sampletuple) #print This is a tuple (100, 200, 300)
+print("This is a tuple {0}".format(sampletuple)) #print This is a tuple (100, 200, 300)
+print("This is a tuple {}".format(sampletuple)) #print This is a tuple (100, 200, 300)
+
+#21. Write a Python program to replace last value of tuples in a list. Sample list: [(10, 20, 40), (40, 50, 60), (70, 80, 90)].  Expected Output: [(10, 20, 100), (40, 50, 100), (70, 80, 100)].
+#tuples are immutable, so you can not remove elements.  Convert to list.
+samplelisttuple = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+samplelistlist = []
+for eachsamplelisttuple in samplelisttuple:
+	eachsamplelisttuple = list(eachsamplelisttuple)
+	samplelistlist.append(eachsamplelisttuple)
+print(samplelistlist) #print [[10, 20, 40], [40, 50, 60], [70, 80, 90]]
+for n in range(0,len(samplelistlist)):
+	samplelistlist[n][2] = 100
+print(samplelistlist) #print [[10, 20, 100], [40, 50, 100], [70, 80, 100]]
+samplelisttuple = []
+for eachsamplelistlist in samplelistlist:
+	eachsamplelistlist = tuple(eachsamplelistlist)
+	samplelisttuple.append(eachsamplelistlist)
+print(samplelisttuple) #print [(10, 20, 100), (40, 50, 100), (70, 80, 100)]
+#quicker
+samplelisttuple = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+samplelistlist = list(map(list,samplelisttuple))
+print(samplelistlist) #print [[10, 20, 40], [40, 50, 60], [70, 80, 90]]
+for n in range(0,len(samplelistlist)):
+	samplelistlist[n][2] = 100
+print(samplelistlist) #print [[10, 20, 100], [40, 50, 100], [70, 80, 100]]
+samplelisttuple = list(map(tuple,samplelistlist))
+print(samplelisttuple) #print [(10, 20, 100), (40, 50, 100), (70, 80, 100)]
+#official solution
+samplelisttuple = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+print([t[:-1] + (100,) for t in samplelisttuple]) #print [(10, 20, 100), (40, 50, 100), (70, 80, 100)]
+samplelisttuple = [(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+for t in samplelisttuple:
+	print([t[:-1]+(100,)]) #print [(10, 20, 100)]\n [(40, 50, 100)]\n [(70, 80, 100)]\n
+
+#22. Write a Python program to remove an empty tuple(s) from a list of tuples. Sample data: [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')].  Expected output: [('',), ('a', 'b'), ('a', 'b', 'c'), 'd']
+sampledata = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+#tuples are immutable, so you can not remove elements.  Convert to list.
+sampledatalist = list(map(list,sampledata))
+print(sampledatalist) #print [[], [], [''], ['a', 'b'], ['a', 'b', 'c'], ['d']]
+answer = [eachsampledatalist for eachsampledatalist in sampledatalist if eachsampledatalist]
+print(answer) #print [[''], ['a', 'b'], ['a', 'b', 'c'], ['d']]
+answer = list(map(tuple,answer))
+print(answer) #print [('',), ('a', 'b'), ('a', 'b', 'c'), ('d',)]
+#RM: sampledatalist = list(map(list,sampledata)) not needed.  It seems list comprehension removes elements as if it's elements in a list.
+sampledata = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+answer = [eachsampledata for eachsampledata in sampledata if eachsampledata]
+print(answer) #print [('',), ('a', 'b'), ('a', 'b', 'c'), 'd']
+#official solution
+sampledata = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+sampledata = [eachsampledata for eachsampledata in sampledata if eachsampledata]
+print(sampledata) #print [('',), ('a', 'b'), ('a', 'b', 'c'), 'd']
+
+#23. Write a Python program to sort a tuple by its float element. Sample data: [('item1', '12.20'), ('item2', '15.10'), ('item3', '24.5')].  Expected Output: [('item3', '24.5'), ('item2', '15.10'), ('item1', '12.20')]
+sampledata = [('item1', '12.20'), ('item2', '15.10'), ('item3', '24.5')]
+secondnumber = lambda sampledata: sampledata[1]
+sampledata.sort(key=secondnumber, reverse=True)
+print(sampledata) #print [('item3', '24.5'), ('item2', '15.10'), ('item1', '12.20')]
+
+#24. Write a Python program to count the elements in a list until an element is a tuple.
+thelist = ["five", 90, "grape", "blackie", "Castle Rock", (9, 5), "elephant"]
+counter = 0
+for eachthelist in thelist:
+	if type(eachthelist) == tuple:
+		break
+	else:
+		counter += 1
+print(counter) #print 5
