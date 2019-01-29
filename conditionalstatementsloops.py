@@ -143,3 +143,33 @@ x,y=0,1
 while y<50:
     print(y)
     x,y = y,x+y
+
+#10. Write a Python program which iterates the integers from 1 to 50. For multiples of three print "Fizz" instead of the number and for the multiples of five print "Buzz". For numbers which are multiples of both three and five print "FizzBuzz".
+for n in range(1,51):
+	if (n % 3 == 0 and n % 5 == 0):
+		print("fizzbuzz")
+	elif n % 5 == 0:
+		print("buzz")
+	elif n % 3 == 0:
+		print("fizz")
+	else:
+		print(n)
+
+#11. Write a Python program which takes two digits m (row) and n (column) as input and generates a two-dimensional array. The element value in the i-th row and j-th column of the array should be i*j.
+outer = []
+rownumber = 3
+columnnumber = 4
+for rows in range(0,rownumber):	
+	inner = []
+	for columns in range(0,columnnumber):
+		inner.append(rows*columns)
+	outer.append(inner)
+print(outer) #print [[0, 0, 0, 0], [0, 1, 2, 3], [0, 2, 4, 6]]
+#official solution
+row_num = 3
+col_num = 4
+multi_list = [[0 for col in range(col_num)] for row in range(row_num)]
+for row in range(row_num):
+    for col in range(col_num):
+        multi_list[row][col]= row*col
+print(multi_list) #print [[0, 0, 0, 0], [0, 1, 2, 3], [0, 2, 4, 6]]
