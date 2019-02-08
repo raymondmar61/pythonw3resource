@@ -173,3 +173,184 @@ for row in range(row_num):
     for col in range(col_num):
         multi_list[row][col]= row*col
 print(multi_list) #print [[0, 0, 0, 0], [0, 1, 2, 3], [0, 2, 4, 6]]
+
+#12. Write a Python program that accepts a sequence of lines (blank line to terminate) as input and prints the lines as output (all characters in lower case).  RM:  modified question.
+accepts = ""
+while True:
+	accepts = input("Enter something, anything ")
+	if accepts == "":
+		break
+	else:
+		accepts = accepts.lower()
+	print("Here is your input all lower case "+accepts)
+#https://stackoverflow.com/questions/30239092/how-to-get-multiline-input-from-user.  You cannot input multi-line strings, for that purpose you would need to get input from the user line by line and then .join() them using \n, or you can also take various lines and concatenate them using + operator separated by \n.
+
+#13. Write a Python program which accepts a sequence of comma separated 4 digit binary numbers as its input and print the numbers that are divisible by 5 in a comma separated sequence. Sample Data : 0100,0011,1010,1001,1100,1001.  Expected Output : 1010.  Reference:  https://pythonspot.com/binary-numbers-and-logical-operators/
+print(int('0100', 2)) #print 4
+print(int('0011', 2)) #print 3
+print(int('1010', 2)) #print 10
+print(int('1100', 2)) #print 12
+print(int('1001', 2)) #print 9
+binarydivisibleby5 = []
+#binaryinput = input("Enter four digit binary numbers consisting of 0s and 1s separated by a comma no spaces ")
+#binaryinputlist = binaryinput.split(",")
+#print(binaryinputlist)
+binaryinput = ["0100","0011","1010","1001","1100","1001"]
+print(binaryinput)
+for eachbinaryinputlist in binaryinput:
+	integer = int(eachbinaryinputlist,2)
+	if integer % 5 == 0:
+		binarydivisibleby5.append(eachbinaryinputlist)
+print(binarydivisibleby5) #print ["1010"]
+
+#14. Write a Python program that accepts a string and calculate the number of digits and letters. Sample Data : Python 3.2 Expected Output: Letters 6 Digits 2
+letters = 0
+digits = 0
+numbers = [str(n) for n in range(0,10)]
+alphabet = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+accepts = "Python 3.2"
+for eachaccepts in accepts:
+	eachaccepts = eachaccepts.lower()
+	if eachaccepts in numbers:
+		digits += 1		
+	elif eachaccepts in alphabet:
+		letters += 1
+	else:
+		continue
+print("Letters",letters) #print Letters 6
+print("Digits",digits) #print Digits 2
+#using official solution better
+accepts = "Python 3.2"
+letters = 0
+digits = 0
+for eachaccepts in accepts:
+	if eachaccepts.isdigit() is True:
+		digits += 1
+	elif eachaccepts.isalpha() is True:
+		letters += 1
+	else:
+		continue
+print("Letters",letters)
+print("Digits",digits)
+
+#15. Write a Python program to check the validity of password input by users. Validation :  At least 1 letter between [a-z] and 1 letter between [A-Z].  At least 1 number between [0-9].  At least 1 character from [$#@].  Minimum length 6 characters.  Maximum length 16 characters.
+def checkpassword(password):
+	passwordlength = len(password)
+	characterlist = ["$","#","@"]
+	lowercasecount = 0
+	uppercasecount = 0
+	charactercount = 0
+	numbercount = 0
+	if passwordlength >= 6 and passwordlength <=16:
+		for casepassword in password:
+			if casepassword.isdigit() == True:
+				numbercount += 1
+			elif casepassword in characterlist:
+				charactercount += 1
+			elif casepassword == casepassword.lower():
+				lowercasecount += 1
+			elif casepassword == casepassword.upper():
+				uppercasecount += 1
+			else:
+				continue
+		if lowercasecount == 0 or uppercasecount ==0 or charactercount == 0 or numbercount == 0:
+			print("Invalid password "+password)
+		else:
+			print("Your password "+password, passwordlength)
+			print("Lower",lowercasecount)
+			print("Upper",uppercasecount)
+			print("Special characters",charactercount)
+			print("Numbers",numbercount)
+	else:
+		print("Invalid password length "+password)	
+checkpassword("Thi55cakeisalie#")
+checkpassword("987654#")
+checkpassword("abc3")
+#official solution
+import re
+#p= input("Input your password")
+p="Thi55ca$slie#"
+x = True
+while x:  
+    if (len(p)<6 or len(p)>16):
+        break
+    elif not re.search("[a-z]",p):
+        break
+    elif not re.search("[0-9]",p):
+        break
+    elif not re.search("[A-Z]",p):
+        break
+    elif not re.search("[$#@]",p):
+        break
+    elif re.search("\s",p):
+        break
+    else:
+        print("Valid Password")
+        x=False
+        break
+if x:
+    print("Not a Valid Password")
+
+#16. Write a Python program to find numbers between 100 and 400 (both included) where each digit of a number is an even number. The numbers obtained should be printed in a comma-separated sequence.  #RM:  question didn't say all digits is an even number.
+findnumbers = [n for n in range(100, 401)]
+for eachfindnumbers in findnumbers:	
+	stringnumber = str(eachfindnumbers)
+	evendigit = []
+	for eachstringnumber in stringnumber:
+		if int(eachstringnumber) % 2 == 0:
+			evendigit.append(eachstringnumber)
+	evendigit = list(map(int,evendigit))
+	evendigit = str(evendigit).strip("[]")
+	print(stringnumber+": "+evendigit)
+#official solution
+# items = []
+# for i in range(100, 401):
+#     s = str(i)
+#     if (int(s[0])%2==0) and (int(s[1])%2==0) and (int(s[2])%2==0):
+#         items.append(s)
+# print( ",".join(items))
+
+#17. Write a Python program to print alphabet pattern 'A'.
+"""
+Expected Output:
+
+  ***
+ *   *
+ *   *
+ *****
+ *   *
+ *   *
+ *   *
+
+"""
+counter = 1
+while counter < 8:
+	if counter == 1:
+		print(" *** ")
+	elif counter == 4:
+		print("*****")
+	else:
+		print("*   *")
+	counter += 1
+
+#Questions 18-30 prints alphabet letters
+
+#31. Write a Python program to calculate a dog's age in dog's years.  For the first two years, a dog year is equal to 10.5 human years. After that, each dog year equals 4 human years.  Expected Output:  Input a dog's age in human years: 15.  The dog's age in dog's years is 73.
+humanyears = 15
+if humanyears == 1:
+	print("The dog's age in dog's years is 10.5.")
+elif humanyears == 2:
+	print("The dog's age in dog's years is 21.")
+else:	
+	afteryears = ((humanyears - 2) * 4) + 21
+	print("The dog's age in dog's years is {}.".format(afteryears)) #print The dog's age in dog's years is 73.
+
+#32. Write a Python program to check whether an alphabet is a vowel or consonant. Expected Output:  Input a letter of the alphabet: k is a consonant.
+def alphabet(letterinput):
+	vowel = "aeiou"
+	if letterinput in vowel:
+		return letterinput+" is a vowel."
+	else:
+		return letterinput+" is a constant."
+print(alphabet("k")) #print k is a constant.
+print(alphabet("e")) #print e is a vowel.
