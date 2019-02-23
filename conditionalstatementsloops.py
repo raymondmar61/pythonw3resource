@@ -354,3 +354,93 @@ def alphabet(letterinput):
 		return letterinput+" is a constant."
 print(alphabet("k")) #print k is a constant.
 print(alphabet("e")) #print e is a vowel.
+
+#33. Write a Python program to convert month name to a number of days.  Expected output:  List of months: January, February, March, April, May, June, July, August, September, October, November, December.  Input the name of Month: February.  No. of days: 28/29 days 
+days30 = "30 days"
+days31 = "31 days"
+days2829 = "28/29 days"
+monthinput = input("Input the name of month: ")
+if monthinput == "September" or monthinput == "April" or monthinput == "June" or monthinput == "November":
+	print(days30)
+elif monthinput == "February":
+	print(days2829)
+else:
+	print(days31)
+
+#34. Write a Python program to sum of two given integers. However, if the sum is between 15 to 20 it will return 20. 
+integersinput = input("Input two integers separated by a space: ")
+integersinput = integersinput.split(" ")
+resultsinteger = list(map(int,integersinput))
+sumintegers = sum(resultsinteger)
+if sumintegers >= 15 and sumintegers <=20:
+	print(20)
+else:
+	print(sumintegers)
+
+#35. Write a Python program to check a string represent an integer or not.  Expected Output:  Input a string:  Python.  The string is not an integer.
+def checkstring(x):
+	typecheck = type(x)
+	if typecheck is str:
+		return "The string is not an integer"
+	elif typecheck is int:
+		return "The string is actually an integer"
+	else:
+		return "The string is something else"
+print(checkstring("Python")) #print The string is not an integer
+print(checkstring(56)) #print The string is actually an integer
+
+#36. Write a Python program to check a triangle is equilateral, isosceles or scalene.  Note:  An equilateral triangle is a triangle in which all three sides are equal.  A scalene triangle is a triangle that has three unequal sides.  An isosceles triangle is a triangle with (at least) two equal sides.  Expected Output:  Input lengths of the triangle sides: x:6, y:8, z:12, Scalene triangle.
+xyz = input("Enter the lengths of a triangle x, y, z separated by a space ")
+xyz = xyz.split(" ")
+xyzlist = list(map(int,xyz))
+if xyzlist[0] == xyzlist[1] == xyzlist[2]:
+	print("Equilateral triangle")
+elif (xyzlist[0] == xyzlist[1]) or (xyzlist[0] == xyzlist[2]) or (xyzlist[1] == xyzlist[2]):
+	print("Isosceles triangle")
+else:
+	print("Scalene triangle")
+
+#37. Write a Python program that reads two integers representing a month and day and prints the season for that month and day.  Expected Output:  Input the month (e.g. January, February etc.): july Input the day: 31 Season is autumn
+monthday = input("Enter the month and day in number separated by a space ")
+monthdaylist = monthday.split(" ")
+month = monthdaylist[0]
+day = int(monthdaylist[1])
+if (month == "December" and day>=21) or (month == "January" or month == "February") or (month == "March" and day <=20):
+	print("Season is winter.")
+elif (month == "March" and day >=21) or (month == "April" or month == "May") or (month == "June" and day <=20):
+	print("Season is spring.")
+elif (month == "June" and day >= 21) or (month == "July" or month == "August") or (month == "September" and day <=20):
+	print("Season is summer.")
+else:
+	print("Season is autumn.")
+
+#38. Write a Python program to display astrological sign for given date of birth.  Input birthday: 15.  Input month of birth (e.g. march, july etc): may.  Your Astrological sign is: Taurus.
+
+#39. Write a Python program to display the sign of the Chinese Zodiac for given year in which you were born.   Expected Output:  Input your birth year: 1973.  Your Zodiac sign: Ox.
+
+#40. Write a Python program to find the median of three values.  Expected Output:  Input first number: 15, Input second number: 26, Input third number: 29.  The median is 26.0.
+from statistics import median
+inputthreenumbers = input("Enter three numbers separated by a space ")
+inputthreenumbers = inputthreenumbers.split(" ")
+inputthreenumbers = list(map(int,inputthreenumbers))
+print(median(inputthreenumbers))
+#user solution
+a=15
+b=26
+c=29
+print(sorted((a,b,c))[1])
+
+#41. Write a Python program to get next day of a given date.  Expected Output:  Input a year: 2016, Input a month [1-12]: 08, Input a day [1-31]: 23, The next date is [yyyy-mm-dd] 2016-8-24.
+year = 2016
+month = 2
+day = 28
+if (month == 12 and day == 31):
+	print("{}-{}-{}".format(year+1,1,1))
+elif (month == 9 or month == 4 or month == 6 or month == 11) and day == 30:
+	print("{}-{}-{}".format(year,month+1,1))
+elif (month == 1 or month == 3 or month == 5 or month == 7 or month == 8 or month == 10) and day == 31:
+	print("{}-{}-{}".format(year,month+1,1))
+elif (month == 2 and day == 28):  #RM  for speed reasons, all days in February is 28
+	print("{}-{}-{}".format(year,month+1,1))
+else:
+	print("{}-{}-{}".format(year,month,day+1))
