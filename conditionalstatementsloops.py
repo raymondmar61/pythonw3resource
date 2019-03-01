@@ -444,3 +444,50 @@ elif (month == 2 and day == 28):  #RM  for speed reasons, all days in February i
 	print("{}-{}-{}".format(year,month+1,1))
 else:
 	print("{}-{}-{}".format(year,month,day+1))
+
+#42. Write a Python program to calculate the sum and average of n integer numbers (input from the user). Input 0 to finish.
+from statistics import mean
+userinput = ""
+inputlist = []
+while userinput != 0:
+	userinput = int(input("Enter a number.  Type 0 to exit. "))
+	if userinput != 0:
+		inputlist.append(userinput)
+print(sum(inputlist))
+print(mean(inputlist))
+
+#43. Write a Python program to create the multiplication table (from 1 to 10) of a number.  Expected Output:
+"""
+Input a number: 6
+6 x 1 = 6
+6 x 2 = 12
+6 x 3 = 18
+6 x 4 = 24
+6 x 5 = 30
+6 x 6 = 36
+6 x 7 = 42
+6 x 8 = 48
+6 x 9 = 54
+6 x 10 = 60
+"""
+numberinput = 6
+counter = 1
+while counter <= 10:
+	print("{} x {} = {}".format(numberinput,counter,numberinput*counter))
+	counter += 1
+
+#44. Write a Python program to construct the following pattern, using a nested loop number.
+"""
+Expected Output:
+1
+22
+333
+4444
+55555
+666666
+7777777
+88888888
+999999999
+"""
+for n in range(0,10):
+	print(str(n)*n)
