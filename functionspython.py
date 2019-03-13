@@ -136,3 +136,31 @@ print(palindrome("madam")) #print palindrome
 print(palindrome("nurses run")) #print palindrome
 print(palindrome("joyful")) #print not a palindrome
 
+#13. Write a Python function that prints out the first n rows of Pascal's triangle. Note: Pascal's triangle is an arithmetic and geometric figure first imagined by Blaise Pascal.
+#Source:  https://www.geeksforgeeks.org/pascal-triangle/
+def printPascal(n):      
+	# Iterate through every line  and print entries in it 
+	for line in range(0, n):           
+	# Every line has number of  integers equal to line number 
+		for i in range(0, line + 1) : 
+			print(binomialCoeff(line, i), " ", end = "") 
+		print()
+def binomialCoeff(n, k): 
+	res = 1
+	if (k > n - k):
+		k = n - k
+	for i in range(0 , k):
+		res = res * (n - i)
+		res = res // (i + 1)
+	return res  
+n = 7
+printPascal(n) 
+#official solution
+def pascal_triangle(n):
+   trow = [1]
+   y = [0]
+   for x in range(max(n,0)):
+      print(trow)
+      trow=[l+r for l,r in zip(trow+y, y+trow)]
+   return n>=1
+pascal_triangle(6) 
