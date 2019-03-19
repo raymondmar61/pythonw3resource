@@ -163,4 +163,108 @@ def pascal_triangle(n):
       print(trow)
       trow=[l+r for l,r in zip(trow+y, y+trow)]
    return n>=1
-pascal_triangle(6) 
+pascal_triangle(6)
+
+#14. Write a Python function to check whether a string is a pangram or not. Note: Pangrams are words or sentences containing every letter of the alphabet at least once.  For example: "The quick brown fox jumps over the lazy dog"
+from re import sub
+def pangramcheck(word):
+	#remove all spaces
+	word = sub(' +', '',word)
+	#word must have 26 letters or greater
+	if len(word) < 25:
+		return "Not a pangram"
+	#create alphabet list letter check
+	alphabet = "abcdefghijklmnopqrstuvwyxz"
+	alphabetlist = [eachalphabet for eachalphabet in alphabet]
+	#convert letters lowercase
+	word = word.lower()
+	for eachword in word:
+		if eachword in alphabetlist:
+			alphabetlist.remove(eachword)
+		else:
+			continue
+	if len(alphabetlist) == 0:
+		return "Pangram"
+	else:
+		return "Not a pangram"
+print(pangramcheck("The quick brown fox jumps over the lazy dog")) #print Pangram
+print(pangramcheck("okaY dokey")) #print Not a pangram
+print(pangramcheck("The quick brown fox JUMPS over THE lazy dog")) #print Pangram
+#official solution
+import string, sys
+def ispangram(str1, alphabet=string.ascii_lowercase):
+    alphaset = set(alphabet)
+    return alphaset <= set(str1.lower()) 
+print(ispangram('The quick brown fox jumps over the lazy dog'))
+
+#15. Write a Python program that accepts a hyphen-separated sequence of words as input and prints the words in a hyphen-separated sequence after sorting them alphabetically. Sample Items: green-red-yellow-black-white.  Expected Result: black-green-red-white-yellow.
+def sortedhyphensequence(words):
+	wordssplit = words.split("-")
+	wordssplit.sort()
+	return ("-".join(wordssplit))
+print(sortedhyphensequence("green-red-yellow-black-white")) #print black-green-red-white-yellow
+
+#16. Write a Python function to create and print a list where the values are square of numbers between 1 and 30 (both included).
+def squares1to30():
+	list1to30 = [n**2 for n in range(1,21)]	
+	return list1to30
+print(squares1to30()) #print [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400]
+
+#17. Write a Python program to make a chain of function decorators (bold, italic, underline etc.) in Python.  #RM:  dumb question
+#copied solution
+def make_bold(fn):
+    def wrapped():
+        return "<b>" + fn() + "</b>"
+    return wrapped
+
+def make_italic(fn):
+    def wrapped():
+        return "<i>" + fn() + "</i>"
+    return wrapped
+
+def make_underline(fn):
+    def wrapped():
+        return "<u>" + fn() + "</u>"
+    return wrapped
+@make_bold
+@make_italic
+@make_underline
+def hello():
+    return "hello world"
+print(hello()) ## returns "<b><i><u>hello world</u></i></b>"
+
+#18. Write a Python program to execute a string containing Python code.
+#copied solution
+mycode = 'print("hello world")'
+code = """
+def mutiply(x,y):
+    return x*y
+
+print('Multiply of 2 and 3 is: ',mutiply(2,3))
+"""
+exec(mycode) #return hello world
+exec(code) #return Multiply of 2 and 3 is:  6
+
+#19. Write a Python program to access a function inside a function.
+#copied solution
+def test(a):
+	print("test (a)",a)
+	def add(b):
+		nonlocal a
+		a += 1
+		print("add(b) a",a)
+		print("add(b) b",b)
+		return a+b
+	print("test (a)",a)
+	return add
+func = test(4)
+print(func(4)) #print 9
+
+#20. Write a Python program to detect the number of local variables declared in a function.
+#copied solution
+def abc():
+    x = 1
+    y = 2
+    str1= "w3resource"
+    print("Python Exercises")
+print(abc.__code__.co_nlocals) #print 3
