@@ -64,3 +64,74 @@ print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%b %d, %Y %I:%
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%B %d, %Y %I:%M:%S %p')) #print January 25, 2014 02:43:00 PM
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%B %d, %Y %I:%M %p')) #print January 25, 2014 02:43 PM
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%B %d, %Y %-I:%M %p')) #print January 25, 2014 2:43 PM #tip https://coderwall.com/p/drqn9g/removing-leading-zeroes-in-python-s-strftime
+
+#4. Write a Python program to get the current time in Python.  Sample Format:  13:19:49.078205.
+dtt = datetime.today()
+print(dtt) #print 2019-03-22 19:08:38.607919
+print(dtt.hour) #print 19
+print(dtt.minute) #print 8
+print(dtt.second) #print 38
+print("Time is %s:%s:%s" % (dtt.hour, dtt.minute, dtt.second)) #print Time is 19:8:38
+print("Time is {}:{}:{}".format(dtt.hour, dtt.minute, dtt.second)) #print Time is 19:8:38
+dttt = datetime.today().time()
+print(dttt) #print 19:08:38.608087
+
+#5. Write a Python program to subtract five days from current date.
+dtt = datetime.today()
+print("Today is",dtt.strftime("%m/%d/%y")) #print Today is 03/22/19
+fivedaysago = str(int(dtt.strftime("%d"))-5)
+print("Five days ago is",dtt.strftime("%m")+"/"+fivedaysago+"/"+dtt.strftime("%y")) #print Five days ago is 03/17/19
+#official solution
+from datetime import timedelta
+dtttimedelta = datetime.today() - timedelta(5)
+print("Five days ago is",dtttimedelta) #print Five days ago is Five days ago is 2019-03-17 19:19:22.872699
+from datetime import date, timedelta
+dt = date.today() - timedelta(5)
+print('Current Date :',date.today()) #print Current Date: 2019-03-22
+print('5 days before Current Date :',dt) #print 5 days before Current Date: 2019-03-17
+
+#6. Write a Python program to convert unix timestamp string to readable date. Sample Unix timestamp string: 1284105682.  Expected Output: 2010-09-10 13:31:22.
+#official solution
+print(datetime.fromtimestamp(int("1284105682")).strftime('%Y-%m-%d %H:%M:%S')) #print 2010-09-10 01:01:22
+
+#7. Write a Python program to print yesterday, today, tomorrow.
+from datetime import date
+dt = date.today()
+print(dt) #print 2019-03-22
+print(dt.strftime("%m/%d/%y")) #print 03/22/19
+dtyesterday = str(int(dt.strftime("%d"))-1)
+dttomorrow = str(int(dt.strftime("%d"))+1)
+print("Yesterday was "+dt.strftime("%m")+"/"+dtyesterday+"/"+dt.strftime("%y")) #print Yesterday was 03/21/19
+print("Tomorrow is "+dt.strftime("%m")+"/"+dttomorrow+"/"+dt.strftime("%y")) #print Tomorrow is 03/23/19
+from datetime import timedelta
+dtyesterday2 = dt.today() - timedelta(1)
+dttomorrow2 = dt.today() + timedelta(1)
+print("Yesterday was",dtyesterday2) #print Yesterday was 2019-03-21
+print("Tomorrow is",dttomorrow2) #print Tomorrow is 2019-03-23
+
+#8. Write a Python program to convert the date to datetime (midnight of the date) in Python.  Sample Output: 2015-06-22 00:00:00
+assigndate = "06/22/2015"
+print(datetime.strptime(assigndate, "%m/%d/%Y")) #print 2015-06-22 00:00:00
+
+#9. Write a Python program to print next 5 days starting from today.
+dt = date.today()
+for n in range(0,5):
+	nextday = dt + timedelta(n)
+	print(nextday)
+'''
+2019-03-22
+2019-03-23
+2019-03-24
+2019-03-25
+2019-03-26
+'''
+
+#10. Write a Python program to add 5 seconds with the current time.
+#additional information https://stackoverflow.com/questions/656297/python-time-timedelta-equivalent
+from datetime import date, datetime, time, timedelta
+dttt = datetime.today().time()
+print(dttt) #print 20:00:49.896064
+print(type(dttt)) #print <class 'datetime.time'>.  RM:  it's not <class 'datetime.datetime'>
+#fiveseconds = dttt + timedelta(minutes=5)
+fiveseconds = datetime.combine(date.today(), time(dttt.hour, dttt.minute, dttt.second)) + timedelta(seconds=5)
+print(fiveseconds.time()) #print 20:00:54
