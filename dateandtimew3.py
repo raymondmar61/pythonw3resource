@@ -59,6 +59,7 @@ print(datetime.strptime(dateformat, "%b/%d/%Y %I:%M%p")) #print 2014-01-25 14:43
 datestring = "Jan 25 2014 2:43PM"
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p")) #print 2014-01-25 14:43:00
 #bonus
+datestring = "Jan 25 2014 2:43PM"
 print(type(datetime.strptime(datestring, "%b %d %Y %I:%M%p"))) #print <class 'datetime.datetime'>
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%b %d, %Y %I:%M:%S %p')) #print Jan 25, 2014 02:43:00 PM
 print(datetime.strptime(datestring, "%b %d %Y %I:%M%p").strftime('%B %d, %Y %I:%M:%S %p')) #print January 25, 2014 02:43:00 PM
@@ -135,3 +136,56 @@ print(type(dttt)) #print <class 'datetime.time'>.  RM:  it's not <class 'datetim
 #fiveseconds = dttt + timedelta(minutes=5)
 fiveseconds = datetime.combine(date.today(), time(dttt.hour, dttt.minute, dttt.second)) + timedelta(seconds=5)
 print(fiveseconds.time()) #print 20:00:54
+
+#11. Write a Python program to convert Year/Month/Day to Day of Year in Python.  #RM:  print the day number of the year or day count of the year; e.g. Dec 31 is 365 day number.
+monthdayyear = "04/10/2018"
+datestringsplit = monthdayyear.split("/")
+print(datestringsplit) #print ['04', '10', '2018']
+dateformat = datestringsplit[0]+" "+datestringsplit[1]+" "+datestringsplit[2]
+print(dateformat) #print 04 10 2018
+print(datetime.strptime(dateformat, "%m %d %Y")) #print 2018-04-10 00:00:00
+dateformat = datetime.strptime(dateformat, "%m %d %Y")
+print(dateformat.strftime("%j")) #print 100
+#quicker
+monthdayyear = "04/10/2018"
+print(datetime.strptime(monthdayyear, "%m/%d/%Y")) #print 2018-04-10 00:00:00
+dateformat = datetime.strptime(monthdayyear, "%m/%d/%Y")
+print(dateformat.strftime("%j")) #print 100
+
+#12. Write a Python program to get current time in milliseconds in Python.
+#copied solution
+from time import time
+milli_sec = int(round(time() * 1000))
+print(milli_sec) #print 1553658720436
+
+#13. Write a Python program to get week number. Go to the editor  Sample Date: 2015, 6, 16.  Expected Output: 25.
+sampledate = "2015, 6, 16"
+print(datetime.strptime(sampledate, "%Y, %m, %d")) #print 2015-06-16 00:00:00
+weeknumberfromsampledate = datetime.strptime(sampledate, "%Y, %m, %d")
+print(weeknumberfromsampledate.strftime("%W")) #print 24
+
+#14. Write a Python program to find the date of the first Monday of a given week. Sample Year and week: 2015, 50.  Expected Output: Mon Dec 14 00:00:00 2015.  #source:  https://stackoverflow.com/questions/17087314/get-date-from-week-number.  https://docs.python.org/3/library/datetime.html#strftime-and-strptime-behavior.
+sampleyear = 2015
+sampleweek = 50
+sampleyearweek = "2015, 50"
+firstmonday = datetime.strptime(sampleyearweek + "-1","%Y, %W-%w")
+print(firstmonday) #print 2015-12-14 00:00:00
+print(firstmonday.strftime("%a %b %d %Y")) #print Mon Dec 14 2015
+firsttuesday = datetime.strptime(sampleyearweek + "-2","%Y, %W-%w")
+print(firsttuesday) #print 2015-12-15 00:00:00
+print(firsttuesday.strftime("%a %b %d %Y")) #print Tue Dec 15 2015
+firstsaturday = datetime.strptime(sampleyearweek + "-6","%Y, %W-%w")
+print(firstsaturday) #print 2015-12-19 00:00:00
+print(firstsaturday.strftime("%a %b %d %Y")) #print Sat Dec 19 2015
+#official solution
+import time
+print(time.asctime(time.strptime('2015 50 1', '%Y %W %w'))) #print Mon Dec 14 00:00:00 2015
+
+#15. Write a Python program to select all the Sundays of a specified year.
+year = str(2015)
+for n in range(0,53):
+	weekstring = str(n)
+	yearweek = year+" "+weekstring
+	sundays = datetime.strptime(yearweek + "-0","%Y %W-%w")
+	print(sundays.strftime("%a %b %d %Y")) #print Sun Jan 04 2015 . . . Sun Jan 03 2016
+
