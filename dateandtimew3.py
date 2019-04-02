@@ -189,3 +189,60 @@ for n in range(0,53):
 	sundays = datetime.strptime(yearweek + "-0","%Y %W-%w")
 	print(sundays.strftime("%a %b %d %Y")) #print Sun Jan 04 2015 . . . Sun Jan 03 2016
 
+#16. Write a Python program to add year(s) with a given date and display the new date.
+"""
+Sample Data: (addYears is the user defined function name) 
+print(addYears(datetime.date(2015,1,1), -1))
+print(addYears(datetime.date(2015,1,1), 0))
+print(addYears(datetime.date(2015,1,1), 2))
+print(addYears(datetime.date(2000,2,29),1))
+Expected Output: 
+2014-01-01
+2015-01-01
+2017-01-01
+2001-03-01
+"""
+#Source:  https://stackoverflow.com/questions/32799428/adding-years-in-python.  #pip install python-dateutil
+from dateutil.relativedelta import relativedelta
+def addYears(year, month, day, yearchange):
+	return date(year, month, day) + relativedelta(years=yearchange)
+print(addYears(2015, 1, 1, -1)) #print 2014-01-01
+print(addYears(2015, 1, 1, 0)) #print 2015-01-01
+print(addYears(2015, 1, 1, 2)) #print 2017-01-01
+print(addYears(2000, 2, 29, 1)) #print 2001-02-28
+
+#17. Write a Python program to drop microseconds from datetime.
+dtt = datetime.today()
+print(dtt) #print 2019-04-02 14:23:43.737867
+print(dtt.strftime("%m/%d/%y")) #print 04/02/19
+now = datetime.now()
+print(now) #print 2019-04-02 14:23:43.737961
+print(now.strftime("%m/%d/%y")) #print 04/02/19
+
+#18. Write a Python program to get days between two dates. Sample Dates: 2000,2,28, 2001,2,28.  Expected Output: 366 days, 0:00:00.  Source:  https://stackoverflow.com/questions/151199/how-to-calculate-number-of-days-between-two-given-dates
+date1 = date(2000, 2, 28)
+date2 = date(2001, 2, 28)
+daysbetween = date2 - date1
+print(daysbetween.days) #print 366
+
+#19. Write a Python program to get the date of the last Tuesday.
+#official solution
+today = date.today()
+offset = (today.weekday() - 1) % 7
+print(offset) #print 0
+last_tuesday = today - timedelta(days=offset)
+print(last_tuesday) #print 2019-04-02
+#RM:  the number to the right of (today.weekday() - dictates date of the last *blank*.  Today is Tue Apr 2.  If -0, then Mon Apr 1.  If -1, then Tue Apr 2.  If -2, then Wed Mar 27.  If -3, then Thur Mar 28.  If +1, then Sun Mar 31.  If +2, then Sat Mar 30.  If +3, the Fri Mar 29.  
+dtt = datetime.today()
+todaydate = dtt.strftime("%a")
+lastdate = "Thu"
+while True:
+	if dtt.strftime("%a") == todaydate and dtt.strftime("%a") == lastdate:
+		print("Actually "+lastdate+" is today " +dtt.strftime("%a %b %d, %Y.")+" However . . . ")
+		todaydate = ""
+		dtt = dtt - timedelta(days=1)
+	elif dtt.strftime("%a") == lastdate:
+		print("The last "+lastdate+" is " +dtt.strftime("%a %b %d, %Y"))
+		break
+	else:
+		dtt = dtt - timedelta(days=1)
