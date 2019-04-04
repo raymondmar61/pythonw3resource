@@ -235,7 +235,7 @@ print(last_tuesday) #print 2019-04-02
 #RM:  the number to the right of (today.weekday() - dictates date of the last *blank*.  Today is Tue Apr 2.  If -0, then Mon Apr 1.  If -1, then Tue Apr 2.  If -2, then Wed Mar 27.  If -3, then Thur Mar 28.  If +1, then Sun Mar 31.  If +2, then Sat Mar 30.  If +3, the Fri Mar 29.  
 dtt = datetime.today()
 todaydate = dtt.strftime("%a")
-lastdate = "Thu"
+lastdate = "Thu"  #RM:  choose Thursday Thu to remind myself Thursday is Thu three letter abbreviation.
 while True:
 	if dtt.strftime("%a") == todaydate and dtt.strftime("%a") == lastdate:
 		print("Actually "+lastdate+" is today " +dtt.strftime("%a %b %d, %Y.")+" However . . . ")
@@ -246,3 +246,43 @@ while True:
 		break
 	else:
 		dtt = dtt - timedelta(days=1)
+
+#20. Write a Python program to test the third Tuesday of a month.
+print(date(2019,3,25)) #print 2019-03-25
+firstdayofmonth = date(2019,3,1)
+counter = 0
+while True:
+	if firstdayofmonth.strftime("%a") == "Tue":
+		counter += 1
+	if counter == 3:
+		print("The third Tuesday of the month is",firstdayofmonth.strftime("%a %b %d")) #print The third Tuesday of the month is Tue Mar 19
+		break
+	firstdayofmonth = firstdayofmonth+timedelta(days=1)
+
+#21. Write a Python program to get the last day of a specified year and month.
+year = 2019
+month = 4
+for days in range(31,27,-1):
+	try:
+		print("The last day of the month is",date(year,month,days).strftime("%a %b %d, %Y")) #print The last day of the month is Tue Apr 30, 2019
+		break
+	except ValueError:
+		continue
+	else:
+		print("Doesn't work yet")
+year = 2008
+for month in range(1,13):
+	for days in range(31,27,-1):
+		try:
+			print("The last day of the month is",date(year,month,days).strftime("%a %b %d, %Y")) #print The last day of the month is Fri Feb 29, 2008
+			break
+		except ValueError:
+			continue
+		else:
+			print("Doesn't work yet")
+#https://stackoverflow.com/questions/42950/get-last-day-of-the-month-in-python
+def last_day_of_month(any_day):
+    next_month = any_day.replace(day=28) + timedelta(days=4)
+    return next_month - timedelta(days=next_month.day)
+for month in range(1, 13):
+	print(last_day_of_month(date(2012, month, 1)))
