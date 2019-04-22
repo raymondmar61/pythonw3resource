@@ -286,3 +286,85 @@ def last_day_of_month(any_day):
     return next_month - timedelta(days=next_month.day)
 for month in range(1, 13):
 	print(last_day_of_month(date(2012, month, 1)))
+
+#22. Write a Python program to get the number of days of a given month and year.
+from calendar import monthrange
+#monthrange(year, month).  Returns weekday of first day of the month and number of days in month, for the specified year and month.  0 is Mon, 4 is Fri and 6 is Sun.
+print(monthrange(2019,3))  #print (4,31)
+print(monthrange(2019,3)[1])  #print 31
+print(monthrange(2019,4))  #print (0,30)
+print(monthrange(2019,4)[1])  #print 30
+
+#23. Write a Python program to add a month with a specified date.
+#RM:  take a look at question 26 because it seems inaccurate.
+now = date.today()
+print(now) #print 2019-04-22
+sixmonthslater = now + relativedelta(months=+6)
+print(sixmonthslater) #print 2019-10-22
+sixmonthsearlier = now + relativedelta(months=-6)
+print(sixmonthsearlier) #print 2018-10-22
+
+#24. Write a Python program to count the number of Monday of the 1st day of the month from 2015 to 2016.
+count = 0
+for month in range(1,13):
+	for year in range(2015,2017):
+		assigndate = date(year,month,1)
+		if assigndate.strftime("%a") == "Mon":
+			count += 1
+print("There are",count,"Mondays.") #print There are 3 Mondays.
+
+#25. Write a Python program to print a string five times, delay three seconds.
+#import time sleep() function is used to delay or slowdown your program in seconds.  time.sleep(seconds).  for x in range(0,61):  print(x) time.sleep(1)
+from time import sleep
+string = "Print a string."
+for printstringfivetimes in range(0,5):
+	print(string)
+	sleep(3) #print Print a string.\n Print a string.\n Print a string.\n Print a string.\n Print a string.
+
+#26. Write a Python program calculates the date six months from the current date using the datetime module.  Add months.  Add a month.  Date change.
+#RM:  copied solution.  Also, it's inaccurate.
+#Source:  https://stackoverflow.com/questions/546321/how-do-i-calculate-the-date-six-months-from-the-current-date-using-the-datetime
+print((date.today() + timedelta(6*365/12)).isoformat()) #print 2019-10-21
+
+#27. Write a Python program to create 12 fixed dates from a specified date over a given period. The difference between two dates will be 20.  Date add dates.
+dtn = datetime.now()
+print(dtn) #print 2019-04-22 14:20:30.684982
+dt = date.today()
+print(dt) #print 2019-04-22
+print(dt + relativedelta(days=+20))
+dt = date.today() #print 2019-04-22
+for numberfixeddates in range(0,13):
+	print(dt + relativedelta(days=+20)) #print 2019-05-12\n 2019-06-01\n 2019-06-21\n 2019-07-11\n 2019-07-31\n . . . 2019-12-18\n 2020-01-07\n
+	dt = (dt + relativedelta(days=+20))
+#also
+dt = date.today() #print 2019-04-22
+for numberfixeddates in range(0,13):
+	print(dt + timedelta(days=+20)) #print 2019-05-12\n 2019-06-01\n 2019-06-21\n 2019-07-11\n 2019-07-31\n . . . 2019-12-18\n 2020-01-07\n
+	dt = (dt + timedelta(days=+20))
+
+#28. Write a Python program to get the dates 30 days before and after from the current date.
+dt = date.today()
+print(dt) #print 2019-04-22
+print("30 days earlier",dt+timedelta(days=-30)) #print 30 days earlier 2019-03-23
+print("30 days later",dt+timedelta(days=+30)) #print 30 days later 2019-05-22
+
+#29. Write a Python program to get the GMT and local current time.  GMT stands for Greenwich Mean Time.
+from time import gmtime, strftime
+dtn = datetime.now()
+print(dtn) #print 2019-04-22 14:41:13.549272
+print(gmtime()) #print time.struct_time(tm_year=2019, tm_mon=4, tm_mday=22, tm_hour=21, tm_min=41, tm_sec=13, tm_wday=0, tm_yday=112, tm_isdst=0)
+print("GMT Time time.strftime: "+strftime("%I:%M:%S %p %Z", gmtime())) #print GMT Time time.strftime: 09:41:13 PM GMT
+print("Local time strftime: "+strftime("%I:%M:%S %p")) #print Local time strftime: 02:41:13 PM
+print("Local time dtn.strftime: "+dtn.strftime("%I:%M:%S %p")) #print Local time dtn.strftime: 02:41:13 PM
+
+#30. Write a Python program to convert a date to the timestamp
+import time
+dt = date.today()
+print(dt)
+print("Local time dt.strftime: "+dt.strftime("%I:%M:%S %p")) #print Local time dt.strftime: 12:00:00 AM
+dtn = datetime.now()
+print(dtn) #print 2019-04-22 14:49:58.616290
+print("Local time dtn.strftime: "+dtn.strftime("%I:%M:%S %p")) #print Local time dt.strftime: 02:49:58 PM
+#official solution
+print(time.mktime(dt.timetuple())) #print 1555916400.0
+
