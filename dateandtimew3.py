@@ -36,8 +36,8 @@ print("f) Day of year-->dtt.strftime(\"%j\"): {}".format(dtt.strftime("%j"))) #p
 print("g) Day of month-->dtt.strftime(\"%d\"): {}".format(dtt.strftime("%d"))) #print g) Day of month-->dtt.strftime("%d"): 20
 print("h) Day of week-->dtt.strftime(\"%A\"): {}".format(dtt.strftime("%A"))) #print h) Day of week-->dtt.strftime("%A"): Wednesday
 print("h) Day of week-->dtt.strftime(\"%a\"): {}".format(dtt.strftime("%a"))) #print h) Day of week-->dtt.strftime("%a"): Wed
-print("Today is",dtt.strftime("%a %b %y")) #print Today is Wed Mar 19
-print("Today is "+dtt.strftime("%a %b %y")) #print Today is Wed Mar 19
+print("Today is",dtt.strftime("%a %b %d")) #print Today is Wed Mar 20
+print("Today is "+dtt.strftime("%a %b %d")) #print Today is Wed Mar 20
 print("Today is",dtt.strftime("%m/%d/%y")) #print Today is 03/20/19
 
 #2. Write a Python program to determine whether a given year is a leap year.
@@ -357,7 +357,7 @@ print("GMT Time time.strftime: "+strftime("%I:%M:%S %p %Z", gmtime())) #print GM
 print("Local time strftime: "+strftime("%I:%M:%S %p")) #print Local time strftime: 02:41:13 PM
 print("Local time dtn.strftime: "+dtn.strftime("%I:%M:%S %p")) #print Local time dtn.strftime: 02:41:13 PM
 
-#30. Write a Python program to convert a date to the timestamp
+#30. Write a Python program to convert a date to the timestamp.
 import time
 dt = date.today()
 print(dt)
@@ -367,4 +367,89 @@ print(dtn) #print 2019-04-22 14:49:58.616290
 print("Local time dtn.strftime: "+dtn.strftime("%I:%M:%S %p")) #print Local time dt.strftime: 02:49:58 PM
 #official solution
 print(time.mktime(dt.timetuple())) #print 1555916400.0
+
+#31. Write a Python program to convert a string date to the timestamp.
+from time import mktime
+datestring = "Jan 25 2014 2:43PM"
+print(datetime.strptime(datestring, "%b %d %Y %I:%M%p")) #print 2014-01-25 14:43:00
+datestring = datetime.strptime(datestring, "%b %d %Y %I:%M%p")
+print("Local time datestring.strftime: "+datestring.strftime("%I:%M:%S %p")) #print Local time datestring.strftime: 02:43:00 PM
+print(mktime(datestring.timetuple())) #print 1390689780.0
+
+#32. Write a Python program to calculate a number of days between two dates.
+#https://stackoverflow.com/questions/151199/how-to-calculate-number-of-days-between-two-given-dates
+datetoday = date.today()
+datepast = date(2015, 4, 30)
+daysbetween = datetoday - datepast
+print(daysbetween.days) #print 1455
+
+#33. Write a Python program to calculate no of days between two datetimes.
+dtn = datetime.now()
+print(dtn) #print 2019-04-24 13:56:13.068859
+datetimepast = datetime(2015,4,30,18,2,59)
+print(datetimepast) #print 2015-04-30 18:02:59
+print(type(datetimepast)) #print <class 'datetime.datetime'>
+daysbetween = dtn - datetimepast
+print(daysbetween.days) #print 1454
+
+#34. Write a Python program to display the date and time in a human-friendly string.
+dtn = datetime.now()
+print(dtn) #print 2019-04-24 13:56:13.068859
+print("Today is",dtn.strftime("%a %b %d")) #print Today is Wed Apr 24
+print("Today is "+dtn.strftime("%A %B %d")) #print Today is Today is Wednesday April 24
+print("Today is",dtn.strftime("%m/%d/%y")) #print Today is 04/24/19
+print("Today is "+dtn.strftime("%a %b %d, %Y")) #print Today is Wed Apr 24, 2019 
+
+#35. Write a Python program to convert a date to Unix timestamp.
+#copied solution
+dt = datetime(2016, 2, 25, 23, 23)
+print("Unix Timestamp: ",(mktime(dt.timetuple())))  #print Unix Timestamp:  1456471380.0
+dtn = datetime.now()
+print("Unix Timestamp now: ",(mktime(dtn.timetuple())))  #print Unix Timestamp now:  1556139844.0
+
+#36. Write a Python program to calculate two date difference in seconds.
+#source: https://stackoverflow.com/questions/4362491/how-do-i-check-the-difference-in-seconds-between-two-dates
+datetoday = date.today()
+datepast = date(2015, 4, 30)
+daysbetween = datetoday - datepast
+print(daysbetween.seconds) #print 0
+print(daysbetween.total_seconds()) #print 125712000.0
+dtn = datetime.now()
+print(dtn) #print 2019-04-24 14:11:04.636388
+datetimepast = datetime(2015,4,30,18,2,59)
+print(datetimepast) #print 2015-04-30 18:02:59
+daysbetween = dtn - datetimepast
+print(daysbetween.seconds,"is incorrect") #print 72485 is incorrect
+print(daysbetween.total_seconds()) #print 125697977.614781
+
+#37. Write a Python program to convert two date difference in days, hours, minutes, seconds.
+#Source: https://stackoverflow.com/questions/25439279/python-calculating-time-difference-to-give-years-months-days-hours-minutes
+from dateutil.relativedelta import relativedelta
+today = datetime.now()
+print(today) #print 2019-04-24 14:23:27.689348
+past = datetime(2015,4,30,18,2,59)
+print(past) #print 2015-04-30 18:02:59
+difference = relativedelta(today,past)
+print(difference) #print relativedelta(years=+3, months=+11, days=+24, hours=+20, minutes=+20, seconds=+28, microseconds=+689348)
+print("The difference is %d year %d month %d days %d hours %d minutes %d seconds" % (difference.years, difference.months, difference.days, difference.hours, difference.minutes, difference.seconds)) #print The difference is 3 year 11 month 24 days 20 hours 20 minutes 28 seconds
+
+#38. Write a Python program to get last modified information of a file.
+
+#39. Write a Python program to calculate an age in year.
+from dateutil.relativedelta import relativedelta
+today = datetime.now()
+print(today) #print 2019-04-24 14:30:15.393683
+past = date(1997,12,21)
+print(past) #print 1997-12-21
+difference = relativedelta(today,past)
+print(difference) #print relativedelta(years=+21, months=+4, days=+3, hours=+14, minutes=+30, seconds=+15, microseconds=+393683)
+print("The difference is %d years" % (difference.years)) #print The difference is 21 years
+
+#40. Write a Python program to get the current date time information.
+dtn = datetime.now()
+print(dtn) #print 2019-04-24 14:35:35.976582
+dtt = datetime.today()
+print(dtt) #print #print 2019-04-24 14:35:35.976632
+dt = date.today()
+print(dt) #print 2019-04-24
 
