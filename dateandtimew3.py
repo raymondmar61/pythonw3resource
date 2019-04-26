@@ -1,4 +1,12 @@
 #https://www.w3resource.com/python-exercises/date-time-exercise/
+'''
+from datetime import datetime, date, timedelta, time
+from dateutil.relativedelta import relativedelta
+from calendar import monthrange
+from time import mktime
+Thu is Thursday
+'''
+
 from datetime import datetime
 #1. Write a Python script to display the various Date Time formats
 '''
@@ -453,3 +461,140 @@ print(dtt) #print #print 2019-04-24 14:35:35.976632
 dt = date.today()
 print(dt) #print 2019-04-24
 
+#41. Write a python program to generate a date and time as a string.
+dtn = datetime.now()
+print(dtn) #print 2019-04-26 12:44:58.412594
+print("As a string "+dtn.strftime("%m-%d-%y at %I:%M %p")) #print As a string 04-26-19 at 12:44 PM
+#RM:  Question didn't say convert to string.  Here is convert to string.
+dtnstring = str(dtn)
+print(dtnstring) #print 2019-04-26 12:44:58.412594 
+print(type(dtnstring)) #print <class 'str'>
+
+#42. Write a Python program to display formatted text output of a month and start weeks on Sunday.  Print full calendar complete calendar.
+#RM:  copied solution
+import calendar
+cal = calendar.TextCalendar(calendar.SUNDAY) #The .SUNDAY in caps is the first name date or the left most name date
+print('First Month - 2022')
+print(cal.prmonth(2022, 1)) #print complete calendar January 2022
+print('April - 2019')
+print(cal.prmonth(2019, 4)) #print complete calendar April 2019
+print('May - 2019')
+print(cal.prmonth(2019, 5)) #print complete calendar May 2019
+
+#43. Write a Python program to print a 3-column calendar for an entire year.  Print calendar display calendar.
+import calendar
+cal = calendar.TextCalendar(calendar.SUNDAY) #The .SUNDAY in caps is the first name date or the left most name date
+year = 2019
+for eachmonth in range(1,13):
+	dateyearmonth = date(year, eachmonth, 1)
+	print(dateyearmonth.strftime("%B %Y"))
+	print(cal.prmonth(year, eachmonth)) #prints calendar 2019 by month
+#official solution calendar in three columns
+cal = calendar.TextCalendar(calendar.SUNDAY) #The .SUNDAY in caps is the first name date or the left most name date
+# year: 2019, column width: 2, row width: 1, month width or spaces separating months: 4, number of columns: 3.
+print(cal.formatyear(2019, 2, 1, 4, 3)) #prints calendar 2019 by three months
+
+#44. Write a Python program to display a calendar for a locale.  Print calendar display calendar.
+import calendar
+dt = date.today()
+print(dt) #print 2019-04-26
+cal = calendar.TextCalendar(calendar.SUNDAY)
+print(cal.prmonth(dt.year, dt.month)) #print April 2019 calendar
+
+#45. Write a Python program to get the current week.  #solution wants year, week number, and day of the week or day number.
+dt = date.today()
+print(dt) #print 2019-04-26
+print("Year:",dt.year) #print Year: 2019
+print("Week number:",dt.strftime("%W")) #print Week number: 16
+print("Day number of the Week 0 is Sun, 6 is Sat:",dt.strftime("%w")) #print Day number of the Week 0 is Sun, 6 is Sat: 5
+
+#46. Write a Python program to create an HTML calendar with data for a specific year and month.
+#RM:  copied solution
+'''
+<table border="0" cellpadding="0" cellspacing="0" class="month">                                              
+<tr><th colspan="7" class="month">December 2020</th></tr>                                                     
+<tr><th class="mon">Mon</th><th class="tue">Tue</th><th class="wed">Wed</th><th class="thu">Thu</th><th class="fri">Fri</th><th class="sat">Sat</th><th class="sun">Sun</th></tr>                                           
+<tr><td class="noday"> </td><td class="tue">1</td><td class="wed">2</td><td class="thu">3</td><td class="fri">4</td><td class="sat">5</td><td class="sun">6</td></tr>                                                  
+<tr><td class="mon">7</td><td class="tue">8</td><td class="wed">9</td><td class="thu">10</td><td class="fri">11</td><td class="sat">12</td><td class="sun">13</td></tr>                                                     
+<tr><td class="mon">14</td><td class="tue">15</td><td class="wed">16</td><td class="thu">17</td><td class="fri">18</td><td class="sat">19</td><td class="sun">20</td></tr>                                                  
+<tr><td class="mon">21</td><td class="tue">22</td><td class="wed">23</td><td class="thu">24</td><td class="fri">25</td><td class="sat">26</td><td class="sun">27</td></tr>                                                  
+<tr><td class="mon">28</td><td class="tue">29</td><td class="wed">30</td><td class="thu">31</td><td class="noday"> </td><td class="noday"> </td><td class="noday"> </td></tr>                                
+</table>  
+'''
+
+#47. Write a Python program display a list of the dates for the 2nd Saturday of every month for a given year.
+year = 2019
+daynumber = 6 #Saturday is number 6.  Sunday is number 1.
+for eachmonth in range(1,13):
+	for eachday in range(1,15):
+		dateformat = str(year)+" "+str(eachmonth)+" "+str(eachday)
+		secondsaturday = datetime.strptime(dateformat, "%Y %m %d")
+		print(secondsaturday.strftime("%A %m/%d/%Y"))
+		if secondsaturday.strftime("%w") == str(daynumber) and eachday >7: #refer date numbers as string
+			print("secondsaturday")
+			print("\n")
+			break
+#information:  https://stackoverflow.com/questions/3806473/python-week-number-of-the-month
+
+#48. Write a Python program to display a simple, formatted calendar of a given year and month.  #RM:  Simple use Calendary modular
+import calendar
+dt = date.today()
+print(dt) #print 2019-04-26
+cal = calendar.TextCalendar(calendar.SUNDAY)
+print(cal.prmonth(dt.year, dt.month)) #print April 2019 calendar
+
+#official solution
+import calendar
+print('Print a calendar for a year and month:')
+month = int(input('Month (mm): '))
+year = int(input('Year (yyyy): '))
+print('\n') 
+calendar.setfirstweekday(calendar.SUNDAY)
+cal = calendar.monthcalendar(year, month) 
+if len(str(month)) == 1:
+    month = '0%s' % month 
+# Header
+print('|++++++ %s-%s +++++|' % (month, year))
+print('|Su Mo Tu We Th Fr Sa|')
+print('|--------------------|') 
+# display calendar
+border = '|'
+for week in cal:
+    line = border      
+    for day in week:
+        if day == 0:
+      # 3 spaces for blank days       
+         line += '   ' 
+        elif len(str(day)) == 1:
+            line += ' %d ' % day
+        else:
+         line += '%d ' % day
+    # remove space in last column
+    line = line[0:len(line) - 1]  
+    line += border
+    print(line) 
+print('|--------------------|\n')
+
+#49. Write a Python program to convert a string into datetime
+#RM:  Same question as #3
+
+#50. Write a Python program to get a list of dates between two dates.
+firstdate = date(2019, 4, 20)
+seconddate = date(2019, 8, 30)
+today = firstdate
+while True:
+	print(today.strftime("%a %b %d, %Y")) #print ...\nFri Aug 30, 2019
+	if today == seconddate:
+		break
+	today = today + timedelta(1)
+
+#51. Write a Python program to generate RFC 3339 timestamp.
+#copied solution
+from datetime import datetime, timezone
+local_time = datetime.now(timezone.utc).astimezone()
+print(local_time.isoformat()) #print 2019-04-26T14:17:07.557981-07:00
+
+#52. Write a Python program to get the first and last second.
+import datetime
+print("First Second: ", datetime.time.min) #print First Second:  00:00:00
+print("Last Second: ", datetime.time.max) #print Last Second:  23:59:59.999999
