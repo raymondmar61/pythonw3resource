@@ -33,3 +33,20 @@ volumecylinder = pi*(radius**2)*height
 print(volumecylinder) #print 452.3893421169302
 areacylinder = (2*pi*radius*height)+(2*pi*(radius**2))
 print(areacylinder) #print 376.99111843077515
+
+#6. Write a Python program to calculate surface volume and area of a sphere. 
+from math import pi
+radius = .75
+volmesphere = (4/3)*pi*(radius**3)
+print(volmesphere) #print 1.7671458676442584
+areasphere = 4*pi*(radius**2)
+print(areasphere) #print 7.0685834705770345
+
+#7. Write a Python program to calculate arc length of an angle.
+from math import pi
+radius = 4.5
+angle = 45
+angleinradians = angle * ((pi)/180)
+arclength = radius*angleinradians
+print(arclength) #print 3.5342917352885173
+
