@@ -89,4 +89,87 @@ def powerbasesum(base, power):
 print(powerbasesum(2, 100)) #print 115
 print(powerbasesum(8, 10)) #print 37
 
+#13. Write a Python program to find out, if the given number is abundant.  Note: In number theory, an abundant number or excessive number is a number for which the sum of its proper divisors is greater than the number itself.  The integer 12 is the first abundant number. Its proper divisors are 1, 2, 3, 4 and 6 for a total of 16.
+def isabundant(number):
+	abundantsum = 0
+	for eachnumber in range (1,number):
+		if number % eachnumber == 0:		
+			abundantsum+=eachnumber
+	if abundantsum > number:
+		return True
+	else:
+		return  False
+print(isabundant(12)) #print True
+print(isabundant(13)) #print False
 
+#14. Write a Python program to sum all amicable numbers from 1 to specified numbers. Note: Amicable numbers are two different numbers so related that the sum of the proper divisors of each is equal to the other number. (A proper divisor of a number is a positive factor of that number other than the number itself. For example, the proper divisors of 6 are 1, 2, and 3.)
+#RM:  https://projecteuler.net/problem=21 Amicable Numbers explained Amicable numbers better.
+#For example, the proper divisors of 220 are 1, 2, 4, 5, 10, 11, 20, 22, 44, 55 and 110; therefore d(220) = 284. The proper divisors of 284 are 1, 2, 4, 71 and 142; so d(284) = 220.
+
+def isamicablenumber(firstnumber):
+	divisorslista = []
+	for eachnumber in range(1,firstnumber):
+		if firstnumber % eachnumber == 0:
+			divisorslista.append(eachnumber)
+	secondnumber = sum(divisorslista)
+	divisorslistb = []
+	for eachnumber in range(1,secondnumber):
+		if secondnumber % eachnumber == 0:
+			divisorslistb.append(eachnumber)
+	secondnumber = sum(divisorslistb)
+	if firstnumber == secondnumber:
+		return True
+	else:
+		return False
+print(isamicablenumber(220)) #print True
+print(isamicablenumber(284)) #print True
+print(isamicablenumber(99)) #print False
+
+def amicablenumberssum(number):
+	amicablenumberslist = []
+	counter = 2
+	while counter < number:
+		lista = []
+		for eachnumber in range(1,counter):
+			if counter % eachnumber == 0:
+				lista.append(eachnumber)
+		b = sum(lista)
+		listb = []
+		for eachnumber in range(1,b):
+			if b % eachnumber == 0:
+				listb.append(eachnumber)
+		c = sum(listb)
+		if (counter == c) and (counter != b):
+			amicablenumberslist.append(counter)
+			amicablenumberslist.append(b)
+		else:
+			pass
+		counter +=2
+	print(amicablenumberslist)
+	print(sum(set((amicablenumberslist))))
+amicablenumberssum(9999) #print 31626
+amicablenumberssum(999) #print 504
+amicablenumberssum(99) #print 0
+
+#15. Write a Python program to returns sum of all divisors of a number.
+def sumdivisors(number):
+	divisorssum = []
+	for eachnumber in range(1,number):
+		if number % eachnumber == 0:
+			divisorssum.append(eachnumber)
+	return sum(divisorssum)
+print(sumdivisors(8)) #print 7
+print(sumdivisors(12)) #print 16
+
+#16. Write a Python program to print all permutations of a given string (including duplicates).
+from itertools import permutations
+permutatestring = "ABC D"
+permutatestring = permutatestring.replace(" ","")
+permutatestringlength = len(permutatestring)
+permutatestringlist = list(map(str, permutatestring))
+finalanswer = []
+for eachpermutation in permutations(permutatestringlist,permutatestringlength):
+	#print(list(map(str, permutatestring)), end=", ") #print ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D'], ['A', 'B', 'C', 'D']
+	print("".join(list(map(str, eachpermutation))))
+	finalanswer.append("".join(list(map(str, eachpermutation))))
+print(finalanswer) #print ['ABCD', 'ABDC', 'ACBD', 'ACDB', 'ADBC', 'ADCB', 'BACD', 'BADC', 'BCAD', 'BCDA', 'BDAC', 'BDCA', 'CABD', 'CADB', 'CBAD', 'CBDA', 'CDAB', 'CDBA', 'DABC', 'DACB', 'DBAC', 'DBCA', 'DCAB', 'DCBA']
