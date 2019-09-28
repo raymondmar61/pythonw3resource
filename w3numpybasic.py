@@ -65,3 +65,32 @@ print(np.isreal(officialsolution)) #print [False  True  True  True  True False]
 print(np.isscalar(3.1)) #print True
 print(np.isscalar([3.1])) #print False
 
+#9. Write a NumPy program to test if two arrays are element-wise equal within a tolerance.
+#Sources: https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_equal.html, https://docs.scipy.org/doc/numpy/reference/generated/numpy.allclose.html
+numpya = np.array([1,2,3])
+numpyb = np.array([33,51,398493])
+numpyc = np.array([1,2,3])
+numpyd = np.array([2,3,4])
+print(np.array_equal(numpya,numpyc)) #print True
+print(np.array_equal(numpyb,numpyc)) #print False
+print(np.allclose(numpya, numpyd, rtol=1, atol=1)) #print True
+print(np.allclose(numpya, numpyb, rtol=1, atol=1)) #print True
+
+#10. Write a NumPy program to create an element-wise comparison (greater, greater_equal, less and less_equal) of two given arrays
+numpya = np.array([1,2,3])
+numpyb = np.array([33,51,398493])
+numpyc = np.array([1,2,3])
+numpyd = np.array([2,3,4])
+numpye = np.array([77,20,-1])
+print(numpya >= numpyb) #print [False False False]
+print(numpya >= numpyc) #print [ True  True  True]
+print(numpyd > numpyc) #print [ True  True  True]
+print(numpyb > numpyc) #print [False False False]
+print(numpyb > numpye) #print [False  True  True]
+numpyx = ([3,5])
+numpyy = ([2,5])
+print(np.greater(numpyx,numpyy)) #print [ True False]
+print(np.greater_equal(numpyx,numpyy)) #print [ True  True]
+print(np.less(numpyx,numpyy)) #print [False False]
+print(np.less_equal(numpyx,numpyy)) #print [False  True]
+print(np.less(numpyy,numpyx)) #print [ True False]
