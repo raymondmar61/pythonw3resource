@@ -47,22 +47,4 @@ print(game(8))
 # print(game(100))
 #print(game(1000))
 
-'''
-playingonachessboard2.py:49: RuntimeWarning: overflow encountered in long_scalars
-  return reduce(lambda a,b: a*b // gcd(a,b), denominators)
-playingonachessboard2.py:69: RuntimeWarning: overflow encountered in long_scalars
-  numerator = sum(numerator)
-'''
-
-#numpy method
-# numerator = sum(numeratorcolumn)
-# denominator = lowestcommonmultiple
-# dollars = np.array([], dtype=np.int64)
-# if numerator % denominator == 0:
-# 	dollars = np.append(dollars, np.array([numerator//denominator]))
-# else:
-# 	dollars = np.append(dollars, np.array([numerator]))
-# 	dollars = np.append(dollars, np.array([denominator]))
-# print(dollars)
-
 
