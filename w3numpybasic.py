@@ -94,3 +94,68 @@ print(np.greater_equal(numpyx,numpyy)) #print [ True  True]
 print(np.less(numpyx,numpyy)) #print [False False]
 print(np.less_equal(numpyx,numpyy)) #print [False  True]
 print(np.less(numpyy,numpyx)) #print [ True False]
+
+#11. Write a NumPy program to create an element-wise comparison (equal, equal within a tolerance) of two given arrays.
+numpya = np.array([1,2,3])
+numpyb = np.array([33,51,398493])
+numpyc = np.array([1,2,3])
+numpyd = np.array([2,3,4])
+numpye = np.array([77,20,-1])
+numpyf = np.array([1,5,9,8,9,10,65,98])
+numpyg = np.array([1,6,8,4,9,10,56,40])
+print(np.equal(numpyf,numpyg)) #print [ True False False False  True  True False False]
+print(np.greater(numpyf,numpyg)) #print [False False  True  True False False  True  True]
+print(np.less(numpyf,numpyg)) #print [False  True False False False False False False]
+print(np.greater_equal(numpyf,numpyg)) #print [ True False  True  True  True  True  True  True]
+print(np.less_equal(numpyf,numpyg)) #print [ True  True False False  True  True False False]
+
+#12. Write a NumPy program to create an array with the values 1, 7, 13, 105 and determine the size of the memory occupied by the array.
+numpyvalues = np.array([1,7,13,105])
+print(numpyvalues.itemsize) #print 8 #memory size in bytes
+
+#13. Write a NumPy program to create an array of 10 zeros,10 ones, 10 fives.
+numpyzeros = np.zeros(10)
+print(numpyzeros) #print[0. 0. 0. 0. 0. 0. 0. 0. 0. 0.]
+numpyones = np.ones(10, dtype=np.int16)
+print(numpyones) #print [1 1 1 1 1 1 1 1 1 1]
+numpyfives = np.linspace(5,5,10, dtype=np.int16)
+print(numpyfives) #print [5 5 5 5 5 5 5 5 5 5]
+
+#14. Write a NumPy program to create an array of the integers from 30 to70.
+integers3070 = np.arange(30,71,1)
+print(integers3070) #print [30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70]
+
+#15. Write a NumPy program to create an array of all the even integers from 30 to 70.
+integers3070 = np.arange(30,71,2)
+print(integers3070) #print [30 32 34 36 38 40 42 44 46 48 50 52 54 56 58 60 62 64 66 68 70]
+
+#16. Write a NumPy program to create a 3x3 identity matrix.
+print(np.identity(3))
+'''
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+'''
+
+#17. Write a NumPy program to generate a random number between 0 and 1.
+randomnumber01 = np.random.random(1)
+print(randomnumber01) #print [0.66874215]
+#official solution
+rand_num = np.random.normal(0,1,1)
+print(rand_num) #print [0.20932705]
+rand_num = np.random.normal(0,1,5)
+print(rand_num) #print [ 0.01550774 -0.46678178  0.04564863  0.14748109  0.80262617]
+rand_num = np.random.normal(0,500,3)
+print(rand_num) #print [719.70605161 704.96887588 256.56701177]
+
+#18. Write a NumPy program to generate an array of 15 random numbers from a standard normal distribution.
+randomnumbers15 = np.random.randint(0,100,15)
+print(randomnumbers15) #print [83 51 73 12 72 44 86 52 51 20 35 38  5 25 78]
+print(randomnumbers15.std()) #print 25.22608878830715
+#official solution  RM:  dumb answer
+rand_num = np.random.normal(0,1,15)
+print("15 random numbers from a standard normal distribution:")
+print(rand_num) #print [ 0.58968788 -1.30451068 -0.16452003 -0.36511579 -0.52806576  0.07834043  0.74370826 -0.03742576 -0.63248241 -1.24015999  0.28567644 -1.4467676  0.02737708  0.73224269 -0.353737  ]
+
+
+
