@@ -157,5 +157,134 @@ rand_num = np.random.normal(0,1,15)
 print("15 random numbers from a standard normal distribution:")
 print(rand_num) #print [ 0.58968788 -1.30451068 -0.16452003 -0.36511579 -0.52806576  0.07834043  0.74370826 -0.03742576 -0.63248241 -1.24015999  0.28567644 -1.4467676  0.02737708  0.73224269 -0.353737  ]
 
+#19. Write a NumPy program to create a vector with values ranging from 15 to 55 and print all values except the first and last.
+vector = np.arange(15,56)
+print(vector) #print [15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55]
+print(vector[1:-1]) #print [16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54]
+
+#20. Write a NumPy program to create a 3X4 array using and iterate over it.
+threebyfourarray = np.empty((3,4), dtype=np.int32)
+print(threebyfourarray)
+'''
+[[  39387616          0  -42307712      32693]
+ [  10969120          0 -304512656      32693]
+ [-304512528      32693 -304512464      32693]]
+'''
+for eachrow in range(0,threebyfourarray.shape[0]):
+	for eachcolumn in range(0,threebyfourarray.shape[1]):
+		print(threebyfourarray[eachrow][eachcolumn],end=", ") #print 39387616, 0, -42307712, 32693, 10969120, 0, -304512656, 32693, -304512528, 32693, -304512464, 32693,
+print("\n")
+#official solution
+arraytens = np.arange(10,22).reshape(3,4)
+print(arraytens)
+'''
+[[10 11 12 13]
+ [14 15 16 17]
+ [18 19 20 21]]
+'''
+for eacharraytens in np.nditer(arraytens):
+	print(eacharraytens, end=", ") #print 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 
+
+#21. Write a NumPy program to create a vector of length 10 with values evenly distributed between 5 and 50.
+size10 = np.linspace(5, 50, 10, dtype=np.int8)
+print(size10.size) #print 10
+print(size10) #print [ 5 10 15 20 25 30 35 40 45 50]
+#RM:  question asked for length 10, not size 10
+length10 = np.linspace(5, 50, 5)
+print(length10.size) #print 5
+print(length10) #print [ 5.   16.25 27.5  38.75 50.  ]
+
+#22. Write a NumPy program to create a vector with values from 0 to 20 and change the sign of the numbers in the range from 9 to 15.
+numpyh = np.arange(0, 21)
+print(numpyh) #print [ 0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+for x in range(9,16):
+	numpyh[x] = (numpyh[x]*-1)
+print(numpyh) #print [  0   1   2   3   4   5   6   7   8  -9 -10 -11 -12 -13 -14 -15  16  17  18  19  20]
+#official solution
+numpyh = np.arange(0, 21)
+numpyh[(numpyh >= 9) & (numpyh <= 15)] *= -1
+print(numpyh) #[  0   1   2   3   4   5   6   7   8  -9 -10 -11 -12 -13 -14 -15  16  17  18  19  20]
+
+#23. Write a NumPy program to create a vector of length 5 filled with arbitrary integers from 0 to 10.
+vectorfive = np.random.randint(0,11,5)
+print(vectorfive) #print [7 9 3 3 5]
+
+#24. Write a NumPy program to multiply the values of two given vectors.
+multiply1 = np.random.randint(0,11,5)
+multiply2 = np.random.randint(0,11,5)
+multply12 = multiply1*multiply2
+print(multiply1) #print [ 7  8 10 10  4]
+print(multiply2) #print [10  8  6 10  9]
+print(multply12) #print [ 70  64  60 100  36]
+
+#25. Write a NumPy program to create a 3x4 matrix filled with values from 10 to 21.
+matrix34 = np.arange(10,22).reshape(3,4)
+print(matrix34)
+'''
+[[10 11 12 13]
+ [14 15 16 17]
+ [18 19 20 21]]
+'''
+
+#26. Write a NumPy program to find the number of rows and columns of a given matrix.
+matrix34 = np.arange(10,22).reshape(3,4)
+print(matrix34.shape) #print (3, 4)
+
+#27. Write a NumPy program to create a 3x3 identity matrix, i.e. diagonal elements are 1, the rest are 0.
+print(np.identity(3))
+'''
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+'''
+#official solution
+x = np.eye(3)
+print(x)
+
+#28. Write a NumPy program to create a 10x10 matrix, in which the elements on the borders will be equal to 1, and inside 0.
+numpyzeroes = np.zeros((10,10), dtype=np.int16)
+print(numpyzeroes)
+'''
+[[0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]
+ [0 0 0 0 0 0 0 0 0 0]]
+
+'''
+numpyzeroes[0:1,0:10] = 1
+numpyzeroes[9:10,0:10] = 1
+numpyzeroes[:,0:1] = 1
+numpyzeroes[:,9:10] = 1
+print(numpyzeroes)
+'''
+[[1 1 1 1 1 1 1 1 1 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 0 0 0 0 0 0 0 0 1]
+ [1 1 1 1 1 1 1 1 1 1]]
+'''
+#RM:  incorrect assigning and slicing.  I mentioned the variable numpyzeroes twice.  Too tired.  Take a break.
+# numpyzeroes[numpyzeroes[0:1,0:10]] = 1
+# numpyzeroes[numpyzeroes[9:10,0:10]] = 2
+# numpyzeroes[numpyzeroes[:,0:1]] = 3
+# numpyzeroes[numpyzeroes[:,9:10]] = 4
+#official solution
+x = np.ones((10, 10))
+x[1:-1, 1:-1] = 0
+print(x)
+
+
+
 
 
